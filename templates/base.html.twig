@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.defaultLocale }}">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>
+            {% block title %}{% endblock %}
+        </title>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {% block navbar %}{% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
