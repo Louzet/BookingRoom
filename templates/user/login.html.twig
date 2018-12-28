@@ -7,7 +7,24 @@
         </div>
         <div class="col-md-4">
             <div class="form-view">
-                {{ form(form) }}
+                <h2>Connectez vous</h2>
+                {{ form_start(form) }}
+                <div class="form-group my-3">
+                    {{ form_label(form.idEmploy) }}
+                    {{ form_errors(form.idEmploy) }}
+                    {{ form_widget(form.idEmploy) }}
+                    {{ form_help(form.idEmploy) }}
+                </div>
+                <div class="form-group my-3">
+                    {{ form_label(form.password) }}
+                    {{ form_errors(form.password) }}
+                    {{ form_widget(form.password) }}
+                    {{ form_help(form.password) }}
+                </div>
+                <div class="form-group my-2">
+                    <button class="btn btn-success default-color lighten-1">Connexion</button>
+                </div>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>
