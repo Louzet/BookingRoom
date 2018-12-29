@@ -1,0 +1,11 @@
+phpLDAPadmin: http://ldap.agopreneur.fr/phpldapadmin
+
+Login: cn=mickael louzet,dc=ldap,dc=agopreneur,dc=fr
+password: mickaelldap
+
+
+Pour info:
+BASE    dc=ldap,dc=agopreneur,dc=fr
+URI     ldap://149.91.82.117
+
+
