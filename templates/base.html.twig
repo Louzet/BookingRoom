@@ -5,11 +5,36 @@
         <title>
             {% block title %}{% endblock %}
         </title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <!--===============================================================================================-->
+            <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" href="{{ asset('css/style.min.css') }}">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+            <!--===============================================================================================-->
+            {% block custom_stylesheets %}{% endblock %}
+        {% endblock %}
+
     </head>
     <body>
         {% block navbar %}{% endblock %}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <!--===============================================================================================-->
+            <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+            <!--===============================================================================================-->
+            <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <!--===============================================================================================-->
+            <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+            <!--===============================================================================================-->
+            <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
+            <!--===============================================================================================-->
+            {% block custom_javascript %}{% endblock %}
+        {% endblock %}
     </body>
 </html>
