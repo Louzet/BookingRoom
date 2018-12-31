@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
@@ -18,7 +19,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="integer", length=64)
+     * @ORM\Column(type="integer",  length=64)
      * @Assert\NotBlank(message="Ce champ ne peut être vide")
      * @Assert\Regex(
      *     pattern="/^\d/",
@@ -162,13 +163,12 @@ class User implements UserInterface
     }
 
     /**
-     * @param string $role
+     * @param  string $role
      * @return array
      */
     public function setRoles(string $role)
     {
-        if(!in_array($role, $this->roles))
-        {
+        if (!in_array($role, $this->roles)) {
             $this->roles[] = $role;
         }
         return $this->roles;
@@ -205,6 +205,5 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
-
     }
 }

@@ -18,15 +18,16 @@ class UserLoginType extends AbstractType
     {
         $builder
             ->add('idEmploy')
-            ->add('password', PasswordType::class)
-        ;
+            ->add('password', PasswordType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => null,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => null,
+            ]
+        );
     }
 
     public function getBlockPrefix()

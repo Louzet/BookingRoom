@@ -13,8 +13,8 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/login", name="user.login")
-     * @param AuthenticationUtils $authenticationUtils
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param           AuthenticationUtils $authenticationUtils
+     * @return          \Symfony\Component\HttpFoundation\Response
      */
     public function login(AuthenticationUtils $authenticationUtils) : Response
     {
@@ -23,19 +23,23 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute("booking.home");
         }*/
 
-        $form = $this->createForm(UserLoginType::class, [
-            'idEmploy' => $authenticationUtils->getLastUsername()
-        ]);
+        $form = $this->createForm(
+            UserLoginType::class,
+            [
+                'idEmploy' => $authenticationUtils->getLastUsername()
+            ]
+        );
 
-        # Récupération du message d'erreur s'il y en a un.
+        // Récupération du message d'erreur s'il y en a un.
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        # Affichage du Formulaire
-        return $this->render("user/login.html.twig", [
-            'form'       => $form->createView(),
-            'error'      => $error
-        ]);
-
-
+        // Affichage du Formulaire
+        return $this->render(
+            "user/login.html.twig",
+            [
+                'form'       => $form->createView(),
+                'error'      => $error
+            ]
+        );
     }
 }
