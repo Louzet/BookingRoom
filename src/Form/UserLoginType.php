@@ -17,20 +17,21 @@ class UserLoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('idEmploy')
-            ->add('password', PasswordType::class)
-        ;
+            ->add('_username')
+            ->add('_password', PasswordType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => null,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => null,
+            ]
+        );
     }
 
     public function getBlockPrefix()
     {
-        return "app_login";
+        return null;
     }
 }

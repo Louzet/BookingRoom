@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ruleset name="Logger">
+    <description>The PSR-2 coding standard.</description>
+
+    <arg name="report" value="summary"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+
+    <file>src/Controller</file>
+    <file>src/Entity</file>
+    <file>tests</file>
+
+    <autoload>vendor/autoload.php</autoload>
+
+    <rule ref="PSR1">psr1</rule>
+    <rule ref="PSR2">psr2</rule>
+    <rule ref="PEAR"/>
+
+    <rule ref="Generic.Arrays.ArrayIndent">
+        <properties>
+            <property name="indent" value="4" />
+        </properties>
+    </rule>
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+    <rule ref="Generic.Commenting.Todo.CommentFound">
+        <message>Please review this TODO comment: %s</message>
+        <severity>3</severity>
+    </rule>
+    <rule ref="Generic.Files.LineEndings">
+        <properties>
+            <property name="eolChar" value="\r\n"/>
+        </properties>
+    </rule>
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property phpcs-only="true" name="lineLimit" value="80"/>
+            <property phpcbf-only="true" name="lineLimit" value="120"/>
+        </properties>
+    </rule>
+
+    <exclude-pattern>*/tests/*</exclude-pattern>
+
+</ruleset>
