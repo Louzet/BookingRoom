@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc26ae1f4af7d92b3791aa74a4e0386a",
+    "content-hash": "450156ef2b7d5bc244cf9a4e08df42f5",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3401,6 +3401,64 @@
                 "localization"
             ],
             "time": "2018-12-01T08:52:38+00:00"
+        },
+        {
+            "name": "symfony/ldap",
+            "version": "v4.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/ldap.git",
+                "reference": "5d5052c9981cc7fd8e6301a55b0f66d0e3cacf2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/ldap/zipball/5d5052c9981cc7fd8e6301a55b0f66d0e3cacf2c",
+                "reference": "5d5052c9981cc7fd8e6301a55b0f66d0e3cacf2c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ldap": "*",
+                "php": "^7.1.3",
+                "symfony/options-resolver": "~4.2"
+            },
+            "conflict": {
+                "symfony/options-resolver": "<4.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Ldap\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Charles Sarrazin",
+                    "email": "charles@sarraz.in"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "An abstraction in front of PHP's LDAP functions, compatible with PHP 5.3.9 onwards.",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "active directory",
+                "ldap"
+            ],
+            "time": "2018-12-01T09:06:45+00:00"
         },
         {
             "name": "symfony/monolog-bridge",
