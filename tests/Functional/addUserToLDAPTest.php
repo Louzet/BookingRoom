@@ -33,7 +33,7 @@ class addUserToLDAPTest extends WebTestCase
 
         $this->ldap->bind($this->dn, $this->password);
 
-        $filter = 'objectClass=';
+        $filter = 'objectClass=*';
 
         $query = $this->ldap->query($this->dn, 'objectClass=*', ['filter' => $this->attributes]);
         $collection = $query->execute();
