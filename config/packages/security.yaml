@@ -10,7 +10,7 @@ security:
             ldap:
                 service: Symfony\Component\Ldap\Ldap
                 base_dn: dc=ldap,dc=agopreneur,dc=fr
-                search_dn: "cn=eric legrand,dc=ldap,dc=agopreneur,dc=fr"
+                search_dn: "cn=Eric Legrand,dc=ldap,dc=agopreneur,dc=fr"
                 search_password: ericldap
                 uid_key: 'name'
                 default_roles: ROLE_USER
