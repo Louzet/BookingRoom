@@ -10,8 +10,8 @@ security:
             ldap:
                 service: Symfony\Component\Ldap\Ldap
                 base_dn: dc=ldap,dc=agopreneur,dc=fr
-                search_dn: "cn=admin,dc=ldap,dc=agopreneur,dc=fr"
-                search_password: nimdaLDAP_1
+                search_dn: "cn=Eric Legrand,dc=ldap,dc=agopreneur,dc=fr"
+                search_password: ericldap
                 uid_key: 'name'
                 default_roles: ROLE_USER
     firewalls:
@@ -25,8 +25,8 @@ security:
                 provider: booking_ldap
                 service: Symfony\Component\Ldap\Ldap
                 dn_string: 'cn={username},dc=ldap,dc=agopreneur,dc=fr'
-                check_path: user.login
-                login_path: user.login
+                check_path: booking.login
+                login_path: booking.login
                 default_target_path: /home
 
             logout:
