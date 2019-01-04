@@ -3,38 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <title>
-            {% block title %}{% endblock %}
+            {% block title %}
+                {% block page_title %}{% endblock %} | {% block site_title %}Booking Room{% endblock %}
+            {% endblock %}
         </title>
-        {% block stylesheets %}
-            <!--===============================================================================================-->
-            <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-            <!--===============================================================================================-->
-            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-            <!--===============================================================================================-->
-            <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
-            <!--===============================================================================================-->
-            <link rel="stylesheet" href="{{ asset('css/style.min.css') }}">
-            <!--===============================================================================================-->
-            <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-            <!--===============================================================================================-->
-            {% block custom_stylesheets %}{% endblock %}
-        {% endblock %}
+        {% block final_stylesheets %}{% endblock %}
+        {% block stylesheets %}{% endblock %}
 
     </head>
     <body>
-        {% block navbar %}{% endblock %}
         {% block body %}{% endblock %}
-        {% block javascripts %}
-            <!--===============================================================================================-->
-            <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-            <!--===============================================================================================-->
-            <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-            <!--===============================================================================================-->
-            <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
-            <!--===============================================================================================-->
-            <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
-            <!--===============================================================================================-->
-            {% block custom_javascript %}{% endblock %}
-        {% endblock %}
+        {% block final_javascripts %}{% endblock %}
+        {% block javascript %}{% endblock %}
     </body>
 </html>

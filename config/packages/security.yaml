@@ -10,8 +10,8 @@ security:
             ldap:
                 service: Symfony\Component\Ldap\Ldap
                 base_dn: dc=ldap,dc=agopreneur,dc=fr
-                search_dn: "cn=Eric Legrand,dc=ldap,dc=agopreneur,dc=fr"
-                search_password: ericldap
+                search_dn: "cn=admin,dc=ldap,dc=agopreneur,dc=fr"
+                search_password: nimdaLDAP_1
                 uid_key: 'name'
                 default_roles: ROLE_USER
     firewalls:
@@ -27,7 +27,11 @@ security:
                 dn_string: 'cn={username},dc=ldap,dc=agopreneur,dc=fr'
                 check_path: user.login
                 login_path: user.login
-                default_target_path: /
+                default_target_path: /home
+
+            logout:
+                path: /logout
+                target: /home
 
             # activate different ways to authenticate
 

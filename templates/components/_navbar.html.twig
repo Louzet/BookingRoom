@@ -7,17 +7,35 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="#">Accueil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Nos services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="#">Reservation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Notre équipe</a>
             </li>
         </ul>
-        <span class="navbar-text white-text">
-        Navbar text with an inline element
-        </span>
+        <!--Dropdown primary-->
+        <div class="dropdown">
+
+            <!--Trigger-->
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><ion-icon name="contact"></ion-icon></button>
+
+
+            <!--Menu-->
+            <div class="dropdown-menu dropdown-primary">
+                <a class="dropdown-item" href="{{ path('booking.login') }}">Connexion</a>
+                <a class="dropdown-item" href="{{ path('booking.logout') }}">Déconnexion</a>
+            </div>
+        </div>
+        <!--/Dropdown primary-->
     </div>
 </nav>
