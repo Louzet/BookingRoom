@@ -13,6 +13,7 @@
         "symfony/flex": "^1.1",
         "symfony/form": "4.2.*",
         "symfony/framework-bundle": "4.2.*",
+        "symfony/ldap": "4.2.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
         "symfony/process": "4.2.*",
@@ -26,9 +27,12 @@
         "symfony/yaml": "4.2.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.1",
+        "fzaninotto/faker": "^1.8",
         "phpunit/phpunit": "^7.5",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "4.2.*",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*",
         "symfony/web-server-bundle": "4.2.*"
