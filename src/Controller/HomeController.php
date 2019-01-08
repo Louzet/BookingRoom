@@ -19,13 +19,14 @@ class HomeController extends AbstractController
     public function home()
     {
         $adapter = new Adapter(['host'=>'ldap.agopreneur.fr', 'port'=>389]);
+
         $adapter->getConnection()->setOption('PROTOCOL_VERSION', 3);
 
         $ldap = new Ldap($adapter);
 
         $ldap->bind('cn=admin,dc=ldap,dc=agopreneur,dc=fr', 'nimdaLDAP_1');
 
-        $entry = new Entry('cn=ROLE_ANONYMOUS,ou=UTILISATEURS,dc=ldap,dc=agopreneur,dc=fr', [
+        $entry = new Entry('cn=ROLE_ANONYMOUS,dc=ldap,dc=agopreneur,dc=fr', [
             'cn' => 'ROLE_ANONYMOUS',
             'objectClass' => ['posixGroup','top'],
             'gidNumber' => 513

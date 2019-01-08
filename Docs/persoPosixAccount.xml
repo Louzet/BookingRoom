@@ -26,6 +26,11 @@
 	<readonly>1</readonly>
 	<value>=php.GetNextNumber(/;uidNumber)</value>
 </attribute>
+<attribute id="cn">
+	<display>Role CN</display>
+	<order>1</order>
+	<spacer>1</spacer>
+</attribute>
 
 <attribute id="cn">
 	<display>Common Name</display>
