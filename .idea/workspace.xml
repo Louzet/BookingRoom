@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2a9e72a4-38d7-45af-a9a0-f3859a360b04" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/UseCases_BookingRoom.doc" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/UseCases_BookingRoom.doc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docs/persoPosixAccount.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/persoPosixAccount.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +32,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
+            <state relative-caret-position="137">
               <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
               <folding>
                 <element signature="e#36#101#0#PHP" expanded="true" />
@@ -255,11 +252,11 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="130" />
+    <option name="y" value="27" />
+    <option name="width" value="1655" />
+    <option name="height" value="997" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -363,18 +360,18 @@
       <workItem from="1546423194732" duration="9047000" />
       <workItem from="1546507991359" duration="689000" />
       <workItem from="1546589011253" duration="11491000" />
-      <workItem from="1546874991465" duration="5024000" />
+      <workItem from="1546874991465" duration="6010000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36106000" />
+    <option name="totallyTimeSpent" value="37092000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" id="LDAP" sideWeight="0.50070125" side_tool="true" visible="true" weight="0.27345416" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49929875" visible="true" weight="0.27345416" />
+      <window_info id="LDAP" sideWeight="0.5021739" side_tool="true" visible="true" weight="0.27345416" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978261" visible="true" weight="0.27345416" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -386,8 +383,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.22751896" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.5016251" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -498,7 +495,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
+        <state relative-caret-position="137">
           <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
           <folding>
             <element signature="e#36#101#0#PHP" expanded="true" />
