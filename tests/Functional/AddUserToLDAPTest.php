@@ -1,10 +1,12 @@
 <?php
 
+namespace App\Tests\Functional;
+
 use Symfony\Component\Ldap\Ldap;
 use Symfony\Component\Ldap\Adapter\ExtLdap\Adapter;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class addUserToLDAPTest extends WebTestCase
+class AddUserToLDAPTest extends WebTestCase
 {
     private $adapter;
     private $ldap;
@@ -40,11 +42,6 @@ class addUserToLDAPTest extends WebTestCase
 
         $client = static::createClient();
         $crawler = $client->request('GET', '/inscription');
-
-
-
-
-
 
 
     }

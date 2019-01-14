@@ -6,8 +6,7 @@
  * Time: 10:15
  */
 
-namespace App\Tests\userTests;
-
+namespace App\Tests\Unit\UserTests;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
