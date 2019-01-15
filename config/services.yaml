@@ -5,12 +5,14 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    booking_logs: '%kernel.project_dir%/var/bookingLogs'
 
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -24,15 +26,23 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Events\UserEvents\UserSuscriber:
+        tags:
+           - {name: monolog.logger, channel: booking_logs}
+
+    App\Events\UserEvents\FailLoginSuscriber:
+        class: App\Events\UserEvents\FailLoginSuscriber
+        arguments: ['@request_stack', '@snc_redis.default']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    App\Events\UserEvents\PostFailLoginSuscriber:
+        class: App\Events\UserEvents\PostFailLoginSuscriber
+        arguments: ['@router', '@logger','@snc_redis.default']
+        tags:
+            - { name: kernel.event_subscriber }
+            - { name: controller.service_arguments }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    Symfony\Component\Ldap\Ldap:
-        arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
-    Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
-        arguments:
-            -   host: 'ldap.agopreneur.fr'
-                port: 389
-                options:
-                    protocol_version: 3
-                    referrals: false

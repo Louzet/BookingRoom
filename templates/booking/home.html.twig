@@ -4,6 +4,81 @@
     Accueil
 {% endblock %}
 
-{% block content %}
-    {% include 'components/_carousel.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/lightslider-master/dist/css/lightslider.min.css') }}">
 {% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                {{ render(controller('App\\Controller\\HomeController::carousel')) }}
+            </div>
+            <div class="col-sm-3">
+                <h3 class="text-center">Suggestion</h3>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{{ asset('css/lightslider-master/dist/js/lightslider.min.js') }}"></script>
+    <script type="text/javascript">
+        $('#lightSlider').lightSlider({
+            item: 1,
+            autoWidth: false,
+            slideMove: 1, // slidemove will be 1 if loop is true
+
+
+            addClass: '',
+            mode: 'lg-fade',
+            useCSS: true,
+            cssEasing: 'ease', //'cubic-bezier(0.25, 0, 0.25, 1)',//
+            easing: 'linear', //'for jquery animation',////
+
+            speed: 500, //ms'
+            auto: true,
+            loop: true,
+            slideEndAnimation: true,
+            pause: 2000,
+
+            slideMargin: 0,
+
+            keyPress: true,
+            controls: true,
+            prevHtml: '',
+            nextHtml: '',
+
+            rtl:false,
+            adaptiveHeight:false,
+
+            vertical:false,
+            verticalHeight:500,
+            vThumbWidth:200,
+
+            thumbItem:10,
+            pager: true,
+            gallery: true,
+            galleryMargin: 5,
+            thumbMargin: 5,
+            currentPagerPosition: 'middle',
+
+            enableTouch:true,
+            enableDrag:true,
+            freeMove:true,
+            swipeThreshold: 40,
+
+            responsive : [],
+
+            onBeforeStart: function (el) {},
+            onSliderLoad: function (el) {},
+            onBeforeSlide: function (el) {},
+            onAfterSlide: function (el) {},
+            onBeforeNextSlide: function (el) {},
+            onBeforePrevSlide: function (el) {}
+        });
+    </script>
+{% endblock %}
+

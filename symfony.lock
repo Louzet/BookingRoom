@@ -1,4 +1,7 @@
 {
+    "adldap2/adldap2": {
+        "version": "v9.1.4"
+    },
     "composer/semver": {
         "version": "1.4.2"
     },
@@ -98,6 +101,9 @@
             "ref": "81dee417d2cc60cd1c9d6208dff2ec22a1103e93"
         }
     },
+    "illuminate/contracts": {
+        "version": "v5.7.20"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -158,6 +164,9 @@
             "ref": "89239f0cf2759efccc76b9944083bfcc4d180f9d"
         }
     },
+    "predis/predis": {
+        "version": "v1.1.1"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -213,6 +222,18 @@
             "branch": "master",
             "version": "5.2",
             "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
+        }
+    },
+    "smalot/ldap": {
+        "version": "v0.4"
+    },
+    "snc/redis-bundle": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "e9c58bfc414cfb7f06e8e5ae9f589868498f5d6a"
         }
     },
     "swiftmailer/swiftmailer": {
@@ -493,6 +514,9 @@
     },
     "theseer/tokenizer": {
         "version": "1.1.0"
+    },
+    "tightenco/collect": {
+        "version": "v5.7.20"
     },
     "twig/twig": {
         "version": "v2.5.0"

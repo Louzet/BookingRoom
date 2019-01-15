@@ -1,31 +1,36 @@
 {% extends 'template.html.twig' %}
 
+{% block page_title %}
+    Connexion
+{% endblock %}
+
+
 {% block content %}
     <div class="mt-5">
-        <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="form-view">
-                <h2>Connectez vous</h2>
-                {{ error }}
-                {{ form_start(form) }}
-                    <div class="form-group my-3">
-                        {{ form_label(form._username) }}
-                        {{ form_errors(form._username) }}
-                        {{ form_widget(form._username) }}
-                        {{ form_help(form._username) }}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    {% for message in app.flashes("success") %}
+                        {{ message }}
+                    {% endfor %}
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            <ul class="list-unstyled mb-0">
+                                <li><span class="initialism form-error-icon badge badge-danger">Error</span>
+                                    <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <div class="form-view">
+                        <h2>Connectez vous</h2>
+                        {{ form_start(form) }}
+                            {{ form(form) }}
+                            <a href="#" class="nav-link form__forgotten-pw">Mot de passe oublié ?</a>
+                        {{ form_end(form) }}
                     </div>
-                    <div class="form-group my-3">
-                        {{ form_label(form._password) }}
-                        {{ form_errors(form._password) }}
-                        {{ form_widget(form._password) }}
-                        {{ form_help(form._password) }}
-                    </div>
-                    <div class="form-group my-2">
-                        <button class="btn btn-success default-color lighten-1">Connexion</button>
-                    </div>
-                {{ form_end(form) }}
+                </div>
             </div>
         </div>
-    </div>
     </div>
 {% endblock %}

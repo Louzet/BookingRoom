@@ -3,13 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(fields={"email"}, message="Email déjà utilisée")
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -19,129 +21,162 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="integer",  length=64)
-     * @Assert\NotBlank(message="Ce champ ne peut être vide")
-     * @Assert\Regex(
-     *     pattern="/^\d/",
-     *     match=true,
-     *     message="Votre id ne doit contenir que des chiffres")
+     * @ORM\Column(type="string", length=255)
      */
-    private $idEmploy;
+    private $lastName;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="Veuillez rentrer une adresse email")
+     * @Assert\Email(message="Cette adresse email n'est pas valide")
+     */
+    private $email;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank()
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="string", length=64)
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="string", length=64)
-     */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $birthday;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $hiringDate;
 
     /**
      * @ORM\Column(type="array")
      */
     private $roles = [];
 
-    public function getId(): ?int
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_inscription;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $derniere_connexion;
+
+    /**
+     * User constructor.
+     * @param string $role
+     */
+    public function __construct(string $role = "ROLE_USER")
+    {
+        $this->setRoles($role);
+        $this->date_inscription = new \DateTime("Europe/Paris");
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
+     * @param mixed $id
      */
-    public function getIdEmploy()
+    public function setId($id): void
     {
-        return $this->idEmploy;
-    }
-
-    /**
-     * @param mixed $idEmploy
-     */
-    public function setIdEmploy($idEmploy): void
-    {
-        $this->idEmploy = $idEmploy;
+        $this->id = $id;
     }
 
     /**
      * @return mixed
      */
-    public function getPassword()
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     */
+    public function setLastName($lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param mixed $firstName
+     */
+    public function setFirstName($firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * Returns the password used to authenticate the user.
+     *
+     * This should be the encoded password. On authentication, a plain-text
+     * password will be salted, encoded, and then compared to this value.
+     *
+     * @return string The password
+     */
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
+
     /**
      * @param mixed $password
+     * @return mixed
      */
-    public function setPassword($password): void
+    public function setPassword($password)
     {
         $this->password = $password;
+        return $this;
     }
 
-    public function getName(): ?string
+    /**
+     * @return mixed
+     */
+    public function getDateInscription()
     {
-        return $this->name;
+        return $this->date_inscription;
     }
 
-    public function setName(string $name): self
+    /**
+     * @param mixed $date_inscription
+     * @return User
+     */
+    public function setDateInscription(?\DateTimeInterface $date_inscription): self
     {
-        $this->name = $name;
+        $this->date_inscription = $date_inscription;
 
         return $this;
     }
 
-    public function getFirstname(): ?string
-    {
-        return $this->firstname;
-    }
-
-    public function setFirstname(string $firstname): self
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getBirthday(): ?\DateTimeInterface
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(?\DateTimeInterface $birthday): self
-    {
-        $this->birthday = $birthday;
-
-        return $this;
-    }
-
-    public function getHiringDate(): ?\DateTimeInterface
-    {
-        return $this->hiringDate;
-    }
-
-    public function setHiringDate(\DateTimeInterface $hiringDate): self
-    {
-        $this->hiringDate = $hiringDate;
-
-        return $this;
-    }
 
     /**
      * Returns the roles granted to the user.
@@ -159,19 +194,45 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return $this->roles;
+        $roles = $this->roles;
+
+        return array_unique($roles);
     }
 
+
     /**
-     * @param  string $role
-     * @return array
+     * @param string $role
+     * @return bool
      */
     public function setRoles(string $role)
     {
-        if(!in_array($role, $this->roles)) {
+        if(!in_array($role, $this->roles))
+        {
             $this->roles[] = $role;
+            return true;
         }
-        return $this->roles;
+
+        return false;
+    }
+
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getDerniereConnexion(): ?\DateTimeInterface
+    {
+        return $this->derniere_connexion;
+    }
+
+    /**
+     * @param string $timestamp
+     * @return User
+     */
+    public function setDerniereConnexion(?string $timestamp = 'Europe/Paris'): self
+    {
+        $this->derniere_connexion = new \DateTime('now', new \DateTimeZone($timestamp));
+
+        return $this;
     }
 
 
@@ -194,7 +255,7 @@ class User implements UserInterface
      */
     public function getUsername()
     {
-        return $this->idEmploy;
+        return $this->email;
     }
 
     /**
@@ -205,5 +266,49 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
+
     }
+
+    /**
+     * String representation of object
+     * @link http://php.net/manual/en/serializable.serialize.php
+     * @return string the string representation of the object or null
+     * @since 5.1.0
+     */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->lastName,
+            $this->firstName,
+            $this->email,
+            $this->password,
+            $this->roles,
+            $this->derniere_connexion
+        ]);
+    }
+
+    /**
+     * Constructs the object
+     * @link http://php.net/manual/en/serializable.unserialize.php
+     * @param string $serialized <p>
+     * The string representation of the object.
+     * </p>
+     * @return void
+     * @since 5.1.0
+     */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->lastName,
+            $this->firstName,
+            $this->email,
+            $this->password,
+            $this->roles,
+            $this->derniere_connexion
+        ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+
 }

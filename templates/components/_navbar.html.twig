@@ -7,13 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Accueil</a>
+                <a class="nav-link" href="{{ path('booking.home') }}">Accueil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Nos services</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Reservation</a>
+                <a class="nav-link" href="{{ path('booking.reservation.index') }}">Reservation</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
@@ -26,8 +23,11 @@
         <div class="dropdown">
 
             <!--Trigger-->
+            <a href="{{ path('user.registration') }}" class="btn btn-danger" type="button">Inscription</a>
+
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"><ion-icon name="contact"></ion-icon></button>
+                    aria-haspopup="true" aria-expanded="false"><ion-icon name="contact"></ion-icon>
+            </button>
 
 
             <!--Menu-->
@@ -39,3 +39,4 @@
         <!--/Dropdown primary-->
     </div>
 </nav>
+
