@@ -2,25 +2,18 @@
 
 namespace App\Controller;
 
-
-use App\Entity\InscriptionLdap;
-use App\Form\InscriptionLdapType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class InscriptionLdapController extends AbstractController
 {
     /**
-     * @Route("/inscriptionLdap", name="booking.inscriptionLdap")
+     * @Route("/inscription/ldap", name="inscription_ldap")
      */
-    public function inscriptionLdap(Request $request)
+    public function index()
     {
-        $ldap=new InscriptionLdap();
-        $form=$this->createForm(InscriptionLdapType::class,$ldap)->handleRequest($request);
-        return $this->render('booking/inscriptionLdap.html.twig',[
-            'form' => $form-> createView()
+        return $this->render('inscription_ldap/index.html.twig', [
+            'controller_name' => 'InscriptionLdapController',
         ]);
-
     }
 }
