@@ -1,0 +1,54 @@
+{{ dump(app.user) }}
+<nav class="navbar navbar-default navbar-expand-lg">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+
+            </button>
+            <a class="navbar-brand" href="{{ path('booking.home') }}">Booking Room</a>
+        </div>
+
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 0.989583px;">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a href="{{ path('booking.home') }}" class="nav-link">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('booking.reservation.index') }}" class="nav-link">Réservation</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('booking.reservation.index') }}" class="nav-link">Nos salles</a>
+                </li>
+
+            </ul>
+
+            <div class="nav navbar-nav navbar-right">
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <span class="link-registration mr-4">
+                        <a href="{{ path('user.registration') }}" class="nav-link">Pas encore Inscrit ?</a>
+                    </span>
+                {%  endif %}
+                <div class="btn-group">
+                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        {{ app.user ? app.token.username : 'Espace Utilisateur' }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                            <li class="nav-item"><a href="{{ path('booking.login') }}" class="nav-link text-center">Connexion</a></li>
+                        {% endif %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li class="nav-item"><a href="#" class="nav-link text-center">Profil</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link text-center">Notifications</a></li>
+                            <li class="divider"></li>
+                            <li class="nav-item"><a href="{{ path('booking.logout') }}" class="nav-link text-center">Déconnexion</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

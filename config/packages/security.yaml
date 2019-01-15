@@ -2,18 +2,14 @@ security:
     encoders:
         App\Entity\User:
             algorithm: bcrypt
-            cost: 12
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
-        booking_ldap:
-            ldap:
-                service: Symfony\Component\Ldap\Ldap
-                base_dn: dc=ldap,dc=agopreneur,dc=fr
-                search_dn: "cn=admin,dc=ldap,dc=agopreneur,dc=fr"
-                search_password: nimdaLDAP_1
-                uid_key: 'name'
-                default_roles: ROLE_USER
+        user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -21,24 +17,34 @@ security:
         main:
             anonymous: true
 
-            form_login_ldap:
-                provider: booking_ldap
-                service: Symfony\Component\Ldap\Ldap
-                dn_string: 'cn={username},dc=ldap,dc=agopreneur,dc=fr'
-                check_path: user.login
-                login_path: user.login
-                default_target_path: /home
+            provider: user_provider
+
+            form_login:
+                login_path: booking.login
+                check_path: booking.login
+                username_parameter: app_login[email]
+                password_parameter: app_login[password]
+                csrf_parameter: app_login[_login_csrf]
 
             logout:
                 path: /logout
                 target: /home
 
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path: /
+                remember_me_parameter: _remember_me
+
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                #always_remember_me: true
+
             # activate different ways to authenticate
 
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
 
@@ -47,3 +53,6 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER

@@ -1,0 +1,26 @@
+{% extends 'template.html.twig' %}
+
+{% block page_title %}
+    Erreur {{ status_code }}, trop de tentatives de connexion!
+{% endblock %}
+
+
+{% block content %}
+    <h1 class="text-center">Security warning</h1>
+
+    <h2>Trop de tentatives de connexion</h2>
+
+    <p>
+        Trop d'échecs de connexion détecté. Vou avez essayé de vous connecter {{ constant('App\\Events\\UserEvents\\PostFailLoginSuscriber::MAX_LOGIN_FAILURE_ATTEMPTS') }}
+        fois sans succès. Vous ne serez <b>PLUS</b> capable de vous connecter pendant <b>{{ constant('App\\Events\\UserEvents\\FailLoginSuscriber::FAIL_TTL_HOUR') }}</b> heure(s), à partir de <strong>maintenant</strong>.
+        Si vous pensez qu'il sagisse d'un bug, <a href="#">contactez nous</a> au plus vite !
+
+    </p>
+
+    <p class="text-center">
+        <b>Si vous avez perdu votre mot de passe, suivez le lien ci dessous :</b><br/><br/>
+        <a href="{# path('user_resetting_request_'~locale) #}"  type="button" class="btn btn-primary btn-lg">
+            <span>Demander un nouveau mot de passe</span>
+        </a>
+    </p>
+{% endblock %}
