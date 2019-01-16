@@ -20,7 +20,8 @@ class InscriptionLdapType extends AbstractType
             ->add('port')
             ->add('basedn')
             ->add('binddn')
-            ->add('password', PasswordType::class);
+            ->add('password', PasswordType::class)
+            ->add('cheminRoom');
     }
 
     public function configureOptions(OptionsResolver $resolver)

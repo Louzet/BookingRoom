@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\InscriptionLdapRepository")
@@ -17,35 +18,79 @@ class InscriptionLdap
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=255)
      */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Saisir ici un nom.")
+     * @Assert\Length(
+     *     max="64",
+     *     maxMessage="Le nom saisi ne doit dépasser {{ limit }} caractères  "
+     * )*/
     private $name;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Saisir ici le hostname de votre LDAP.")
+     * @Assert\Length(
+     *     max="64",
+     *     maxMessage="Le hostname saisi ne doit dépasser {{ limit }} caractères  "
+     * )
      */
     private $hostname;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Saisir ici le numero de port.")
      */
     private $port;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Saisir ici l'adresse baseDN.")
+     * @Assert\Length(
+     *     max="64",
+     *     maxMessage="L'adressse baseDN saisi ne doit dépasser {{ limit }} caractères  "
+     * )
      */
     private $basedn;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Saisir ici l'adresse binDN.")
+     * @Assert\Length(
+     *     max="64",
+     *     maxMessage="L'adresse binDN saisi ne doit dépasser {{ limit }} caractères  "
+     * )
      */
     private $binddn;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Saisir ici le mot de passe du LDAP.")
+     * @Assert\Length(
+     *     max="64",
+     *     maxMessage="Le mot de passe du LDAP ne doit dépasser {{ limit }} caractères  "
+     * )
      */
     private $password;
 
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Saisir ici le chemin vers les salles.")
+     * @Assert\Length(
+     *     max="255",
+     *     maxMessage="Le chemin saisi ne doit dépasser {{ limit }} caractères  "
+     * )*/
+    private $cheminRoom;
+
+
+/****************************************************************
+*                      Getters et Setter                        *
+****************************************************************/
 
     /**
      * @return mixed
@@ -61,6 +106,22 @@ class InscriptionLdap
     public function setId($id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug): void
+    {
+        $this->slug = $slug;
     }
 
     public function getName(): ?string
@@ -175,6 +236,22 @@ class InscriptionLdap
      */
     public function eraseCredentials()
     {
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCheminRoom()
+    {
+        return $this->cheminRoom;
+    }
+
+    /**
+     * @param mixed $cheminRoom
+     */
+    public function setCheminRoom($cheminRoom): void
+    {
+        $this->cheminRoom = $cheminRoom;
     }
 
 }

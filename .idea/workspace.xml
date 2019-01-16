@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a9e72a4-38d7-45af-a9a0-f3859a360b04" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/InscriptionLdapController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FormInscriptionLdapController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/InscriptionLdap.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/InscriptionLdap.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -336,12 +331,6 @@
               <item name="BookingRoom" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookingRoom" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BookingRoom" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BookingRoom" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -369,7 +358,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../TechNewsCargoII" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -432,12 +421,12 @@
       <workItem from="1546874991465" duration="6010000" />
       <workItem from="1547043482667" duration="340000" />
       <workItem from="1547113439235" duration="19451000" />
-      <workItem from="1547544841659" duration="2368000" />
+      <workItem from="1547544841659" duration="4821000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59251000" />
+    <option name="totallyTimeSpent" value="61704000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -449,12 +438,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1302" height="1045" extended-state="0" />
+    <frame x="65" y="24" width="1014" height="1045" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8" visible="true" weight="0.4124204" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8" visible="true" weight="0.53512394" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info id="LDAP" order="3" sideWeight="0.2" side_tool="true" visible="true" weight="0.4124204" />
+      <window_info id="LDAP" order="3" sideWeight="0.2" side_tool="true" visible="true" weight="0.53512394" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32897604" />
       <window_info anchor="bottom" id="Run" order="2" />

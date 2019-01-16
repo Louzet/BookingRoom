@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface
+class User
 {
     /**
      * @ORM\Id()
@@ -57,6 +56,21 @@ class User implements UserInterface
      * @ORM\Column(type="array")
      */
     private $roles = [];
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation",
+     *     mappedBy="user")
+     */
+    private $reservations;
+
+
+
+
+
+/****************************************************************
+*                      Getters et Setter                        *
+****************************************************************/
+
 
     public function getId(): ?int
     {
@@ -172,6 +186,23 @@ class User implements UserInterface
             $this->roles[] = $role;
         }
         return $this->roles;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getReservations()
+    {
+        return $this->rerservations;
+    }
+
+    /**
+     * @param mixed $reservations
+     */
+    public function setReservations($reservations): void
+    {
+        $this->reservations = $reservations;
     }
 
 
