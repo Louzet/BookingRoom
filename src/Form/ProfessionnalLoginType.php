@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserLoginType extends AbstractType
+class ProfessionnalLoginType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -23,7 +23,7 @@ class UserLoginType extends AbstractType
                 'required' => true,
                 'label' => 'Mot de passe',
                 'attr' => [
-                    'placeholder' => '******',
+                    'placeholder' => 'Email',
                 ],
             ])
             ->add('_remember_me', CheckboxType::class, [
@@ -45,14 +45,14 @@ class UserLoginType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-                'username_parameter' => 'email',
-                'password_parameter' => 'password',
-                'data_class' => null,
-                'csrf_field_name' => '_login_csrf',
-                'csrf_token_id' => 'authenticate',
-                'remember_me' => false,
-                'translation_domain' => false,
-            ])
+            'username_parameter' => 'email',
+            'password_parameter' => 'password',
+            'data_class' => null,
+            'csrf_field_name' => '_login_csrf',
+            'csrf_token_id' => 'authenticate',
+            'remember_me' => false,
+            'translation_domain' => false,
+        ])
         ;
     }
 

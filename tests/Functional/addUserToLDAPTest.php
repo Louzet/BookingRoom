@@ -36,14 +36,14 @@ class addUserToLDAPTest extends WebTestCase
         $filter = 'objectClass=*';
 
         $query = $this->ldap->query($this->dn, 'objectClass=*', ['filter' => $this->attributes]);
+
         $collection = $query->execute();
 
         $client = static::createClient();
-        $crawler = $client->request('GET', '/inscription');
 
+        $crawler = $client->request('GET', '/reserver/id');
 
-
-
+        
 
     }
 }

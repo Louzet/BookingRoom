@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Traits\TransliteratorSlugTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Room
 {
+    use TransliteratorSlugTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -22,7 +27,7 @@ class Room
     private $name;
 
     /**
-     *
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $slug;
 
@@ -63,16 +68,22 @@ class Room
     private $type;
 
     /**
-     * @var \DateTime $dateCreation
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
     private $dateCreation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="salle")
+     */
+    private $reservations;
 
     public function __construct()
     {
         $this->disponible = false;
 
-        $this->dateCreation = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+        $this->dateCreation = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -192,4 +203,50 @@ class Room
         $this->dateCreation = $dateCreation;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string|null $slug
+     */
+    public function setSlug($slug): void
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setSalle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->contains($reservation)) {
+            $this->reservations->removeElement($reservation);
+            // set the owning side to null (unless already changed)
+            if ($reservation->getSalle() === $this) {
+                $reservation->setSalle(null);
+            }
+        }
+
+        return $this;
+    }
 }

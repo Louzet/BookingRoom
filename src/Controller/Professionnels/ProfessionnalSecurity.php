@@ -1,53 +1,49 @@
 <?php
 
-namespace App\Controller\Security;
+namespace App\Controller\Professionnels;
 
-use App\Form\UserLoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
-class SecurityController extends AbstractController
+class ProfessionnalSecurity extends AbstractController
 {
     private $error;
 
     /**
-     * @Route("/login", name="user.login")
+     * @Route("/professionnal/login", name="pro.login")
      *
      * @param AuthenticationUtils $authenticationUtils
      *
      * @return Response
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function Professionnal_login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
             return $this->redirectToRoute('booking.home');
         }
 
         // Récupération du formulaire de connexion
-        $form = $this->createForm(UserLoginType::class, [
+        $form_professionnal = $this->createForm(ProfessionnalLoginType::class, [
             'email' => $authenticationUtils->getLastUsername(),
         ]);
 
         // Récupération du message d'erreur s'il y en a un.
         $this->error = $authenticationUtils->getLastAuthenticationError();
 
-        $error_en = $this->error ? $this->error->getMessage() : '';
-
         // Affichage du Formulaire
         return $this->render('user/login.html.twig', [
-                'form' => $form->createView(),
-                'error' => $error_en,
+                'form_professionnal' => $form_professionnal->createView(),
+                'error' => $this->error,
             ]
         );
     }
 
     /**
-     * @Route("/logout", name="user.logout")
+     * @Route("/professionnal/logout", name="pro.logout")
      */
-    public function logout()
+    public function Professionnal_logout()
     {
     }
 }

@@ -1,7 +1,7 @@
 security:
     encoders:
-        App\Entity\User:
-            algorithm: bcrypt
+        App\Entity\User: bcrypt
+        App\Entity\Professionnal: bcrypt
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -10,18 +10,26 @@ security:
                 class: App\Entity\User
                 property: email
 
+        professionnal_provider:
+            entity:
+                class: App\Entity\Professionnal
+                property: email
+
+        chaine_provider:
+            chain:
+                providers: [user_provider, professionnal_provider]
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
         main:
             anonymous: true
-
-            provider: user_provider
-
             form_login:
-                login_path: booking.login
-                check_path: booking.login
+                provider: chaine_provider
+                login_path: user.login
+                check_path: user.login
                 username_parameter: app_login[email]
                 password_parameter: app_login[password]
                 csrf_parameter: app_login[_login_csrf]
@@ -36,10 +44,16 @@ security:
                 path: /
                 remember_me_parameter: _remember_me
 
-                # by default, the feature is enabled by checking a
+
+
+
+
+              # by default, the feature is enabled by checking a
                 # checkbox in the login form (see below), uncomment the
                 # following line to always enable it.
                 #always_remember_me: true
+
+
 
             # activate different ways to authenticate
 
@@ -55,4 +69,6 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
 
     role_hierarchy:
-        ROLE_ADMIN: ROLE_USER
+        ROLE_CLIENT: ROLE_USER
+        ROLE_PROFESSIONNAL: ROLE_USER
+        ROLE_ADMIN: [ROLE_CLIENT, ROLE_PROFESSIONNAL, ROLE_ALLOWED_TO_SWITCH]

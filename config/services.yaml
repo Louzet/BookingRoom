@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
+    locale: 'fr'
     booking_logs: '%kernel.project_dir%/var/bookingLogs'
 
 services:
@@ -26,7 +26,8 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Events\UserEvents\UserSuscriber:
+    App\Events\:
+        resource: '../src/Events'
         tags:
            - {name: monolog.logger, channel: booking_logs}
 
@@ -46,3 +47,14 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    sonata_professionnal.room_administration:
+        class: App\Entity\Sonata_Professionnal\RoomAdministration
+        arguments: [~, App\Entity\Room, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Room }
+
+    sonata_professionnal.reservation_administration:
+        class: App\Entity\Sonata_Professionnal\ReservationAdministration
+        arguments: [~, App\Entity\Reservation, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Reservation }

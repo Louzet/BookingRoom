@@ -17,47 +17,47 @@ class UserRegistrationType extends AbstractType
     {
         $builder
             ->add('lastName', TextType::class, [
-                "required"  => true,
-                "label"     => "Nom",
+                'required' => true,
+                'label' => 'Nom',
                 'attr' => [
-                    'class'        => 'form-control',
-                    "placeholder"  => "Entrez votre nom"
-                ]
+                    'class' => 'form-control',
+                    'placeholder' => 'Entrez votre nom',
+                ],
             ])
             ->add('firstName', TextType::class, [
-                "required"  => true,
-                "label"     => "Prénom",
+                'required' => true,
+                'label' => 'Prénom',
                 'attr' => [
-                    'class'      => 'form-control',
-                    "placeholder" => "Entrez votre prénom"
-                ]
+                    'class' => 'form-control',
+                    'placeholder' => 'Entrez votre prénom',
+                ],
             ])
             ->add('email', EmailType::class, [
-                "required"  => true,
-                "label"     => "Email",
+                'required' => true,
+                'label' => 'Email',
                 'attr' => [
-                    'class'       => 'form-control',
-                    "placeholder" => "addresse@booking.com"
-                ]
+                    'class' => 'form-control',
+                    'placeholder' => 'addresse@booking.com',
+                ],
             ])
             ->add('password', RepeatedType::class, [
-                "type" => PasswordType::class,
-                "first_options" => [
-                    "required"  => true,
-                    "label"     => "Mot de passe",
+                'type' => PasswordType::class,
+                'first_options' => [
+                    'required' => true,
+                    'label' => 'Mot de passe',
                     'attr' => [
-                        'class'       => 'form-control',
-                        "placeholder" => "******"
-                    ]
+                        'class' => 'form-control',
+                        'placeholder' => '******',
+                    ],
                 ],
-                "second_options" => [
-                    "required"  => true,
-                    "label"     => "Confirmation du mot de passe",
+                'second_options' => [
+                    'required' => true,
+                    'label' => 'Confirmation du mot de passe',
                     'attr' => [
-                        'class'       => 'form-control',
-                        "placeholder" => "******"
-                    ]
-                ]
+                        'class' => 'form-control',
+                        'placeholder' => '******',
+                    ],
+                ],
             ])
         ;
     }
@@ -66,7 +66,7 @@ class UserRegistrationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'translation_domain' => 'forms'
+            'translation_domain' => 'forms',
         ]);
     }
 }

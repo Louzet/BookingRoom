@@ -1,0 +1,54 @@
+sonata_admin:
+    title: 'Pro Booking Room'
+    title_logo: bundles/sonataadmin/logo_title.png
+    search: true
+    dashboard:
+        blocks:
+            - { type: sonata.admin.block.admin_list, position: left }
+
+    options:
+        html5_validate:    true     # enable or disable html5 form validation
+        confirm_exit:      true     # enable or disable a confirmation before navigating away
+        js_debug:          false    # enable or disable to show javascript debug messages
+        use_select2:       true     # enable or disable usage of the Select2 jQuery library
+        use_icheck:        true     # enable or disable usage of the iCheck library
+        use_bootlint:      false    # enable or disable usage of Bootlint
+        use_stickyforms:   true     # enable or disable the floating buttons
+        form_type:         standard # can also be 'horizontal'
+
+    templates:
+        edit:              '@SonataAdmin/CRUD/edit.html.twig'
+        tab_menu_template: '@SonataAdmin/Core/tab_menu_template.html.twig'
+
+    security:
+        handler: sonata.admin.security.handler.noop
+
+        information:
+            # Prototype
+            id:                   []
+            admin_permissions:
+
+                # Defaults:
+                - CREATE
+                - LIST
+                - DELETE
+                - UNDELETE
+                - EXPORT
+                - OPERATOR
+                - MASTER
+            object_permissions:
+
+                # Defaults:
+                - VIEW
+                - EDIT
+                - DELETE
+                - UNDELETE
+                - OPERATOR
+                - MASTER
+                - OWNER
+            acl_user_manager: null
+
+sonata_block:
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]

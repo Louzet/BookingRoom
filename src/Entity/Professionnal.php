@@ -2,18 +2,17 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProfessionnalRepository")
  * @UniqueEntity(fields={"email"}, message="Email déjà utilisée")
  */
-class User implements UserInterface, \Serializable
+class Professionnal implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -25,13 +24,24 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lastName;
+    private $entreprise;
+
+    /**
+     * @ORM\Column(type="string", length=14)
+     */
+    private $siren;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
-    private $firstName;
+    private $address;
+
+    /**
+     * @ORM\Column(type="string", length=5)
+     * @Assert\NotBlank()
+     */
+    private $codePostal;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -62,20 +72,16 @@ class User implements UserInterface, \Serializable
     private $derniere_connexion;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="user", orphanRemoval=true)
-     */
-    private $reservations;
-
-    /**
-     * User constructor.
+     * Professionnal constructor.
      *
      * @param string $role
+     *
+     * @throws \Exception
      */
-    public function __construct(string $role = 'ROLE_USER')
+    public function __construct(string $role = 'ROLE_PROFESSIONNAL')
     {
         $this->setRoles($role);
-        $this->date_inscription = new \DateTime('Europe/Paris');
-        $this->reservations = new ArrayCollection();
+        $this->date_inscription = new DateTime('Europe/Paris');
     }
 
     /**
@@ -97,33 +103,65 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getLastName()
+    public function getEntreprise()
     {
-        return $this->lastName;
+        return $this->entreprise;
     }
 
     /**
-     * @param mixed $lastName
+     * @param mixed $entreprise
      */
-    public function setLastName($lastName): void
+    public function setEntreprise($entreprise): void
     {
-        $this->lastName = $lastName;
+        $this->entreprise = $entreprise;
     }
 
     /**
      * @return mixed
      */
-    public function getFirstName()
+    public function getSiren()
     {
-        return $this->firstName;
+        return $this->siren;
     }
 
     /**
-     * @param mixed $firstName
+     * @param mixed $siren
      */
-    public function setFirstName($firstName): void
+    public function setSiren($siren): void
     {
-        $this->firstName = $firstName;
+        $this->siren = $siren;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address): void
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCodePostal()
+    {
+        return $this->codePostal;
+    }
+
+    /**
+     * @param mixed $codePostal
+     */
+    public function setCodePostal($codePostal): void
+    {
+        $this->codePostal = $codePostal;
     }
 
     /**
@@ -135,7 +173,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * @param mixed $email
+     * @param $email
      */
     public function setEmail($email): void
     {
@@ -178,7 +216,7 @@ class User implements UserInterface, \Serializable
     /**
      * @param mixed $date_inscription
      *
-     * @return User
+     * @return Professionnal
      */
     public function setDateInscription(?\DateTimeInterface $date_inscription): self
     {
@@ -215,7 +253,7 @@ class User implements UserInterface, \Serializable
      */
     public function setRoles(string $role)
     {
-        if (!in_array($role, $this->roles)) {
+        if (!in_array($role, $this->roles, true)) {
             $this->roles[] = $role;
 
             return true;
@@ -235,13 +273,13 @@ class User implements UserInterface, \Serializable
     /**
      * @param string $timestamp
      *
-     * @return User
+     * @return Professionnal
      *
      * @throws \Exception
      */
     public function setDerniereConnexion(?string $timestamp = 'Europe/Paris'): self
     {
-        $this->derniere_connexion = new \DateTime('now', new \DateTimeZone($timestamp));
+        $this->derniere_connexion = new DateTime('now', new \DateTimeZone($timestamp));
 
         return $this;
     }
@@ -291,8 +329,10 @@ class User implements UserInterface, \Serializable
     {
         return serialize([
             $this->id,
-            $this->lastName,
-            $this->firstName,
+            $this->entreprise,
+            $this->siren,
+            $this->address,
+            $this->codePostal,
             $this->email,
             $this->password,
             $this->roles,
@@ -315,43 +355,17 @@ class User implements UserInterface, \Serializable
     {
         list(
             $this->id,
-            $this->lastName,
-            $this->firstName,
+            $this->entreprise,
+            $this->siren,
+            $this->address,
+            $this->codePostal,
             $this->email,
             $this->password,
             $this->roles,
             $this->derniere_connexion
-        ) = unserialize($serialized, ['allowed_classes' => false]);
+            ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 
-    /**
-     * @return Collection|Reservation[]
-     */
-    public function getReservations(): Collection
-    {
-        return $this->reservations;
-    }
 
-    public function addReservation(Reservation $reservation): self
-    {
-        if (!$this->reservations->contains($reservation)) {
-            $this->reservations[] = $reservation;
-            $reservation->setUser($this);
-        }
 
-        return $this;
-    }
-
-    public function removeReservation(Reservation $reservation): self
-    {
-        if ($this->reservations->contains($reservation)) {
-            $this->reservations->removeElement($reservation);
-            // set the owning side to null (unless already changed)
-            if ($reservation->getUser() === $this) {
-                $reservation->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 }
