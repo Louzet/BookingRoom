@@ -20,7 +20,7 @@ final class Version20190116091103 extends AbstractMigration
         $this->addSql('ALTER TABLE reservation ADD CONSTRAINT FK_42C84955A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE room ADD slug VARCHAR(100) NOT NULL');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_729F519B989D9B62 ON room (slug)');
-        $this->addSql('ALTER TABLE inscription_ldap ADD slug VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE inscriptionLdap ADD slug VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -29,7 +29,7 @@ final class Version20190116091103 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP TABLE reservation');
-        $this->addSql('ALTER TABLE inscription_ldap DROP slug');
+        $this->addSql('ALTER TABLE inscriptionLdap DROP slug');
         $this->addSql('DROP INDEX UNIQ_729F519B989D9B62 ON room');
         $this->addSql('ALTER TABLE room DROP slug');
     }

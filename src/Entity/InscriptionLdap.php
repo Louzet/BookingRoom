@@ -78,16 +78,6 @@ class InscriptionLdap
     private $password;
 
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Saisir ici le chemin vers les salles.")
-     * @Assert\Length(
-     *     max="255",
-     *     maxMessage="Le chemin saisi ne doit dépasser {{ limit }} caractères  "
-     * )*/
-    private $cheminRoom;
-
-
 /****************************************************************
 *                      Getters et Setter                        *
 ****************************************************************/
@@ -214,44 +204,6 @@ class InscriptionLdap
     public function setPassword($password): void
     {
         $this->password = $password;
-    }
-
-    /**
-     * Returns the salt that was originally used to encode the password.
-     *
-     * This can return null if the password was not encoded using a salt.
-     *
-     * @return string|null The salt
-     */
-    public function getSalt()
-    {
-        return null;
-    }
-
-    /**
-     * Removes sensitive data from the user.
-     *
-     * This is important if, at any given point, sensitive information like
-     * the plain-text password is stored on this object.
-     */
-    public function eraseCredentials()
-    {
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCheminRoom()
-    {
-        return $this->cheminRoom;
-    }
-
-    /**
-     * @param mixed $cheminRoom
-     */
-    public function setCheminRoom($cheminRoom): void
-    {
-        $this->cheminRoom = $cheminRoom;
     }
 
 }

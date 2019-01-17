@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% set active = inscriptionLdap.slug %}
+
+{% block page_title %}
+    {{ inscriptionLdap.name }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <!--colleft-->
+        <div class="col-md-8 col-sm-12">
+
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <!--post-detail-->
+            <article class="post-detail">
+                <h1>{{ inscriptionLdap.name }}</h1>
+                <div class="meta-post">
+                    <a href="#">
+                        {{ inscriptionLdap.name ~ ' ' ~ inscriptionLdap.name }}
+                    </a>
+                    <em></em>
+                    <span>
+                        {{ inscriptionLdap.hostname }}
+                    </span>
+                    <span>
+                        {{ inscriptionLdap.port }}
+                    </span>
+                    <span>
+                        {{ inscriptionLdap.basedn }}
+                    </span>
+                    <span>
+                        {{ inscriptionLdap.binddn }}
+                    </span>
+                    <span>
+                        {{ inscriptionLdap.cheminRoom }}
+                    </span>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}
+

@@ -4,11 +4,9 @@
 namespace App\Controller;
 
 
+use App\Entity\InscriptionLdap;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
-use Symfony\Component\Ldap\Adapter\ExtLdap\Adapter;
-use Symfony\Component\Ldap\Entry;
-use Symfony\Component\Ldap\Ldap;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -18,30 +16,41 @@ class HomeController extends AbstractController
      */
     public function home()
     {
-        /**$adapter = new Adapter(['host'=>'ldap.agopreneur.fr', 'port'=>389]);
-
-        $adapter->getConnection()->setOption('PROTOCOL_VERSION', 3);
-
-        $ldap = new Ldap($adapter);
-
-        $ldap->bind('dc=ldap,dc=agopreneur,dc=fr', 'nimdaLDAP_1');**/
-
-        //$entry = new Entry('cn=admin,dc=ldap,dc=agopreneur,dc=fr', [
-            //'cn' => 'ROLE_ANONYMOUS',
-            //'objectClass' => ['posixGroup','top'],
-            //'gidNumber' => 513
-        //]);
-
-        //$entryManager = $ldap->getEntryManager();
-        //$entryManager->add($entry);
-
-        //$query=$ldap->query('dc=ldap,dc=agopreneur,dc=fr', '(&(objectclass=*))');
-        //$result = $query->execute();
-
-        //$entry = $result[1];
-        //dump($entry);
-        //dump($result);*//
-
         return $this->render('booking/home.html.twig');
+    }
+
+    /**
+     * Afficher un Ldap
+     * @Route("/{slug<[a-zA-Z1-9\-_\/]+>}_{id<\d+>}.html",
+     *     name="index_inscriptionLdap")
+     * @param $id
+     * @param $slug
+     * @param InscriptionLdap $inscriptionLdap
+     * @return Response
+     */
+    public function inscriptionLdap($id,
+                            $slug,
+                            InscriptionLdap $inscriptionLdap = null)
+    {
+        # On s'assure que l'article ne soit pas null.
+        if (null === $inscriptionLdap) {
+
+            # Ou, on redirige l'utilisateur sur la page d'accueil
+            return $this->redirectToRoute('home', [],
+                Response::HTTP_MOVED_PERMANENTLY);
+        }
+
+        # Vérification du SLUG
+        if ($inscriptionLdap->getSlug() !== $slug) {
+            return $this->redirectToRoute('index_inscriptionLdap', [
+                'slug' => $inscriptionLdap->getSlug(),
+                'id' => $id
+            ]);
+        }
+
+        # Transmission des données à la vue
+        return $this->render('inscriptionLdap/inscriptionLdap.html.twig', [
+            'inscriptionLdap' => $inscriptionLdap
+        ]);
     }
 }

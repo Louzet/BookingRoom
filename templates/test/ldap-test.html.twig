@@ -1,0 +1,15 @@
+{% extends 'template.html.twig' %}
+
+{% block page_title %}
+    test ldap
+{% endblock %}
+
+
+{% block content %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

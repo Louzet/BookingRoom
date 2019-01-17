@@ -3,8 +3,7 @@
 namespace App\Controller;
 
 
-use Adldap\Adldap;
-use Adldap\Auth\BindException;
+use Symfony\Component\Ldap\Ldap;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,51 +15,37 @@ class TestController extends AbstractController
      */
     public function testLdap()
     {
-        // Construct new Adldap instance.
-        $ad = new Adldap();
+        $dn = 'cn=admin,dc=ldap,dc=agopreneur,dc=fr';
+        $password = 'nimdaLDAP_1';
 
-        $config = [
-            'hosts'    => ['ldap.agopreneur.fr'],
-            'base_dn'  => 'dc=ldap,dc=agopreneur,dc=fr',
-            'username' => 'cn=admin,dc=ldap,dc=agopreneur,dc=fr',
-            'password' => 'nimdaLDAP_1',
-            'port'             => 389,
-            'follow_referrals' => false,
-            'use_ssl'          => true,
-            'use_tls'          => false,
-            'version'          => 3,
-        ];
+        $ldap = Ldap::create('ext_ldap', [
+            'host' => 'ldap.agopreneur.fr',
+            'port' => 389,]);
 
-        // Add a connection provider to Adldap.
-        $ad->addProvider($config);
+        $ldap->bind($dn, $password);
 
-        try {
-            // If a successful connection is made to your server, the provider will be returned.
-            $provider = $ad->connect();
-            dump($provider);
+        $query = $ldap->query('dc=ldap,dc=agopreneur,dc=fr', '(&(objectclass=simpleSecurityObject)(cn=admin))');
 
-            // Creating a new LDAP entry. You can pass in attributes into the make methods.
-            $user =  $provider->make()->user();
+        $results = $query->execute();
 
-            $user->setCommonName('John Doe3');
-            $user->setPassword("test");
-            $user->setLastName("Doe3");
-            $user->setFirstName("John");
-            $user->setHomeDirectory('/home/users/jo');
-            $user->setEmail("jojo@gmail.com");
+        dump($results);
 
-            // Saving the changes to your LDAP server.
-            if ($user->save()) {
 
-                $this->addFlash("success", "user created");
 
-            }
+        $dn1 = 'cn=admin,dc=contabo,dc=macomnumerique,dc=com';
+        $password1 = 'nimdaLDAP_1';
 
-        } catch (BindException $e) {
+        $ldap1 = Ldap::create('ext_ldap', [
+            'host' => 'contabo.macomnumerique.com',
+            'port' => 389,]);
 
-            dump($e);
+        $ldap1->bind($dn1, $password1);
 
-        }
+        $query1 = $ldap1->query('dc=contabo,dc=macomnumerique,dc=com', '(&(objectclass=simpleSecurityObject)(cn=admin))');
+
+        $results1 = $query1->execute();
+
+        dump($results1);
 
         return $this->render("test/ldap-test.html.twig");
     }
