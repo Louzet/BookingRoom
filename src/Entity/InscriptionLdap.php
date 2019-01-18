@@ -23,19 +23,19 @@ class InscriptionLdap
     private $slug;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Saisir ici un nom.")
      * @Assert\Length(
-     *     max="64",
+     *     max="255",
      *     maxMessage="Le nom saisi ne doit dépasser {{ limit }} caractères  "
      * )*/
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Saisir ici le hostname de votre LDAP.")
      * @Assert\Length(
-     *     max="64",
+     *     max="255",
      *     maxMessage="Le hostname saisi ne doit dépasser {{ limit }} caractères  "
      * )
      */
@@ -48,20 +48,20 @@ class InscriptionLdap
     private $port;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Saisir ici l'adresse baseDN.")
      * @Assert\Length(
-     *     max="64",
+     *     max="255",
      *     maxMessage="L'adressse baseDN saisi ne doit dépasser {{ limit }} caractères  "
      * )
      */
     private $basedn;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Saisir ici l'adresse binDN.")
      * @Assert\Length(
-     *     max="64",
+     *     max="255",
      *     maxMessage="L'adresse binDN saisi ne doit dépasser {{ limit }} caractères  "
      * )
      */

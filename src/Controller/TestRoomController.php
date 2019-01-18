@@ -18,6 +18,7 @@ class TestRoomController extends AbstractController
          * Setup 1
          */
         $ldap_password = 'nimdaLDAP_1';
+        //sldap_password = $form->get("password");
         $ldap_username = 'cn=admin,dc=ldap,dc=agopreneur,dc=fr';
         $ldap_connection = ldap_connect('ldap://ldap.agopreneur.fr:389');
         $ldaptree = "dc=ldap,dc=agopreneur,dc=fr";
@@ -40,7 +41,7 @@ class TestRoomController extends AbstractController
                 echo "LDAP bind successful...<br /><br />";
 
                 $filter = 'objectClass=room';
-                $justthese = array("dn");
+                $justthese = array('dn','description');
 
                 // pour @ldap_search voir:
                 // https://www.developpez.net/forums/d861196/php/langage/fonctions/php-ldap-impossibilite-d-interroger-l-active-directory/
@@ -87,7 +88,7 @@ class TestRoomController extends AbstractController
         $ldap_connection1 = ldap_connect('ldap://contabo.macomnumerique.com:389');
         $ldaptree1 = "dc=contabo,dc=macomnumerique,dc=com";
 
-        if (FALSE === $ldap_connection) {
+        if (FALSE === $ldap_connection1) {
             echo "Uh-oh, something is wrong...";
         }
 
@@ -105,7 +106,7 @@ class TestRoomController extends AbstractController
                 echo "LDAP bind successful...<br /><br />";
 
                 $filter1 = 'objectClass=room';
-                $justthese1 = array("dn");
+                $justthese1 = array('dn','description');
 
                 // pour @ldap_search voir:
                 // https://www.developpez.net/forums/d861196/php/langage/fonctions/php-ldap-impossibilite-d-interroger-l-active-directory/
@@ -113,10 +114,10 @@ class TestRoomController extends AbstractController
                 // http://php.net/manual/fr/function.ldap-search.php
                 $result1 = @ldap_search($ldap_connection1, $ldaptree1, $filter1, $justthese1) or die ("Error in search query: " . ldap_error($ldap_connection));
 
-                #dump($result);
+                dump($result1);
 
                 $data1 = ldap_get_entries($ldap_connection1, $result1);
-                #dump($data);
+                dump($data1);
 
                 // SHOW ALL DATA
                 echo '<h1>Dump room contabo.macomnumerique.com</h1><pre>';

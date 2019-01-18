@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-view">
+                <h2>Inscription d'une salle depuis l'annuaire LDAP</h2>
+
+                {{ form_start(form) }}
+                <div class="form-group my-3">
+                    {{ form_label(form.name) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                    {{ form_help(form.name) }}
+                </div>
+                <div class="form-group my-3">
+                    {{ form_label(form.priceLocation) }}
+                    {{ form_errors(form.priceLocation) }}
+                    {{ form_widget(form.priceLocation) }}
+                    {{ form_help(form.priceLocation) }}
+                </div>
+                <div class="form-group my-3">
+                    {{ form_label(form.placeCapacity) }}
+                    {{ form_errors(form.placeCapacity) }}
+                    {{ form_widget(form.placeCapacity) }}
+                    {{ form_help(form.placeCapacity) }}
+                </div>
+                <div class="form-group my-3">
+                    {{ form_label(form.ville) }}
+                    {{ form_errors(form.ville) }}
+                    {{ form_widget(form.ville) }}
+                    {{ form_help(form.ville) }}
+                </div>
+                <div class="form-group my-3">
+                    {{ form_label(form.address) }}
+                    {{ form_errors(form.address) }}
+                    {{ form_widget(form.address) }}
+                    {{ form_help(form.address) }}
+                </div>
+                <div class="form-group my-3">
+                    {{ form_label(form.postalCode) }}
+                    {{ form_errors(form.postalCode) }}
+                    {{ form_widget(form.postalCode) }}
+                    {{ form_help(form.postalCode) }}
+                </div>
+                <div class="form-group my-3">
+                    {{ form_label(form.disponible) }}
+                    {{ form_errors(form.disponible) }}
+                    {{ form_widget(form.disponible) }}
+                    {{ form_help(form.disponible) }}
+                </div>
+                <div class="form-group my-3">
+                    {{ form_label(form.type) }}
+                    {{ form_errors(form.type) }}
+                    {{ form_widget(form.type) }}
+                    {{ form_help(form.type) }}
+                </div>
+                <div class="form-group my-3">
+                    {{ form_label(form.dateCreation) }}
+                    {{ form_errors(form.dateCreation) }}
+                    {{ form_widget(form.dateCreation) }}
+                    {{ form_help(form.dateCreation) }}
+                </div>
+                <div class="form-group my-3">
+                    {{ form_label(form.reservations) }}
+                    {{ form_errors(form.reservations) }}
+                    {{ form_widget(form.reservations) }}
+                    {{ form_help(form.reservations) }}
+                </div>
+                <div class="form-group my-2">
+                    <button class="btn btn-success default-color lighten-1">Valider</button>
+                </div>
+
+                <div class="form-group my-2">
+                    <button class="btn btn-success default-color lighten-1">Annuler</button>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
