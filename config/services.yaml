@@ -7,6 +7,11 @@ parameters:
     locale: 'fr'
     booking_logs: '%kernel.project_dir%/var/bookingLogs'
 
+    public_directory: '%kernel.project_dir%/public'
+
+    image_room_directory: '%public_directory%/image_room_directory'
+
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -26,6 +31,10 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%image_room_directory%'
+
     App\Events\:
         resource: '../src/Events'
         tags:
@@ -44,14 +53,17 @@ services:
             - { name: kernel.event_subscriber }
             - { name: controller.service_arguments }
 
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
     sonata_professionnal.room_administration:
         class: App\Entity\Sonata_Professionnal\RoomAdministration
         arguments: [~, App\Entity\Room, ~]
+        calls:
+            - [setLabelTranslatorStrategy, ['@sonata.admin.label.strategy.underscore']]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Room }
+            - { name: sonata.admin, manager_type: orm, group: 'Content', label: 'Room' }
 
     sonata_professionnal.reservation_administration:
         class: App\Entity\Sonata_Professionnal\ReservationAdministration

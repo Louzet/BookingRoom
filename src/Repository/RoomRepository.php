@@ -19,6 +19,16 @@ class RoomRepository extends ServiceEntityRepository
         parent::__construct($registry, Room::class);
     }
 
+    public function findAvailableRooms($disponible = 1)
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.disponible = :disponible')
+            ->setParameter(':disponible', $disponible)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Room[] Returns an array of Room objects
     //  */

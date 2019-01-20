@@ -2,7 +2,7 @@
 
 namespace App\Events\UserEvents;
 
-
+use App\Entity\Professionnal;
 use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Psr\Log\LoggerAwareTrait;
@@ -22,7 +22,8 @@ class UserSuscriber implements EventSubscriberInterface
 
     /**
      * MembreSuscriber constructor.
-     * @param ObjectManager $manager
+     *
+     * @param ObjectManager   $manager
      * @param LoggerInterface $logger
      */
     public function __construct(ObjectManager $manager, LoggerInterface $logger)
@@ -30,9 +31,11 @@ class UserSuscriber implements EventSubscriberInterface
         $this->manager = $manager;
 
         $this->setLogger($logger);
-
     }
 
+    /**
+     * @return array
+     */
     public static function getSubscribedEvents()
     {
         return [
@@ -44,8 +47,7 @@ class UserSuscriber implements EventSubscriberInterface
     {
         $user = $event->getAuthenticationToken()->getUser();
 
-        if($user instanceof User)
-        {
+        if ($user instanceof User) {
             $user->setDerniereConnexion();
 
             $this->manager->persist($user);
@@ -56,7 +58,14 @@ class UserSuscriber implements EventSubscriberInterface
             /*$this->logger->notice('derniere connexion mise à jour pour: {email}', ['email' => $user->getEmail()]);*/
 
             $this->logger->log('EMERGENCY', 'Nouveau test pour {email}', ['email' => $user->getEmail()]);
+        } elseif ($user instanceof Professionnal) {
+            $user->setDerniereConnexion();
+
+            $this->manager->persist($user);
+
+            $this->manager->flush();
+
+            $this->logger->log('EMERGENCY', 'Nouveau test pour {email}', ['email' => $user->getEmail()]);
         }
     }
-
 }

@@ -1,0 +1,76 @@
+{% extends 'template.html.twig' %}
+
+
+{% block page_title %}
+    Page de Contact
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/Booking/contact_page.css') }}"
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-capitalize text-center">Contactez nous !</h1>
+                <div class="landing-page">
+                    <div class="form-appointment">
+                        <div class="wpcf7" id="wpcf7-f560-p590-o1">
+                            {{ form_start(form, novalidate="novalidate") }}
+                                <div class="group">
+                                    <div style="width: 48%; float: left;">
+                                        <span class="wpcf7-form-control-wrap text-680">
+                                            {{ form_row(form.name) }}
+                                        </span>
+                                        <br>
+                                        <span class="wpcf7-form-control-wrap email-680">
+                                            {{ form_row(form.email) }}
+                                        </span>
+                                        <span class="wpcf7-form-control-wrap tel-630">
+                                            {{ form_row(form.telephone) }}
+                                        </span>
+                                        <span class="wpcf7-form-control-wrap textarea-398">
+                                            {{ form_row(form.subject) }}
+                                        </span>
+                                    </div>
+                                    <div style="width: 48%; float: right;">
+                                        <h4>Moyen de vous contacter ? </h4>
+                                        <span class="wpcf7-form-control-wrap radio-98">
+                                            <span class="wpcf7-form-control wpcf7-radio">
+                                                <span class="wpcf7-list-item">
+                                                    <label class="wpcf7-list-item-label">
+                                                        {{ form_row(form.reache_me) }}&nbsp;
+                                                    </label>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div style="text-align: center; padding-top: 2em; border-top: 1px solid rgb(153, 202, 129); margin-top: 1em;">
+                                    {{ form_row(form.submit) }}
+                                    <img class="ajax-loader" src="http://www.professionalaudiologicalservices.com/wp-content/plugins/contact-form-7/images/ajax-loader.gif" alt="Sending ..." style="visibility: hidden;">
+                                </div>
+                                <div class="wpcf7-response-output wpcf7-display-none">
+
+                                </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[type=submit]').click(function () {
+                $('input[type=submit]').toggleClass('red');
+            });
+        });    
+    </script>
+{% endblock %}
+

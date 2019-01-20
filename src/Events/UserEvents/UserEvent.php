@@ -2,17 +2,14 @@
 
 namespace App\Events\UserEvents;
 
-
 use App\Entity\User;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class UserEvent
- * @package App\Events\UserEvents
+ * Class UserEvent.
  */
 class UserEvent extends Event
 {
-
     /**
      * @var User
      */
@@ -20,6 +17,7 @@ class UserEvent extends Event
 
     /**
      * UserEvent constructor.
+     *
      * @param User $user
      */
     public function __construct(User $user)
@@ -37,11 +35,11 @@ class UserEvent extends Event
 
     /**
      * @param User $user
+     *
      * @return UserEvent
      */
     public function setUser(User $user): self
     {
         $this->user = $user;
     }
-
 }

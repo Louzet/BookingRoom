@@ -2,14 +2,18 @@
 
 namespace App\Entity\Sonata_Professionnal;
 
+use App\Entity\Image;
 use App\Entity\Room;
 use App\Entity\TypeOfRoom;
+use App\Traits\TransliteratorSlugTrait;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\Form\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -17,6 +21,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class RoomAdministration extends AbstractAdmin
 {
+    use TransliteratorSlugTrait;
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -28,6 +34,11 @@ final class RoomAdministration extends AbstractAdmin
                     ->add('disponible', CheckboxType::class, [
                         'required' => false,
                     ])
+                    ->add('image', FileType::class, [
+                        'by_reference' => false,
+                        'data_class' => Image::class,
+                    ])
+
                 ->end()
             ->end()
             ->tab('Adresse')
@@ -73,19 +84,26 @@ final class RoomAdministration extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
+            ->addIdentifier('name', TextType::class)
+            ->add('images', TextType::class)
             ->add('priceLocation', MoneyType::class)
             ->add('placeCapacity', IntegerType::class)
+            ->add('disponible', BooleanType::class)
+            ->add('ville', TextType::class)
+            ->add('address', TextType::class)
+            ->add('postalCode', TextType::class)
             ;
-    }
-
-    public function prePersist($object)
-    {
-        dump($object);
     }
 
     public function toString($object)
     {
         return $object instanceof Room ? $object->getName() : 'Salle crée';
+    }
+
+    public function prePersist($object)
+    {
+        if ($object instanceof Room) {
+            $object->setSlug($this->slugify(strtolower($object->getName().$object->getVille())));
+        }
     }
 }

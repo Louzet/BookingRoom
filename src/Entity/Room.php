@@ -27,7 +27,7 @@ class Room
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $slug;
 
@@ -59,7 +59,7 @@ class Room
     /**
      * @ORM\Column(type="boolean")
      */
-    private $disponible = true;
+    private $disponible = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypeOfRoom", inversedBy="rooms")
@@ -78,11 +78,20 @@ class Room
      */
     private $reservations;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $image;
+
+
+
     public function __construct()
     {
-        $this->disponible = false;
-
-        $this->dateCreation = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        try {
+            $this->dateCreation = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        } catch (\Exception $e) {
+        }
         $this->reservations = new ArrayCollection();
     }
 
@@ -102,6 +111,7 @@ class Room
 
         return $this;
     }
+
 
     public function getPriceLocation(): ?float
     {
@@ -205,6 +215,7 @@ class Room
 
     /**
      * @return string|null
+     *
      */
     public function getSlug(): ?string
     {
@@ -213,6 +224,7 @@ class Room
 
     /**
      * @param string|null $slug
+     *
      */
     public function setSlug($slug): void
     {
@@ -249,4 +261,17 @@ class Room
 
         return $this;
     }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage(Image $image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
 }
