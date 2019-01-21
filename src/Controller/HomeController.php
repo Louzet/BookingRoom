@@ -31,7 +31,23 @@ class HomeController extends AbstractController
     {
         $availableRooms = $this->roomRepository->findAvailableRooms();
 
-        dump($availableRooms);
+        $villes = fopen(dirname(__DIR__, 2).'/public/villes_france.csv', 'r+');
+        dump($villes);
+
+        $row = 1;
+        if (false !== ($handle = fopen(dirname(__DIR__, 2).'/public/villes_france.csv', 'r+'))) {
+            while (false !== ($data = fgetcsv($handle, 1000))) {
+                $num = count($data);
+                dd($data);
+                die();
+                echo "<p> $num champs à la ligne $row: <br /></p>\n";
+                ++$row;
+                for ($c = 0; $c < $num; ++$c) {
+                    echo $data[$c]."<br />\n";
+                }
+            }
+            fclose($handle);
+        }
 
         return $this->render('booking/home.html.twig', [
             'availableRooms' => $availableRooms,

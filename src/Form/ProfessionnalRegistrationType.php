@@ -4,6 +4,10 @@ namespace App\Form;
 
 use App\Entity\Professionnal;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,11 +25,11 @@ class ProfessionnalRegistrationType extends AbstractType
                     'placeholder' => 'Nom de Votre Entreprise',
                 ],
             ])
-            ->add('siren')
-            ->add('address')
-            ->add('codePostal')
-            ->add('email')
-            ->add('password')
+            ->add('siren', IntegerType::class)
+            ->add('address', TextareaType::class)
+            ->add('codePostal', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('password', PasswordType::class)
 
         ;
     }

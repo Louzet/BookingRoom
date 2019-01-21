@@ -38,11 +38,17 @@ class Image
     private $temp;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Room", inversedBy="images")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $room;
+
+    /**
      * Sets file.
      *
      * @param UploadedFile $file
      */
-    public function setFile(UploadedFile $file = null): void
+    public function setFile(?UploadedFile $file = null): void
     {
         $this->file = $file;
         // check if we have an old image path
@@ -60,7 +66,7 @@ class Image
      *
      * @return UploadedFile
      */
-    public function getFile(): UploadedFile
+    public function getFile(): ?UploadedFile
     {
         return $this->file;
     }
@@ -168,5 +174,17 @@ class Image
         if ($file = $this->getAbsolutePath()) {
             unlink($file);
         }
+    }
+
+    public function getRoom(): ?Room
+    {
+        return $this->room;
+    }
+
+    public function setRoom(?Room $room): self
+    {
+        $this->room = $room;
+
+        return $this;
     }
 }

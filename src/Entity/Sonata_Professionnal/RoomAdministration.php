@@ -2,9 +2,9 @@
 
 namespace App\Entity\Sonata_Professionnal;
 
-use App\Entity\Image;
 use App\Entity\Room;
 use App\Entity\TypeOfRoom;
+use App\Form\ImageRoomType;
 use App\Traits\TransliteratorSlugTrait;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -13,7 +13,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\Form\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -34,9 +34,11 @@ final class RoomAdministration extends AbstractAdmin
                     ->add('disponible', CheckboxType::class, [
                         'required' => false,
                     ])
-                    ->add('image', FileType::class, [
+                    ->add('images', CollectionType::class, [
                         'by_reference' => false,
-                        'data_class' => Image::class,
+                        'entry_type' => ImageRoomType::class,
+                        'entry_options' => ['label' => 'Images'],
+                        'allow_add' => true,
                     ])
 
                 ->end()
@@ -85,7 +87,6 @@ final class RoomAdministration extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('name', TextType::class)
-            ->add('images', TextType::class)
             ->add('priceLocation', MoneyType::class)
             ->add('placeCapacity', IntegerType::class)
             ->add('disponible', BooleanType::class)
@@ -103,7 +104,11 @@ final class RoomAdministration extends AbstractAdmin
     public function prePersist($object)
     {
         if ($object instanceof Room) {
-            $object->setSlug($this->slugify(strtolower($object->getName().$object->getVille())));
+            $object->setSlug($this->slugify(strtolower($object->getName().'-'.$object->getVille())));
+            $images = $object->getImages();
+            foreach ($images as $image) {
+                $image->setName('Booking'.uniqid('', true));
+            }
         }
     }
 }

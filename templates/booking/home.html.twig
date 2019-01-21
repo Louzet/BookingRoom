@@ -12,6 +12,11 @@
 {% block content %}
     <div class="container">
         <div class="row">
+            <div class="col-md-10 offset-md-2">
+                {{ render(controller('App\\Controller\\SearchBarController::search')) }}
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-9">
                 {{ render(controller('App\\Controller\\HomeController::carousel')) }}
             </div>
@@ -83,6 +88,12 @@
             onAfterSlide: function (el) {},
             onBeforeNextSlide: function (el) {},
             onBeforePrevSlide: function (el) {}
+        });
+    </script>
+    <script type="text/javascript">
+        $('.datepicker').datepicker({
+            format: 'mm/dd/yyyy',
+            startDate: '-3d'
         });
     </script>
 {% endblock %}

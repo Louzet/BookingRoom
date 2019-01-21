@@ -17,6 +17,11 @@ class Contact
     private $id;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $user_in_session;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -54,6 +59,22 @@ class Contact
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserInSession()
+    {
+        return $this->user_in_session;
+    }
+
+    /**
+     * @param mixed $user_in_session
+     */
+    public function setUserInSession($user_in_session): void
+    {
+        $this->user_in_session = $user_in_session;
     }
 
     public function getName(): ?string

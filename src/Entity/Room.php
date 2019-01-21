@@ -79,10 +79,10 @@ class Room
     private $reservations;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="room", orphanRemoval=true, cascade={"all"})
      */
-    private $image;
+    private $images;
+
 
 
 
@@ -93,6 +93,7 @@ class Room
         } catch (\Exception $e) {
         }
         $this->reservations = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -262,14 +263,33 @@ class Room
         return $this;
     }
 
-    public function getImage()
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
     {
-        return $this->image;
+        return $this->images;
     }
 
-    public function setImage(Image $image)
+    public function addImage(Image $image): self
     {
-        $this->image = $image;
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setRoom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getRoom() === $this) {
+                $image->setRoom(null);
+            }
+        }
 
         return $this;
     }
