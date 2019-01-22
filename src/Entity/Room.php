@@ -59,13 +59,24 @@ class Room
     /**
      * @ORM\Column(type="boolean")
      */
-    private $disponible = true;
+    private $disponible;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $privee;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TypeOfRoom", inversedBy="rooms")
      * @ORM\JoinColumn(nullable=false)
      */
     private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\InscriptionLdap", inversedBy="inscriptionLdaps")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $inscriptionLdap;
 
     /**
      * @var \DateTime
@@ -249,4 +260,37 @@ class Room
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getInscriptionLdap()
+    {
+        return $this->inscriptionLdap;
+    }
+
+    /**
+     * @param mixed $inscriptionLdap
+     */
+    public function setInscriptionLdap($inscriptionLdap): void
+    {
+        $this->inscriptionLdap = $inscriptionLdap;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrivee()
+    {
+        return $this->privee;
+    }
+
+    /**
+     * @param mixed $privee
+     */
+    public function setPrivee($privee): void
+    {
+        $this->privee = $privee;
+    }
+
 }

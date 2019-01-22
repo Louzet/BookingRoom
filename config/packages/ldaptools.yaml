@@ -1,0 +1,54 @@
+ldap_tools:
+  security:
+    guard:
+      # This is the entry point/start path route name for the RedirectResponse of the Guard component
+      login_path: 'login'
+      default_target_path: '/'
+      always_use_target_path: false
+      target_path_parameter: '_target_path'
+      use_referer: false
+      failure_path: null
+      failure_forward: false
+      failure_path_parameter: '_failure_path'
+      remember_me: false
+      http_basic: false
+      http_basic_domain: null
+      http_basic_realm: null
+  domains:
+    # The below "example" key can be anything you want. It just has to be a unique name for the YML config.
+    agopreneur:
+      # The LDAP FQDN is required
+      domain_name: "ldap.agopreneur.fr"
+      # The username to use for the LDAP connection
+      username: admin
+      # The password to use for the username
+      password: nimdaLDAP_1
+      # The base DN for LDAP searches (queried from the RootDSE if not provided)
+      base_dn: "dc=ldap,dc=agopreneur,dc=fr"
+      bind_format: "cn=admin,dc=ldap,dc=agopreneur,dc=fr"
+      # The LDAP servers to use for the connection (Queried from DNS if not provided)
+      servers: ['ldap.agopreneur.fr']
+      page_size: 1000
+      port: 389
+      use_ssl: false
+      use_tls: false
+      lazy_bind: false
+      ldap_options:
+        ldap_opt_protocol_version: 3
+        ldap_opt_referrals: 0
+    # Define another domain if you want
+    contabo:
+      domain_name: "contabo.macomnumerique.com"
+      username: admin
+      password: nimdaLDAP_1
+      servers: ['contabo.macomnumerique.com']
+      base_dn: "dc=contabo,dc=macomnumerique,dc=com"
+      bind_format: "cn=admin,dc=contabo,dc=macomnumerique,dc=com"
+      page_size: 1000
+      port: 389
+      use_ssl: false
+      use_tls: false
+      lazy_bind: false
+      ldap_options:
+        ldap_opt_protocol_version: 3
+        ldap_opt_referrals: 0

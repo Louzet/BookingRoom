@@ -32,4 +32,6 @@ class InscriptionLdapRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
+
 }

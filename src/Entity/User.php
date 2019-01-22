@@ -65,13 +65,21 @@ class User
      */
     private $reservations;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\InscriptionLdap", inversedBy="inscriptionLdaps")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $inscriptionLdap;
+
+
+/****************************************************************
+*                      Construteur                              *
+****************************************************************/
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
     }
-
-
-
 
 
 /****************************************************************
@@ -212,6 +220,22 @@ class User
         $this->reservations = $reservations;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getInscriptionLdap()
+    {
+        return $this->inscriptionLdap;
+    }
+
+    /**
+     * @param mixed $inscriptionLdap
+     */
+    public function setInscriptionLdap($inscriptionLdap): void
+    {
+        $this->inscriptionLdap = $inscriptionLdap;
+    }
+
 
     /**
      * Returns the salt that was originally used to encode the password.
@@ -267,4 +291,5 @@ class User
 
         return $this;
     }
+
 }

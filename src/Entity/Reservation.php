@@ -44,6 +44,11 @@ class Reservation
      */
     private $salle;
 
+
+/****************************************************************
+*                      Getters et Setter                        *
+****************************************************************/
+
     public function getId(): ?int
     {
         return $this->id;

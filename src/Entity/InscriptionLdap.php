@@ -77,6 +77,16 @@ class InscriptionLdap
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $privee;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Room", mappedBy="inscriptionLdap")
+     */
+    private $rooms;
+
 
 /****************************************************************
 *                      Getters et Setter                        *
@@ -204,6 +214,33 @@ class InscriptionLdap
     public function setPassword($password): void
     {
         $this->password = $password;
+    }
+
+    public function getPrivee(): ?bool
+    {
+        return $this->privee;
+    }
+
+    public function setPrivee(?bool $privee): self
+    {
+        $this->privee = $privee;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRooms()
+    {
+        return $this->rooms;
+    }
+
+    /**
+     * @param mixed $rooms
+     */
+    public function setRooms($rooms): void
+    {
+        $this->rooms = $rooms;
     }
 
 }

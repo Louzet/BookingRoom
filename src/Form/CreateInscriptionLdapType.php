@@ -5,6 +5,7 @@ namespace App\Form;
 
 use App\Entity\InscriptionLdap;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -56,6 +57,16 @@ class CreateInscriptionLdapType extends AbstractType
                 'required' => true,
                 'label' => 'Password ',
                 'attr' => ['placeholder' => '************'
+                ]
+            ])
+
+            # Champ privee
+            ->add('privee', CheckboxType::class,[
+                'required' =>true,
+                'attr' => [
+                    'data-toggle' => 'toggle',
+                    'data-on' =>'Oui',
+                    'data-off' =>'Non'
                 ]
             ]);
 

@@ -5,6 +5,9 @@
     "behat/transliterator": {
         "version": "v1.2.0"
     },
+    "chadsikorra/php-simple-enum": {
+        "version": "1.0.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -101,11 +104,20 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "friendsofsymfony/user-bundle": {
+        "version": "v2.1.2"
+    },
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "ldaptools/ldaptools": {
+        "version": "v0.25.2"
+    },
+    "ldaptools/ldaptools-bundle": {
+        "version": "0.9.2"
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -175,6 +187,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"
@@ -392,6 +407,9 @@
             "ref": "5374e24d508ba8fd6ba9eb15170255fdb778316a"
         }
     },
+    "symfony/security": {
+        "version": "v4.2.2"
+    },
     "symfony/security-bundle": {
         "version": "3.3",
         "recipe": {
@@ -400,15 +418,6 @@
             "version": "3.3",
             "ref": "f8a63faa0d9521526499c0a8f403c9964ecb0527"
         }
-    },
-    "symfony/security-core": {
-        "version": "v4.2.1"
-    },
-    "symfony/security-csrf": {
-        "version": "v4.2.1"
-    },
-    "symfony/security-guard": {
-        "version": "v4.2.1"
     },
     "symfony/security-http": {
         "version": "v4.2.1"
@@ -430,6 +439,9 @@
             "version": "2.5",
             "ref": "3db029c03e452b4a23f7fc45cec7c922c2247eb8"
         }
+    },
+    "symfony/templating": {
+        "version": "v4.2.2"
     },
     "symfony/test-pack": {
         "version": "v1.0.5"
@@ -508,5 +520,8 @@
     },
     "zendframework/zend-eventmanager": {
         "version": "3.2.1"
+    },
+    "zendframework/zend-ldap": {
+        "version": "2.10.0"
     }
 }

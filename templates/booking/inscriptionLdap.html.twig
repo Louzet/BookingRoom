@@ -46,8 +46,11 @@
                     {{ form_widget(form.password) }}
                     {{ form_help(form.password) }}
                 </div>
-                <div class="form-group my-2">
-                    <button class="btn btn-success default-color lighten-1">Test connexion</button>
+                <div class="form-group my-3">
+                    {{ form_label(form.privee) }}
+                    {{ form_errors(form.privee) }}
+                    {{ form_widget(form.privee) }}
+                    {{ form_help(form.privee) }}
                 </div>
                 <div class="form-group my-2">
                     <button class="btn btn-success default-color lighten-1">Valider</button>
