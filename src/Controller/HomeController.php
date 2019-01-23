@@ -19,8 +19,9 @@ class HomeController extends AbstractController
         return $this->render('booking/home.html.twig');
     }
 
+
     /**
-     * Afficher un Ldap
+     * Afficher une inscription Ldap
      * @Route("/{slug<[a-zA-Z1-9\-_\/]+>}_{id<\d+>}.html",
      *     name="index_inscriptionLdap")
      * @param $id
@@ -32,8 +33,20 @@ class HomeController extends AbstractController
                             $slug,
                             InscriptionLdap $inscriptionLdap = null)
     {
-        # On s'assure que l'article ne soit pas null.
+        # Exemple d'URL
+        # contabo_1.html
+
+        # $article = $this->getDoctrine()
+        #     ->getRepository(Article::class)
+        #     ->find($id);
+
+        # On s'assure que l'inscriptionLdap ne soit pas null.
         if (null === $inscriptionLdap) {
+
+            # On génère une exception
+            # throw $this->createNotFoundException(
+            #     "Nous n'avons pas trouvé votre article ID : " . $id
+            # );
 
             # Ou, on redirige l'utilisateur sur la page d'accueil
             return $this->redirectToRoute('home', [],
@@ -49,8 +62,9 @@ class HomeController extends AbstractController
         }
 
         # Transmission des données à la vue
-        return $this->render('inscriptionLdap/inscriptionLdap.html.twig', [
+        return $this->render('booking/afficheInscriptionLdap.html.twig', [
             'inscriptionLdap' => $inscriptionLdap
         ]);
     }
+
 }

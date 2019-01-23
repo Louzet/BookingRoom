@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% set active = inscriptionLdap.slug %}
+
+{% block page_title %}
+    {{ inscriptionLdap.name }}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <!--colleft-->
+    <div class="col-md-8 col-sm-12">
+
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <!--post-detail-->
+        <inscriptionLdap class="post-detail">
+            <h1>Nom : {{ inscriptionLdap.name }}</h1>
+
+            <p>Hostname : <input type="text" disabled value="{{ inscriptionLdap.hostname }}"/></p>
+            <p>Port : <input type="text" disabled value="{{ inscriptionLdap.port }}"/></p>
+            <p>BaseDN : <input type="text" disabled value="{{ inscriptionLdap.basedn }}"/></p>
+            <p>BindDN : <input type="text" disabled value="{{ inscriptionLdap.binddn }}"/></p>
+            <p>Privée (Vrai=1, Faux=0) : <input type="text" disabled value="{{ inscriptionLdap.privee }}"/></p>
+            <p>Nombre de salles : <input type="text" disabled value="{{ inscriptionLdap.rooms.count}}"/></p>
+
+        </inscriptionLdap>
+    </div>
+</div>
+{% endblock %}

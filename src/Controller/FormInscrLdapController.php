@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\InscriptionLdap;
 use App\Entity\Room;
 use App\Form\CreateInscriptionLdapType;
+use App\Repository\TypeOfRoomRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use LdapTools\Configuration;
 use LdapTools\DomainConfiguration;
@@ -28,7 +29,7 @@ class FormInscrLdapController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function newFormInscriptionLdap(Request $request)
+    public function newFormInscriptionLdap(Request $request,TypeOfRoomRepository $typeOfRoomRepository)
     {
         /**
          * Création du formulaire
@@ -106,9 +107,15 @@ class FormInscrLdapController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($inscriptionLdap);
 
+            // SELECT * FROM type_of_room WHERE title = 'LDAP'
+            $typeOfRoom=$typeOfRoomRepository->findOneBy(['title'=>'LDAP']);
+
+
             foreach ($rooms as $roomLdap) {
                 /**  @var LdapObject $roomLdap */
                 $roomDb = new Room();
+                $roomDb->setType($typeOfRoom);
+                $roomDb->setInscriptionLdap($inscriptionLdap);
                 $roomDb->setName($roomLdap->get('dn'));
                 $roomDb->setSlug($roomDb->getName());
                 $roomDb->setPriceLocation(0);
@@ -118,32 +125,27 @@ class FormInscrLdapController extends AbstractController
                 $roomDb->setPostalCode(0);
                 $roomDb->setDisponible(0);
                 $roomDb->setPrivee($inscriptionLdap->getPrivee());
-                $roomDb->setType();
-                $roomDb->setInscriptionLdap($inscriptionLdap);
+                $typeOfRoom->addRoom($roomDb);
                 $roomColl->add($roomDb);
                 $em->persist($roomDb);
             }
 
             $inscriptionLdap->setRooms($roomColl);
 
-            dump($inscriptionLdap);
+            //dump($inscriptionLdap);
 
             $em->flush();
-            die();
-
-
+            //die();
 
             # 4. Notification
             $this->addFlash('notice',
             'Félicitation, votre LDAP a bien été enregistré !');
 
             # 5. Redirection vers l'affichage des rooms créé
-            return $this->redirectToRoute('index_article', [
-               'categorie' => $article->getCategorie()->getSlug(),
-               'slug' => $article->getSlug(),
-               'id' => $article->getId()
+            return $this->redirectToRoute('index_inscriptionLdap',[
+                'slug' => $inscriptionLdap->getSlug(),
+                'id' => $inscriptionLdap->getId()
             ]);
-
 
         }
 
