@@ -28,6 +28,10 @@ class TypeOfRoom
      */
     private $rooms;
 
+
+
+
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();

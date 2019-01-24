@@ -62,7 +62,7 @@ class CreateInscriptionLdapType extends AbstractType
 
             # Champ privee
             ->add('privee', CheckboxType::class,[
-                'required' =>true,
+                'required' =>false,
                 'attr' => [
                     'data-toggle' => 'toggle',
                     'data-on' =>'Oui',

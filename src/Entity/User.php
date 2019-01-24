@@ -65,11 +65,7 @@ class User
      */
     private $reservations;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\InscriptionLdap", inversedBy="inscriptionLdaps")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $inscriptionLdap;
+
 
 
 /****************************************************************

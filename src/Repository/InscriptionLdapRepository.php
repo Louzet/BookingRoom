@@ -32,6 +32,15 @@ class InscriptionLdapRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findLdapByHostname($hostname){
+        return $this->createQueryBuilder('c')
+            ->addSelect('c.hostname')
+            ->where('c.hostname = :hostname')
+            ->setParameter(':hostname', $hostname)
+            ->getQuery()->getResult();
+    }
+
+
 
 
 }

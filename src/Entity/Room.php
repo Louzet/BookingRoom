@@ -73,7 +73,7 @@ class Room
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\InscriptionLdap", inversedBy="inscriptionLdaps")
+     * @ORM\ManyToOne(targetEntity="App\Entity\InscriptionLdap", inversedBy="rooms")
      * @ORM\JoinColumn(nullable=false)
      */
     private $inscriptionLdap;
@@ -88,6 +88,10 @@ class Room
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="salle")
      */
     private $reservations;
+
+
+
+
 
     public function __construct()
     {

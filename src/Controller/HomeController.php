@@ -19,6 +19,14 @@ class HomeController extends AbstractController
         return $this->render('booking/home.html.twig');
     }
 
+    /**
+     * @Route("/bookingroom", name="booking.bookingroom")
+     */
+    public function bookingroom()
+    {
+        return $this->render('booking/bookingroom.html.twig');
+    }
+
 
     /**
      * Afficher une inscription Ldap

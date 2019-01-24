@@ -3,13 +3,14 @@
 namespace App\Form;
 
 
-use App\Entity\InscriptionLdap;
+
+use App\Entity\Room;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CreateRoomLdapType extends AbstractType
+class CreateRoomType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -76,13 +77,6 @@ class CreateRoomLdapType extends AbstractType
                 'label' => 'Date Création ',
                 'attr' => ['placeholder' => 'XX/XX/XXXX'
                 ]
-            ])
-            # Champ Reservation
-            ->add('reservation', TextType::class, [
-                'required' => true,
-                'label' => 'Reservation ',
-                'attr' => ['placeholder' => 'Liste'
-                ]
             ]);
 
     }
@@ -91,7 +85,7 @@ class CreateRoomLdapType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => InscriptionLdap::class,
+                'data_class' => Room::class,
             ]
         );
     }

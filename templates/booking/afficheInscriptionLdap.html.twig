@@ -9,26 +9,33 @@
 {% block body %}
 <div class="row">
     <!--colleft-->
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-1">
 
-        {% for message in app.flashes('notice') %}
-            <div class="alert alert-info">
-                {{ message }}
-            </div>
+    </div>
+
+    <div class="col-md-4">
+
+        {# pass an array argument to get the messages of those types  #}
+        {% for label, messages in app.flashes(['success','notice','info','warning', 'error']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endfor %}
 
         <!--post-detail-->
-        <inscriptionLdap class="post-detail">
+        <div class="post-detail">
             <h1>Nom : {{ inscriptionLdap.name }}</h1>
 
             <p>Hostname : <input type="text" disabled value="{{ inscriptionLdap.hostname }}"/></p>
             <p>Port : <input type="text" disabled value="{{ inscriptionLdap.port }}"/></p>
             <p>BaseDN : <input type="text" disabled value="{{ inscriptionLdap.basedn }}"/></p>
             <p>BindDN : <input type="text" disabled value="{{ inscriptionLdap.binddn }}"/></p>
-            <p>Privée (Vrai=1, Faux=0) : <input type="text" disabled value="{{ inscriptionLdap.privee }}"/></p>
+            <p>Privée : <input type="checkbox"{{ inscriptionLdap.privee ? ' checked' : '' }} disabled /></p>
             <p>Nombre de salles : <input type="text" disabled value="{{ inscriptionLdap.rooms.count}}"/></p>
 
-        </inscriptionLdap>
+        </div>
     </div>
 </div>
 {% endblock %}
