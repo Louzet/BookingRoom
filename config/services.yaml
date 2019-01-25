@@ -40,6 +40,9 @@ services:
         tags:
            - {name: monolog.logger, channel: booking_logs}
 
+    ville.transformer:
+        class: App\DataTransformer\villeToEntityTransformer
+
     App\Events\UserEvents\FailLoginSuscriber:
         class: App\Events\UserEvents\FailLoginSuscriber
         arguments: ['@request_stack', '@snc_redis.default']
@@ -62,6 +65,7 @@ services:
         arguments: [~, App\Entity\Room, ~]
         calls:
             - [setLabelTranslatorStrategy, ['@sonata.admin.label.strategy.underscore']]
+            - [setVilleTransformer, ['@ville.transformer']]
         tags:
             - { name: sonata.admin, manager_type: orm, group: 'Content', label: 'Room' }
 

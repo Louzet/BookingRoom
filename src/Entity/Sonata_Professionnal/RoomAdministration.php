@@ -2,6 +2,7 @@
 
 namespace App\Entity\Sonata_Professionnal;
 
+use App\DataTransformer\villeToEntityTransformer;
 use App\Entity\Room;
 use App\Entity\TypeOfRoom;
 use App\Form\ImageRoomType;
@@ -23,6 +24,11 @@ final class RoomAdministration extends AbstractAdmin
 {
     use TransliteratorSlugTrait;
 
+    /**
+     * @var villeToEntityTransformer
+     */
+    private $villeTransform;
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -35,19 +41,21 @@ final class RoomAdministration extends AbstractAdmin
                         'required' => false,
                     ])
                     ->add('images', CollectionType::class, [
-                        'by_reference' => false,
                         'entry_type' => ImageRoomType::class,
                         'entry_options' => ['label' => 'Images'],
                         'allow_add' => true,
+                        'allow_delete' => true,
                     ])
-
                 ->end()
             ->end()
             ->tab('Adresse')
                 ->with('')
                     ->add('ville', TextType::class, [
                         'attr' => [
-                            'class' => 'col-md-3',
+                            'class' => 'typeahead',
+                            'id' => 'villes',
+                            'autocomplete' => 'off',
+                            'placeholder' => 'Entrez une ville',
                         ],
                     ])
                     ->add('address', TextareaType::class, [
@@ -73,12 +81,16 @@ final class RoomAdministration extends AbstractAdmin
                 ->end()
             ->end()
         ;
+        $formMapper->get('ville')->addViewTransformer($this->villeTransform);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
             ->add('name')
+           /* ->add('ville', 'doctrine_orm_model_autocomplete', [], null, [
+                'property' => 'ville_nom_reel',
+            ])*/
 
             ;
     }
@@ -90,7 +102,12 @@ final class RoomAdministration extends AbstractAdmin
             ->add('priceLocation', MoneyType::class)
             ->add('placeCapacity', IntegerType::class)
             ->add('disponible', BooleanType::class)
-            ->add('ville', TextType::class)
+            ->add('images', TextType::class, [
+                'associated_property' => 'path',
+            ])
+            ->add('ville', TextType::class, [
+                'associated_property' => 'ville_nom_reel',
+            ])
             ->add('address', TextType::class)
             ->add('postalCode', TextType::class)
             ;
@@ -104,11 +121,27 @@ final class RoomAdministration extends AbstractAdmin
     public function prePersist($object)
     {
         if ($object instanceof Room) {
-            $object->setSlug($this->slugify(strtolower($object->getName().'-'.$object->getVille())));
+            $object->setSlug($this->slugify(strtolower($object->getName().'-'.$object->getVille()->getVilleNomReel())));
             $images = $object->getImages();
             foreach ($images as $image) {
                 $image->setName('Booking'.uniqid('', true));
+                $image->setRoom($object);
             }
+        }
+    }
+
+    public function setVilleTransformer($villeTransformer)
+    {
+        $this->villeTransform = $villeTransformer;
+    }
+
+
+    public function update($object)
+    {
+        if( $object instanceof Room )
+        {
+            $images = $object->getImages();
+
         }
     }
 }

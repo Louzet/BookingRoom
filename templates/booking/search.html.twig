@@ -1,21 +1,11 @@
-{{ form_start(form) }}
-
+<div class="from_search_layout_home">
+    {{ form_start(form, {'action': path('search.query'), 'attr': { 'class':'form-inline' }}) }}
     <div class="form-group">
         {{ form_row(form.evenement) }}
     </div>
-
-    <div class="input-group date" data-provide="datepicker">
-        {{ form_widget(form.date_debut) }}
-        <div class="input-group-addon">
-            <ion-icon name="calendar"></ion-icon>
-        </div>
+    <div class="form-group">
+        {{ form_row(form.place) }}
     </div>
-
-    <div class="input-group date" data-provide="datepicker">
-        {{ form_widget(form.date_fin) }}
-        <div class="input-group-addon">
-            <ion-icon name="calendar"></ion-icon>
-        </div>
-    </div>
-
-{{ form_end(form) }}
+    <button type="submit" class="btn btn-default pull-right">Rechercher</button>
+    {{ form_end(form) }}
+</div>

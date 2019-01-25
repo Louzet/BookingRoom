@@ -42,17 +42,12 @@ class Room
     private $PlaceCapacity;
 
     /**
-     * @ORM\Column(type="string", length=128)
-     */
-    private $ville;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $address;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $PostalCode;
 
@@ -83,8 +78,11 @@ class Room
      */
     private $images;
 
-
-
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\VillesFranceFree", inversedBy="rooms")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ville;
 
     public function __construct()
     {
@@ -138,17 +136,6 @@ class Room
         return $this;
     }
 
-    public function getVille(): ?string
-    {
-        return $this->ville;
-    }
-
-    public function setVille(string $ville): self
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
 
     public function getAddress(): ?string
     {
@@ -162,12 +149,12 @@ class Room
         return $this;
     }
 
-    public function getPostalCode(): ?int
+    public function getPostalCode()
     {
         return $this->PostalCode;
     }
 
-    public function setPostalCode(int $PostalCode): self
+    public function setPostalCode($PostalCode)
     {
         $this->PostalCode = $PostalCode;
 
@@ -290,6 +277,18 @@ class Room
                 $image->setRoom(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVille(): ?VillesFranceFree
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?VillesFranceFree $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }

@@ -52,6 +52,18 @@
     <!--===============================================================================================-->
     <script type="text/javascript" src="https://unpkg.com/ionicons@4.5.0/dist/ionicons.js"></script>
     <!--===============================================================================================-->
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript">
+        const routes = require('../public/js/fos_js_routes.json');
+        import Routing from '../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min';
+        console.log(Routing);
+
+        Routing.setRoutingData(routes);
+        Routing.generate('rep_log_list');
+    </script>
 {% endblock %}
 
 

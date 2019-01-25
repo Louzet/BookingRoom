@@ -5,9 +5,11 @@
         "php": "^7.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "adldap2/adldap2": "^9.1",
         "behat/transliterator": "^1.2",
         "cocur/slugify": "^3.1",
+        "friendsofsymfony/jsrouting-bundle": "^2.2",
         "phpmailer/phpmailer": "^6.0",
         "predis/predis": "^1.1",
         "sensio/framework-extra-bundle": "^5.1",
@@ -38,7 +40,9 @@
         "symfony/yaml": "4.2.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.1",
         "friendsofphp/php-cs-fixer": "^2.13",
+        "fzaninotto/faker": "^1.8",
         "phpunit/phpunit": "^7.5",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",

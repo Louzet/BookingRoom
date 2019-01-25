@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Room;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -19,13 +22,37 @@ class RoomRepository extends ServiceEntityRepository
         parent::__construct($registry, Room::class);
     }
 
-    public function findAvailableRooms($disponible = 1)
+    public function findAvailableRooms()
+    {
+        return $this->getDisponibleRooms()
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findRoomsByParams(Search $search)
+    {
+        $query = $this->getDisponibleRooms();
+
+        if ($search->getEvenement()) {
+            $query = $query
+                ->andWhere('r.type = :evenement')
+                ->setParameter(':evenement', $search->getEvenement());
+        }
+
+        if ($search->getPlace()) {
+            $query = $query
+                ->andWhere('r.ville = :place')
+                ->setParameter(':place', $search->getPlace());
+        }
+
+        return $query->getQuery()->getResult();
+    }
+
+    private function getDisponibleRooms()
     {
         return $this->createQueryBuilder('r')
-            ->where('r.disponible = :disponible')
-            ->setParameter(':disponible', $disponible)
-            ->getQuery()
-            ->getResult()
+            ->andWhere('r.disponible = :disponible')
+            ->setParameter(':disponible', 1)
             ;
     }
 

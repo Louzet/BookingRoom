@@ -30,10 +30,31 @@ class Image
     private $path;
 
     /**
-     * @ORM\Column(type="string", length=255)
      * @Assert\File(maxSize="6000000")
      */
     private $file;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastUpdate;
+
+    /**
+     * @return \DateTime
+     */
+    public function getLastUpdate(): \DateTime
+    {
+        return $this->lastUpdate;
+    }
+
+    /**
+     * @param \DateTime $lastUpdate
+     */
+    public function setLastUpdate(\DateTime $lastUpdate): void
+    {
+        $this->lastUpdate = $lastUpdate;
+    }
 
     private $temp;
 
@@ -63,10 +84,8 @@ class Image
 
     /**
      * Get file.
-     *
-     * @return UploadedFile
      */
-    public function getFile(): ?UploadedFile
+    public function getFile()
     {
         return $this->file;
     }
@@ -81,11 +100,9 @@ class Image
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
     public function getPath(): ?string
@@ -118,7 +135,7 @@ class Image
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../public/'.$this->getUploadDir();
+        return __DIR__.'/../../public/'.$this->getUploadDir();
     }
 
     protected function getUploadDir(): string
@@ -138,6 +155,11 @@ class Image
             // do whatever you want to generate a unique name
             $filename = sha1(uniqid(mt_rand(), true));
             $this->path = $filename.'.'.$this->getFile()->guessExtension();
+
+            try {
+                $this->setLastUpdate(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
+            } catch (\Exception $e) {
+            }
         }
     }
 
@@ -154,7 +176,7 @@ class Image
         // if there is an error when moving the file, an exception will
         // be automatically thrown by move(). This will properly prevent
         // the entity from being persisted to the database on error
-        $this->getFile()->move($this->getUploadRootDir(), $this->file);
+        $this->getFile()->move($this->getUploadRootDir(), $this->path.'.'.$this->getFile()->guessExtension());
 
         // check if we have an old image
         if (isset($this->temp)) {

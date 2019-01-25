@@ -19,7 +19,7 @@ sonata_admin:
     templates:
         user_block: '@SonataAdmin/Core/user_block.html.twig'
         add_block: '@SonataAdmin/Core/add_block.html.twig'
-        layout: '@SonataAdmin/standard_layout.html.twig'
+        layout: '_sonata_fosjsrouting.html.twig'
         ajax: '@SonataAdmin/ajax_layout.html.twig'
         dashboard: '@SonataAdmin/Core/dashboard.html.twig'
         search: '@SonataAdmin/Core/search.html.twig'
@@ -71,7 +71,8 @@ sonata_admin:
             - bundles/sonataadmin/css/colors.css
 
         # stylesheet paths to add to the page in addition to the list above
-        extra_stylesheets: []
+        extra_stylesheets:
+            - 'js/typeahead/script-villes.css'
 
         # stylesheet paths to remove from the page
         remove_stylesheets: []
@@ -89,7 +90,6 @@ sonata_admin:
             - 'bundles/sonataadmin/vendor/jquery-form/jquery.form.js'
             - 'bundles/sonataadmin/jquery/jquery.confirmExit.js'
             - 'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js'
-            - 'bundles/sonatacore/vendor/select2/select2.min.js'
             - 'bundles/sonataadmin/vendor/admin-lte/dist/js/app.min.js'
             - 'bundles/sonataadmin/vendor/iCheck/icheck.min.js'
             - 'bundles/sonataadmin/vendor/slimScroll/jquery.slimscroll.min.js'
@@ -100,9 +100,14 @@ sonata_admin:
             - 'bundles/sonataadmin/Admin.js'
             - 'bundles/sonataadmin/treeview.js'
             - 'bundles/sonataadmin/sidebar.js'
+            - 'bundles/sonatacore/vendor/select2/select2.min.js'
 
         # javascript paths to add to the page in addition to the list above
-        extra_javascripts: []
+        extra_javascripts:
+            - '/bundles/fosjsrouting/js/router.min.js'
+            - '/typeahead.js-master/dist/typeahead.jquery.min.js'
+            - '/typeahead.js-master/dist/bloodhound.min.js'
+            - '/js/typeahead/script-villes.js'
 
         # javascript paths to remove from the page
         remove_javascripts: []

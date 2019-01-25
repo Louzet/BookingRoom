@@ -1,0 +1,1 @@
+{"base_url":"","routes":{"villes-json":{"tokens":[["variable","\/","[^\/]++","_query",true],["text","\/villes\/json-villes"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["POST","GET"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http"}

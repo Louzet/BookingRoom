@@ -3,12 +3,12 @@
 namespace App\Entity;
 
 /**
- * Class Search_bar.
+ * Class Search_.
  */
-class Search_bar
+class Search
 {
     /**
-     * @var string|null
+     * @var TypeOfRoom
      */
     private $evenement;
 
@@ -23,22 +23,23 @@ class Search_bar
     private $date_fin;
 
     /**
-     * @var string|null
+     * @var VillesFranceFree
      */
     private $place;
 
     /**
-     * @return string|null
+     * @return TypeOfRoom|null
      */
-    public function getEvenement(): ?string
+    public function getEvenement(): ?TypeOfRoom
     {
         return $this->evenement;
     }
 
     /**
-     * @param string|null $evenement
+     * @param TypeOfRoom|null $evenement
+     * @return void
      */
-    public function setEvenement(?string $evenement): void
+    public function setEvenement(?TypeOfRoom $evenement)
     {
         $this->evenement = $evenement;
     }
@@ -76,17 +77,17 @@ class Search_bar
     }
 
     /**
-     * @return string|null
+     * @return VillesFranceFree|null
      */
-    public function getPlace(): ?string
+    public function getPlace(): ?VillesFranceFree
     {
         return $this->place;
     }
 
     /**
-     * @param string|null $place
+     * @param VillesFranceFree|null $place
      */
-    public function setPlace(?string $place): void
+    public function setPlace(?VillesFranceFree $place): void
     {
         $this->place = $place;
     }

@@ -6,14 +6,18 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/lightslider-master/dist/css/lightslider.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/typeahead/script-villes.css') }}">
 {% endblock %}
 
 
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-md-10 offset-md-2">
-                {{ render(controller('App\\Controller\\SearchBarController::search')) }}
+            <div class="col-md-12">
+                <div class="jumbotron d-flex justify-content-center flex-column">
+                    <h2 class="display-4 text-center mb-3">Trouvez rapidement une salle pour vos évenements !</h2>
+                    <div class="d-flex justify-content-center text-center">{{ render(controller('App\\Controller\\SearchBarController::search')) }}</div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -34,6 +38,11 @@
 {% endblock %}
 
 {% block javascript %}
+    <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script type="text/javascript" src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script type="text/javascript" src="{{ asset('typeahead.js-master/dist/typeahead.jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/typeahead.js-master/dist/bloodhound.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/typeahead/script-villes.js') }}"></script>
     <script type="text/javascript" src="{{ asset('css/lightslider-master/dist/js/lightslider.min.js') }}"></script>
     <script type="text/javascript">
         $('#lightSlider').lightSlider({
@@ -88,12 +97,6 @@
             onAfterSlide: function (el) {},
             onBeforeNextSlide: function (el) {},
             onBeforePrevSlide: function (el) {}
-        });
-    </script>
-    <script type="text/javascript">
-        $('.datepicker').datepicker({
-            format: 'mm/dd/yyyy',
-            startDate: '-3d'
         });
     </script>
 {% endblock %}
