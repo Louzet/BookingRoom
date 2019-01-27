@@ -5,6 +5,9 @@
     "behat/transliterator": {
         "version": "v1.2.0"
     },
+    "chadsikorra/php-simple-enum": {
+        "version": "1.0.0"
+    },
     "cocur/slugify": {
         "version": "v3.1"
     },
@@ -143,6 +146,9 @@
     "knplabs/knp-menu-bundle": {
         "version": "v2.2.1"
     },
+    "ldaptools/ldaptools": {
+        "version": "v0.25.2"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
@@ -220,6 +226,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"

@@ -1,0 +1,68 @@
+{% extends 'template.html.twig' %}
+
+{% block page_title %}
+    Page d'inscription LDAP
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/Booking/contact_page.css') }}"
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {# pass an array argument to get the messages of those types  #}
+                {% for label, messages in app.flashes(['success','notice','info','warning', 'error']) %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                <h1 class="text-capitalize text-center">Votre annuaire LDAP enregistré :</h1>
+                <div class="landing-page">
+                    <div class="form-appointment">
+                        <div class="wpcf7" id="wpcf7-f560-p590-o1">
+
+                            <div class="group">
+                                <div style="width: 48%; float: left;">
+                <span class="wpcf7-form-control-wrap text-680">
+                    <p>Hostname : <input type="text" disabled value="{{ inscriptionLdap.hostname }}"/></p>
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                    <p>Hostname : <input type="text" disabled value="{{ inscriptionLdap.hostname }}"/></p>
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                    <p>Port : <input type="text" disabled value="{{ inscriptionLdap.port }}"/></p>
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                     <p>BaseDN : <input type="text" disabled value="{{ inscriptionLdap.basedn }}"/></p>
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                     <p>BindDN : <input type="text" disabled value="{{ inscriptionLdap.binddn }}"/></p>
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                     <p>Privée : <input type="checkbox"{{ inscriptionLdap.privee ? ' checked' : '' }} disabled /></p>
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                     <p>Nombre de salles : <input type="text" disabled value="{{ inscriptionLdap.rooms.count}}"/></p>
+                </span>
+                <br>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

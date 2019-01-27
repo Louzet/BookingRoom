@@ -68,10 +68,10 @@ class User implements UserInterface, \Serializable
 
     /**
      * User constructor.
-     *
      * @param string $role
+     * @throws \Exception
      */
-    public function __construct(string $role = 'ROLE_USER')
+    public function __construct($role = 'ROLE_USER')
     {
         $this->setRoles($role);
         $this->date_inscription = new \DateTime('Europe/Paris');
@@ -89,7 +89,7 @@ class User implements UserInterface, \Serializable
     /**
      * @param mixed $id
      */
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -105,7 +105,7 @@ class User implements UserInterface, \Serializable
     /**
      * @param mixed $lastName
      */
-    public function setLastName($lastName): void
+    public function setLastName($lastName)
     {
         $this->lastName = $lastName;
     }
@@ -121,7 +121,7 @@ class User implements UserInterface, \Serializable
     /**
      * @param mixed $firstName
      */
-    public function setFirstName($firstName): void
+    public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
     }
@@ -137,7 +137,7 @@ class User implements UserInterface, \Serializable
     /**
      * @param mixed $email
      */
-    public function setEmail($email): void
+    public function setEmail($email)
     {
         $this->email = $email;
     }
@@ -150,7 +150,7 @@ class User implements UserInterface, \Serializable
      *
      * @return string The password
      */
-    public function getPassword(): ?string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -180,7 +180,7 @@ class User implements UserInterface, \Serializable
      *
      * @return User
      */
-    public function setDateInscription(?\DateTimeInterface $date_inscription): self
+    public function setDateInscription($date_inscription)
     {
         $this->date_inscription = $date_inscription;
 
@@ -208,16 +208,22 @@ class User implements UserInterface, \Serializable
         return array_unique($roles);
     }
 
+
+
+
     /**
      * @param string $role
-     *
      * @return bool
      */
-    public function setRoles(string $role)
+    public function setRoles($role)
     {
-        if (!in_array($role, $this->roles)) {
-            $this->roles[] = $role;
+        $this->role = $role;
+    }
 
+    public function addRole($role)
+    {
+        if(!in_array($role, $this->roles)) {
+            $this->roles[] = $role;
             return true;
         }
 
@@ -227,7 +233,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return \DateTimeInterface|null
      */
-    public function getDerniereConnexion(): ?\DateTimeInterface
+    public function getDerniereConnexion()
     {
         return $this->derniere_connexion;
     }
@@ -239,7 +245,7 @@ class User implements UserInterface, \Serializable
      *
      * @throws \Exception
      */
-    public function setDerniereConnexion(?string $timestamp = 'Europe/Paris'): self
+    public function setDerniereConnexion($timestamp = 'Europe/Paris')
     {
         $this->derniere_connexion = new \DateTime('now', new \DateTimeZone($timestamp));
 
@@ -327,12 +333,12 @@ class User implements UserInterface, \Serializable
     /**
      * @return Collection|Reservation[]
      */
-    public function getReservations(): Collection
+    public function getReservations()
     {
         return $this->reservations;
     }
 
-    public function addReservation(Reservation $reservation): self
+    public function addReservation(Reservation $reservation)
     {
         if (!$this->reservations->contains($reservation)) {
             $this->reservations[] = $reservation;
@@ -342,7 +348,7 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function removeReservation(Reservation $reservation): self
+    public function removeReservation(Reservation $reservation)
     {
         if ($this->reservations->contains($reservation)) {
             $this->reservations->removeElement($reservation);

@@ -23,11 +23,11 @@ class UserController extends AbstractController
     }
 
     /**
-     * @param Request                      $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/registration", name="user.registration")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -43,6 +43,9 @@ class UserController extends AbstractController
             $hash = $passwordEncoder->encodePassword($user, $user->getPassword());
 
             $user->setPassword($hash);
+
+            dump($user);
+            die();
 
             $this->manager->persist($user);
 

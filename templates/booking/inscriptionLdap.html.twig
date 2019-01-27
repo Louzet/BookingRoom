@@ -1,0 +1,96 @@
+{% extends 'template.html.twig' %}
+
+{% block page_title %}
+    Page d'inscription LDAP
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/Booking/contact_page.css') }}"
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    {# pass an array argument to get the messages of those types  #}
+    {% for label, messages in app.flashes(['success','notice','info','warning', 'error']) %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <h1 class="text-capitalize text-center">Inscription de votre annuaire LDAP</h1>
+    <div class="landing-page">
+    <div class="form-appointment">
+    <div class="wpcf7" id="wpcf7-f560-p590-o1">
+    {{ form_start(form, novalidate="novalidate") }}
+        <div class="group">
+            <div style="width: 48%; float: left;">
+                <span class="wpcf7-form-control-wrap text-680">
+                    {{ form_label(form.name) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                    {{ form_help(form.name) }}
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+
+                    {{ form_label(form.hostname) }}
+                    {{ form_errors(form.hostname) }}
+                    {{ form_widget(form.hostname) }}
+                    {{ form_help(form.hostname) }}
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                    {{ form_label(form.port) }}
+                    {{ form_errors(form.port) }}
+                    {{ form_widget(form.port) }}
+                    {{ form_help(form.port) }}
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                    {{ form_label(form.basedn) }}
+                    {{ form_errors(form.basedn) }}
+                    {{ form_widget(form.basedn) }}
+                    {{ form_help(form.basedn) }}
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                    {{ form_label(form.binddn) }}
+                    {{ form_errors(form.binddn) }}
+                    {{ form_widget(form.binddn) }}
+                    {{ form_help(form.binddn) }}
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                    {{ form_label(form.password) }}
+                    {{ form_errors(form.password) }}
+                    {{ form_widget(form.password) }}
+                    {{ form_help(form.password) }}
+                </span>
+                <br>
+                <span class="wpcf7-form-control-wrap text-680">
+                    {{ form_label(form.privee) }}
+                    {{ form_errors(form.privee) }}
+                    {{ form_widget(form.privee) }}
+                    {{ form_help(form.privee) }}
+                </span>
+                <br>
+
+            </div>
+        </div>
+        <div class="form-group my-2">
+            <button class="btn btn-success default-color lighten-1">Valider</button>
+        </div>
+        <div class="wpcf7-response-output wpcf7-display-none">
+
+        </div>
+        {{ form_end(form) }}
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

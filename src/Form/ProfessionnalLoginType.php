@@ -23,15 +23,12 @@ class ProfessionnalLoginType extends AbstractType
                 'required' => true,
                 'label' => 'Mot de passe',
                 'attr' => [
-                    'placeholder' => 'Email',
+                    'placeholder' => '******',
                 ],
             ])
             ->add('_remember_me', CheckboxType::class, [
                 'label' => 'Se souvenir de moi',
                 'required' => false,
-                'attr' => [
-                    'placeholder' => '******',
-                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Connexion',
