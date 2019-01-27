@@ -6,6 +6,15 @@
 
 {% block content %}
     <div class="container">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong> {{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
@@ -19,9 +28,8 @@
                 {% include 'components/__profil-component.html.twig' %}
             </div>
             <div class="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-info">A simple info list group item</li>
-                </ul>
+                {#{% include 'components/_reservations-on-pending.html.twig' %}#}
+                {{ render(controller('App\\Controller\\UserController::reservationsEnAttente')) }}
             </div>
         </div>
     </div>

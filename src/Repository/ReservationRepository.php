@@ -29,6 +29,19 @@ class ReservationRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findReservationsByStatus($userId, $status)
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.user = :userId')
+            ->setParameter(':userId', $userId)
+            ->andWhere('r.currentStatus LIKE :status')
+            ->setParameter(':status', "%$status%")
+            ->orderBy('r.ReservedAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Reservation[] Returns an array of Reservation objects
     //  */

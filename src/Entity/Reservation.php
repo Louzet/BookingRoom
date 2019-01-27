@@ -49,6 +49,11 @@ class Reservation
      */
     private $salle;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $currentStatus;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -128,5 +133,21 @@ class Reservation
         $this->salle = $salle;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCurrentStatus()
+    {
+        return $this->currentStatus;
+    }
+
+    /**
+     * @param mixed $currentStatus
+     */
+    public function setCurrentStatus($currentStatus): void
+    {
+        $this->currentStatus = $currentStatus;
     }
 }

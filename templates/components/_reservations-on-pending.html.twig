@@ -1,0 +1,17 @@
+<ul class="list-group">
+    {% for reservation in reservations %}
+        <li class="list-group-item list-group-item-info">
+                <div>
+                        <span><strong>Réservation salle {{ reservation.salle.name }}</strong> le {{ reservation.reservedAt | date('d/m/Y') }}</span>
+                        <span class="pull-right">
+                                {% if workflow_can(reservation, 'to_reject') %}
+                                        <a href='{{ path('apply.workflow', { reservation: reservation, transition: "to_reject" }) }}' class="btn btn-danger">Annuler</a>
+                                {% endif %}
+                                {% if workflow_can(reservation, 'to_accept') %}
+                                        <a href="{{ path('apply.workflow', { reservation: reservation, transition: 'to_accept' }) }}" class="btn btn-primary">Confirmer</a>
+                                {% endif %}
+                        </span>
+                </div>
+        </li>
+    {% endfor %}
+</ul>

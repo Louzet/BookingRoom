@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Reservation;
 use App\Entity\User;
+use App\Form\UserProfileType;
 use App\Form\UserRegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -28,6 +31,8 @@ class UserController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/registration", name="user.registration")
+     *
+     * @throws \Exception
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -65,6 +70,7 @@ class UserController extends AbstractController
 
     /**
      * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/profil/{username}", name="user.profil")
@@ -73,22 +79,49 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
 
-        $username = $this->getUser()->getUsername();
-
         if (null === $user) {
             return $this->redirectToRoute('user.login');
         }
 
-        $form = $this->createForm(UserRegistrationType::class, $user);
+        $username = $this->getUser()->getUsername();
+
+        $form = $this->createForm(UserProfileType::class, $user);
 
         $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->manager->persist($user);
+
+            $this->manager->flush();
+
+            $this->addFlash('success', 'Modifications prises en compte !');
+
+            return $this->redirectToRoute('user.profil', [
+                'username' => $username,
+            ]);
+        }
 
         return $this->render('user/profil.html.twig', [
             'form' => $form->createView(),
             'username' => $username,
         ]);
     }
-}
 
-/*
-$user = new User();*/
+    /**
+     * Afficher les réservation d'un client.
+     */
+    public function reservationsEnAttente(): Response
+    {
+        $user = $this->getUser();
+
+        $reservations = $this->getDoctrine()
+            ->getRepository(Reservation::class)
+            ->findReservationsByStatus($user->getId(), 'on_pending');
+
+        dump($reservations);
+
+        return $this->render('components/_reservations-on-pending.html.twig', [
+            'reservations' => $reservations,
+        ]);
+    }
+}

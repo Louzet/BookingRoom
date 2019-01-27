@@ -13,6 +13,8 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Workflow\Exception\LogicException;
+use Symfony\Component\Workflow\Registry;
 
 class ReservationController extends AbstractController
 {
@@ -65,13 +67,15 @@ class ReservationController extends AbstractController
      *
      * @throws \Exception
      */
-    public function reservationCreate(Request $request): Response
+    public function reservationCreate(Request $request, Registry $workflows): Response
     {
         if (null === $this->getUser()) {
             return $this->redirectToRoute('user.login');
         }
 
         $reservation = new Reservation();
+
+        $workflow = $workflows->get($reservation);
 
         $form = $this->createForm(ReservationType::class, $reservation)->handleRequest($request);
 
@@ -81,10 +85,20 @@ class ReservationController extends AbstractController
             $reservation->setUser($this->getUser());
 
             $reservation->setTitle($this->slugify($this->getUser()->getLastName().'-'.$reservation->getSalle()->getSlug().'-'.$reservation->getReservedAt()->format('d-m-Y')));
+            try {
+                $workflow->apply($reservation, 'to_pending');
 
-            $this->manager->persist($reservation);
-
-            $this->manager->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($reservation);
+                $em->flush();   // Insertion en base de donnée
+            } catch (LogicException $exception) {
+                // Transition non autorisé
+                // Notification
+                $this->addFlash(
+                    'notice',
+                    'Transition workflow non autorisée !'
+                );
+            }
 
             $this->addFlash('success', 'Réservation bien prise en compte !');
 
@@ -99,21 +113,25 @@ class ReservationController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param Room    $room
+     * @param Request  $request
+     * @param Room     $room
+     * @param Registry $workflows
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
      * @throws \Exception
      * @Route("/reservation/create/{slug}", name="booking.reservation.room")
      */
-    public function reservationFromRoom(Request $request, Room $room)
+    public function reservationFromRoom(Request $request, Room $room, Registry $workflows)
     {
         if (null === $this->getUser()) {
             return $this->redirectToRoute('user.login');
         }
 
         $reservation = new Reservation();
+
+        // on récupère le workflow
+        $workflow = $workflows->get($reservation);
 
         $reservation->setSalle($room);
 
@@ -126,9 +144,20 @@ class ReservationController extends AbstractController
 
             $reservation->setTitle($this->slugify($this->getUser()->getLastName().'-'.$reservation->getSalle()->getSlug().'-'.$reservation->getReservedAt()->format('d-m-Y')));
 
-            $this->manager->persist($reservation);
+            try {
+                $workflow->apply($reservation, 'to_pending');
 
-            $this->manager->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($reservation);
+                $em->flush();   // Insertion en base de donnée
+            } catch (LogicException $exception) {
+                // Transition non autorisé
+                // Notification
+                $this->addFlash(
+                    'notice',
+                    'Transition workflow non autorisée !'
+                );
+            }
 
             $this->addFlash('success', 'Votre réservation a été validé !');
 
