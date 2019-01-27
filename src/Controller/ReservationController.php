@@ -6,14 +6,18 @@ use App\Entity\Reservation;
 use App\Entity\Room;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
+use App\Traits\TransliteratorSlugTrait;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ReservationController extends AbstractController
 {
+    use TransliteratorSlugTrait;
+
     /**
      * @var ObjectManager
      */
@@ -22,11 +26,16 @@ class ReservationController extends AbstractController
      * @var ReservationRepository
      */
     private $reservationRepository;
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $dispatcher;
 
-    public function __construct(ObjectManager $manager, ReservationRepository $reservationRepository)
+    public function __construct(ObjectManager $manager, ReservationRepository $reservationRepository, EventDispatcherInterface $dispatcher)
     {
         $this->manager = $manager;
         $this->reservationRepository = $reservationRepository;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -41,6 +50,8 @@ class ReservationController extends AbstractController
         $reservations = $this->reservationRepository->findAll();
 
         dump($reservations);
+
+        $this->dispatcher->dispatch('fullcalendar.set_data::loadEvents');
 
         return $this->render('booking/calendar.html.twig');
     }
@@ -69,6 +80,8 @@ class ReservationController extends AbstractController
 
             $reservation->setUser($this->getUser());
 
+            $reservation->setTitle($this->slugify($this->getUser()->getLastName().'-'.$reservation->getSalle()->getSlug().'-'.$reservation->getReservedAt()->format('d-m-Y')));
+
             $this->manager->persist($reservation);
 
             $this->manager->flush();
@@ -88,15 +101,46 @@ class ReservationController extends AbstractController
     /**
      * @param Request $request
      * @param Room    $room
-     * @Route("/reservation/create/{id}", name="booking.reservation.room")
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     * @throws \Exception
+     * @Route("/reservation/create/{slug}", name="booking.reservation.room")
      */
     public function reservationFromRoom(Request $request, Room $room)
     {
         if (null === $this->getUser()) {
             return $this->redirectToRoute('user.login');
         }
+
+        $reservation = new Reservation();
+
+        $reservation->setSalle($room);
+
+        $form = $this->createForm(ReservationType::class, $reservation)->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $reservation->setReservedAt(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
+
+            $reservation->setUser($this->getUser());
+
+            $reservation->setTitle($this->slugify($this->getUser()->getLastName().'-'.$reservation->getSalle()->getSlug().'-'.$reservation->getReservedAt()->format('d-m-Y')));
+
+            $this->manager->persist($reservation);
+
+            $this->manager->flush();
+
+            $this->addFlash('success', 'Votre réservation a été validé !');
+
+            return $this->redirectToRoute('booking.reservation.show', [
+                'id' => $reservation->getId(),
+            ]);
+        }
+
+        return $this->render('booking/create_reservation.html.twig', [
+            'form' => $form->createView(),
+            'room' => $room,
+        ]);
     }
 
     /**
@@ -129,7 +173,6 @@ class ReservationController extends AbstractController
         if (null === $reservation) {
             return $this->redirectToRoute('booking.home', [], Response::HTTP_MOVED_PERMANENTLY);
         }
-
 
         return $this->render('booking/reservation_show.html.twig', [
             'reservation' => $reservation,

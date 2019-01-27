@@ -2,11 +2,13 @@
 
 namespace App\Controller\Salle;
 
+use App\Entity\Room;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/booking")
+ * @Route("/salle")
  */
 class SalleController extends AbstractController
 {
@@ -15,7 +17,14 @@ class SalleController extends AbstractController
      */
     public function salleIndex()
     {
-
     }
 
+    /**
+     * @param Request $request
+     * @param Room    $room
+     * @Route("/show/{slug}", name="salles.show")
+     */
+    public function salleShow(Request $request, Room $room): void
+    {
+    }
 }

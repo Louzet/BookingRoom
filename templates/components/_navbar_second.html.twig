@@ -59,7 +59,7 @@
                             <li class="nav-item"><a href="{{ path('user.login') }}" class="nav-link text-center">Connexion</a></li>
                         {% endif %}
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <li class="nav-item"><a href="#" class="nav-link text-center">Profil</a></li>
+                            <li class="nav-item"><a href="{{ path('user.profil', { username: app.user.username }) }}" class="nav-link text-center">Profil</a></li>
                             <li class="nav-item"><a href="#" class="nav-link text-center">Notifications</a></li>
                             <li class="divider"></li>
                             <li class="nav-item"><a href="{{ path('user.logout') }}" class="nav-link text-center">Déconnexion</a></li>

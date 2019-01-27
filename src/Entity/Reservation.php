@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Traits\TransliteratorSlugTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,6 +16,11 @@ class Reservation
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
 
     /**
      * @ORM\Column(type="datetime")
@@ -31,7 +37,6 @@ class Reservation
      */
     private $ReservedAt;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reservations")
      * @ORM\JoinColumn(nullable=false)
@@ -47,6 +52,22 @@ class Reservation
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
+    {
+        $this->title = $title;
     }
 
     public function getDateDebut(): ?\DateTimeInterface

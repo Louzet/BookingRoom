@@ -59,11 +59,73 @@
     <!--===============================================================================================-->
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <!--===============================================================================================-->
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--===============================================================================================-->
     <script type="text/javascript" src="{{ asset('fullcalendar/fullcalendar.min.js') }}"></script>
     <!--===============================================================================================-->
     <script type="text/javascript" src="{{ asset('fullcalendar/locale-all.js') }}"></script>
     <!--===============================================================================================-->
+    <script type="text/javascript">
+        $(function () {
+            $('#calendar-holder').fullCalendar({
+                locale: 'fr',
+                header: {
+                    left: 'prev, next, today',
+                    center: 'title',
+                    right: 'month, agendaWeek, agendaDay'
+                },
+                businessHours: {
+                    start: '09:00',
+                    end: '18:00',
+                    dow: [1, 2, 3, 4, 5],
+                    rendering: 'background'
 
+                },
+                defaultView: 'agendaWeek',
+                eventOverlap: false,
+                color: '#9B8FCD',
+                eventTextColor: '#FFFFFF',
+                eventClick: function(calEvent, jsEvent, view) {
+                    if (calEvent.url) {
+                        window.open(calEvent.url);
+                        return false;
+                    }
+                    // change the border color just for fun
+                    $(this).css('border-color', 'red');
+
+                },
+                selectable: true,
+                selectOverlap: false,
+                select: function(start, end, allDay) {
+
+                    start = moment(start).format('YYYY-MM-DD HH:mm');
+                    end = moment(end).format('YYYY-MM-DD HH:mm');
+                },
+
+                lazyFetching: true,
+                navLinks: true,
+                eventSources: [
+                    {
+                        url: "{{ path('fullcalendar_load_events') }}",
+                        type: 'POST',
+                        data:  {
+                            filters: {}
+                        },
+                        error: function () {
+                            alert('There was an error while fetching FullCalendar!');
+                        }
+                    }
+                ]
+            });
+
+            var calendar = $('#calendar-holder').fullCalendar('getCalendar');
+
+            calendar.on('dayClick', function(date, jsEvent, view) {
+                console.log('clicked on ' + date.format());
+            });
+
+        });
+    </script>
     <!--===============================================================================================-->
     <script type="text/javascript">
         const routes = require('../public/js/fos_js_routes.json');

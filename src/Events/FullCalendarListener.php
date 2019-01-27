@@ -35,23 +35,20 @@ class FullCalendarListener
         $reservations = $this->em->getRepository(Reservation::class)->findAllReservations($startDate, $endDate);
 
         foreach ($reservations as $reservation) {
-
             $reservation_event = new Event(
                 $reservation->getTitle(),
-                $reservation->getBeginAt(),
-                $reservation->getEndAt()
+                $reservation->getDateDebut(),
+                $reservation->getDateFin()
             );
 
             $reservation_event->setUrl(
                 $this->router->generate('booking.reservation.show', [
                     'id' => $reservation->getId(),
-
                 ])
             );
             $calendar->addEvent($reservation_event);
-
         }
 
+        return $calendar;
     }
-
 }

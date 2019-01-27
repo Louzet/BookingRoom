@@ -62,6 +62,32 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/profil/{username}", name="user.profil")
+     */
+    public function profil(Request $request)
+    {
+        $user = $this->getUser();
+
+        $username = $this->getUser()->getUsername();
+
+        if (null === $user) {
+            return $this->redirectToRoute('user.login');
+        }
+
+        $form = $this->createForm(UserRegistrationType::class, $user);
+
+        $form->handleRequest($request);
+
+        return $this->render('user/profil.html.twig', [
+            'form' => $form->createView(),
+            'username' => $username,
+        ]);
+    }
 }
 
 /*
