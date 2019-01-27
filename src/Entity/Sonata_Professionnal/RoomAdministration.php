@@ -2,6 +2,7 @@
 
 namespace App\Entity\Sonata_Professionnal;
 
+use App\DataTransformer\imageFileTransformer;
 use App\DataTransformer\villeToEntityTransformer;
 use App\Entity\Room;
 use App\Entity\TypeOfRoom;
@@ -29,13 +30,20 @@ final class RoomAdministration extends AbstractAdmin
      */
     private $villeTransform;
 
+    /**
+     * @var imageFileTransformer
+     */
+    private $imageTransformer;
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->tab('Informations', ['class' => 'col-md-9'])
                 ->with('Salles')
                     ->add('name', TextType::class)
-                    ->add('priceLocation', MoneyType::class)
+                    ->add('priceLocation', MoneyType::class, [
+                        'required' => false,
+                    ])
                     ->add('placeCapacity', IntegerType::class)
                     ->add('disponible', CheckboxType::class, [
                         'required' => false,
@@ -81,7 +89,10 @@ final class RoomAdministration extends AbstractAdmin
                 ->end()
             ->end()
         ;
-        $formMapper->get('ville')->addViewTransformer($this->villeTransform);
+        $formMapper->get('ville')
+            ->addViewTransformer($this->villeTransform);
+        /*$formMapper->get('images')
+            ->addViewTransformer($this->imageTransformer);*/
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

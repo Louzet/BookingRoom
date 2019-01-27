@@ -15,6 +15,7 @@ class ImageRoomType extends AbstractType
         $builder
             ->add('file', FileType::class)
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

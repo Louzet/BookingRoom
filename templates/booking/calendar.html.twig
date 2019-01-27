@@ -1,0 +1,49 @@
+{% extends 'template.html.twig' %}
+
+{% block page_title %}
+    calendrier
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <a class="btn btn-success" href="{{ path('booking.reservation.create') }}"><i class="glyphicon-plus" aria-hidden="true"></i> Créer une Réservation</a>
+
+        {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('fullcalendar/fullcalendar.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('#calendar-holder').fullCalendar({
+                locale: 'fr',
+                header: {
+                    left: 'prev, next, today',
+                    center: 'title',
+                    right: 'month, agendaWeek, agendaDay'
+                },
+                lazyFetching: true,
+                navLinks: true,
+                eventSources: [
+                    {
+                        url: "{{ path('fullcalendar_load_events') }}",
+                        type: 'POST',
+                        data:  {
+                            filters: {}
+                        },
+                        error: function () {
+                            alert('There was an error while fetching FullCalendar!');
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+{% endblock %}

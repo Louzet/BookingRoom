@@ -1,0 +1,33 @@
+{% extends 'template.html.twig' %}
+
+{% block page_title %}
+
+{% endblock %}
+
+{% block content %}
+    {% if app.flashes('success') %}
+        {% for message in app.flashes('success') %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="text-center mb-3" style="text-decoration: underline;">Détails réservation {{ reservation. }}</h1>
+
+                    <div class="col-md-8">
+                        <p>Réservation # {{ reservation.id }}</p>
+                    </div>
+
+
+                <div class="col-md-4">
+                    <h4 class="text-center">Informations utilisateur</h4>
+                </div>
+            </div>
+
+        </div>
+    {% endblock %}
+{% endblock %}
+

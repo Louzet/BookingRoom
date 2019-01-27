@@ -32,7 +32,7 @@ class Room
     private $slug;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $priceLocation;
 
@@ -74,7 +74,7 @@ class Room
     private $reservations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="room", orphanRemoval=true, cascade={"all"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="room", orphanRemoval=true, cascade={"all", "remove"})
      */
     private $images;
 
@@ -111,18 +111,22 @@ class Room
         return $this;
     }
 
-
-    public function getPriceLocation(): ?float
+    /**
+     * @return mixed
+     */
+    public function getPriceLocation()
     {
         return $this->priceLocation;
     }
 
-    public function setPriceLocation(float $priceLocation): self
+    /**
+     * @param mixed $priceLocation
+     */
+    public function setPriceLocation($priceLocation): void
     {
         $this->priceLocation = $priceLocation;
-
-        return $this;
     }
+
 
     public function getPlaceCapacity(): ?int
     {

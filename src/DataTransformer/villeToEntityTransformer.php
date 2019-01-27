@@ -36,7 +36,7 @@ class villeToEntityTransformer implements DataTransformerInterface
      *
      * @param string $villeEntity
      *
-     * @return VillesFranceFree|null
+     * @return VillesFranceFree|bool|null
      *
      * @throws TransformationFailedException if object (ville) is not found
      */

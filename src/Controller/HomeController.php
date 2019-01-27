@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\RoomRepository;
 use App\Repository\VillesFranceFreeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -31,8 +32,10 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="booking.home")
      * @Route("/", name="booking")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function home()
+    public function home(Request $request)
     {
         $availableRooms = $this->roomRepository->findAvailableRooms();
 
