@@ -32,7 +32,7 @@ class FullCalendarListener
         $endDate = $calendar->getEnd();
         $filters = $calendar->getFilters();
 
-        $reservations = $this->em->getRepository(Reservation::class)->findAllReservations($startDate, $endDate);
+        $reservations = $this->em->getRepository(Reservation::class)->findAllReservationsByStatus($startDate, $endDate, 'accepted');
 
         foreach ($reservations as $reservation) {
             $reservation_event = new Event(

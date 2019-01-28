@@ -19,10 +19,22 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
-    public function findAllReservations($startDate, $endDate)
+    public function findAllReservationsByStatus($startDate, $endDate, $currentStatus)
     {
         return $this->createQueryBuilder('r')
-            ->where('r.dateDebut BETWEEN :startDate and :endDate')
+            ->andWhere('r.dateDebut BETWEEN :startDate and :endDate')
+            ->setParameter(':startDate', $startDate->format('Y-m-d H:i:s'))
+            ->setParameter(':endDate', $endDate->format('Y-m-d H:i:s'))
+            ->andWhere('r.currentStatus LIKE :currentStatus')
+            ->setParameter(':currentStatus', "%$currentStatus%")
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllReservation($startDate, $endDate)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.dateDebut BETWEEN :startDate and :endDate')
             ->setParameter(':startDate', $startDate->format('Y-m-d H:i:s'))
             ->setParameter(':endDate', $endDate->format('Y-m-d H:i:s'))
             ->getQuery()

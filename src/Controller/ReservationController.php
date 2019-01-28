@@ -10,6 +10,7 @@ use App\Traits\TransliteratorSlugTrait;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -48,10 +49,6 @@ class ReservationController extends AbstractController
         if (null === $this->getUser()) {
             return $this->redirectToRoute('user.login');
         }
-
-        $reservations = $this->reservationRepository->findAll();
-
-        dump($reservations);
 
         $this->dispatcher->dispatch('fullcalendar.set_data::loadEvents');
 
@@ -205,6 +202,45 @@ class ReservationController extends AbstractController
 
         return $this->render('booking/reservation_show.html.twig', [
             'reservation' => $reservation,
+        ]);
+    }
+
+    /**
+     * @param Reservation $reservation
+     * @param Registry    $registry
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @Route("/confirm-reservation/{title}", name="reservation.confirmed")
+     */
+    public function ConfirmReservation(Reservation $reservation, Registry $registry): RedirectResponse
+    {
+        $user = $this->getUser();
+
+        if (null === $user) {
+            return $this->redirectToRoute('user.login');
+        }
+
+        $workflow = $registry->get($reservation);
+
+        try {
+            $workflow->apply($reservation, 'to_accept');
+
+            $this->manager->persist($reservation);
+            $this->manager->flush();
+        } catch (LogicException $exception) {
+            // Transition non autorisé
+            // Notification
+            $this->addFlash(
+                'notice',
+                'Transition workflow non autorisée !'
+            );
+        }
+
+        $this->addFlash('success', 'Confirmation prises en compte ! !');
+
+        return $this->redirectToRoute('user.profil', [
+            'username' => $user->getUsername(),
         ]);
     }
 }
