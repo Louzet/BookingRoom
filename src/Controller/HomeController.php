@@ -32,15 +32,21 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="booking.home")
      * @Route("/", name="booking")
+     *
      * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function home(Request $request)
     {
         $availableRooms = $this->roomRepository->findAvailableRooms();
+        $suggestedRooms = $this->roomRepository->findRoomsToSuggest();
+
+        dump($suggestedRooms);
 
         return $this->render('booking/home.html.twig', [
             'availableRooms' => $availableRooms,
+            'suggestions' => $suggestedRooms,
         ]);
     }
 
@@ -48,6 +54,7 @@ class HomeController extends AbstractController
     {
         return $this->render('components/_carousel.html.twig');
     }
+
 
     /**
      * @Route("/result-query", name="search.query")
@@ -59,8 +66,6 @@ class HomeController extends AbstractController
         $response = $this->forward('App\Controller\SearchBarController::search');
 
         dump($response);
-
-
 
         // ... further modify the response or return it directly
 

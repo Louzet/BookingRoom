@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -72,6 +74,11 @@ class Professionnal implements UserInterface, \Serializable
     private $derniere_connexion;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Room", mappedBy="professionnal", orphanRemoval=true)
+     */
+    private $rooms;
+
+    /**
      * Professionnal constructor.
      *
      * @param string $role
@@ -82,6 +89,7 @@ class Professionnal implements UserInterface, \Serializable
     {
         $this->setRoles($role);
         $this->date_inscription = new DateTime('Europe/Paris');
+        $this->rooms = new ArrayCollection();
     }
 
     /**
@@ -364,6 +372,37 @@ class Professionnal implements UserInterface, \Serializable
             $this->roles,
             $this->derniere_connexion
             ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    /**
+     * @return Collection|Room[]
+     */
+    public function getRooms(): Collection
+    {
+        return $this->rooms;
+    }
+
+    public function addRoom(Room $room): self
+    {
+        if (!$this->rooms->contains($room)) {
+            $this->rooms[] = $room;
+            $room->setProfessionnal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoom(Room $room): self
+    {
+        if ($this->rooms->contains($room)) {
+            $this->rooms->removeElement($room);
+            // set the owning side to null (unless already changed)
+            if ($room->getProfessionnal() === $this) {
+                $room->setProfessionnal(null);
+            }
+        }
+
+        return $this;
     }
 
 

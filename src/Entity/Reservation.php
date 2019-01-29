@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reservation
 {
+    use TransliteratorSlugTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -58,6 +59,7 @@ class Reservation
     {
         return $this->id;
     }
+
 
     /**
      * @return mixed

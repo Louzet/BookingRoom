@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Historique;
 use App\Entity\Reservation;
 use App\Entity\Room;
 use App\Form\ReservationType;
@@ -82,6 +83,7 @@ class ReservationController extends AbstractController
             $reservation->setUser($this->getUser());
 
             $reservation->setTitle($this->slugify($this->getUser()->getLastName().'-'.$reservation->getSalle()->getSlug().'-'.$reservation->getReservedAt()->format('d-m-Y')));
+
             try {
                 $workflow->apply($reservation, 'to_pending');
 
@@ -238,6 +240,53 @@ class ReservationController extends AbstractController
         }
 
         $this->addFlash('success', 'Confirmation prises en compte ! !');
+
+        return $this->redirectToRoute('user.profil', [
+            'username' => $user->getUsername(),
+        ]);
+    }
+
+    /**
+     * @param Reservation $reservation
+     * @param Registry    $registry
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @Route("/deny-reservation/{title}", name="reservation.denied")
+     */
+    public function AbandonReservation(Reservation $reservation, Registry $registry): RedirectResponse
+    {
+        $user = $this->getUser();
+
+        if (null === $user) {
+            return $this->redirectToRoute('user.login');
+        }
+
+        $workflow = $registry->get($reservation);
+
+        try {
+            $workflow->apply($reservation, 'to_reject');
+
+            $historique = new Historique();
+
+            $historique->setClient($reservation->getUser()->getEmail());
+
+            $historique->setReservation($reservation->getTitle());
+
+            $this->manager->persist($historique);
+
+            $this->manager->persist($reservation);
+            $this->manager->flush();
+        } catch (LogicException $exception) {
+            // Transition non autorisé
+            // Notification
+            $this->addFlash(
+                'notice',
+                'Transition workflow non autorisée !'
+            );
+        }
+
+        $this->addFlash('success', 'Réservation annulé ! !');
 
         return $this->redirectToRoute('user.profil', [
             'username' => $user->getUsername(),

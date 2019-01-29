@@ -23,8 +23,13 @@ class SalleController extends AbstractController
      * @param Request $request
      * @param Room    $room
      * @Route("/show/{slug}", name="salles.show")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function salleShow(Request $request, Room $room): void
+    public function salleShow(Request $request, Room $room)
     {
+        return $this->render('salles/salle_show.html.twig', [
+            'room' => $room,
+        ]);
     }
 }

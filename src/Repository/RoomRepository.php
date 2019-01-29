@@ -46,6 +46,16 @@ class RoomRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function findRoomsToSuggest()
+    {
+        return $this->getDisponibleRooms()
+            ->orderBy('r.PlaceCapacity', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     private function getDisponibleRooms()
     {
         return $this->createQueryBuilder('r')
@@ -53,6 +63,7 @@ class RoomRepository extends ServiceEntityRepository
             ->setParameter(':disponible', 1)
             ;
     }
+
 
     // /**
     //  * @return Room[] Returns an array of Room objects

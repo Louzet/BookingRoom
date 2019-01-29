@@ -13,7 +13,9 @@
                 <div class="card-body">
                     <h5 class="badge badge-primary pull-right">{{ room.type.title }}</h5>
                     <div>
-                        <h4 class="card-title mt-1 mb-4 text-center"><a>{{ room.name }}</a></h4>
+                        <h4 class="card-title mt-1 mb-4 text-center">
+                            <a href="{{ path('salles.show', {slug: room.slug}) }}">{{ room.name }}</a>
+                        </h4>
                     </div>
                     <p class="card-subtitle">
                         {% if room.priceLocation != null %}

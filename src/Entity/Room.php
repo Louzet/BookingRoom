@@ -84,6 +84,12 @@ class Room
      */
     private $ville;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Professionnal", inversedBy="rooms")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $professionnal;
+
     public function __construct()
     {
         try {
@@ -293,6 +299,18 @@ class Room
     public function setVille(?VillesFranceFree $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getProfessionnal(): ?Professionnal
+    {
+        return $this->professionnal;
+    }
+
+    public function setProfessionnal(?Professionnal $professionnal): self
+    {
+        $this->professionnal = $professionnal;
 
         return $this;
     }

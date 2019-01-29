@@ -118,10 +118,22 @@ class UserController extends AbstractController
             ->getRepository(Reservation::class)
             ->findReservationsByStatus($user->getId(), 'on_pending');
 
-        dump($reservations);
-
         return $this->render('components/_reservations-on-pending.html.twig', [
             'reservations' => $reservations,
         ]);
+    }
+
+    public function reservationsConfirmed(): Response
+    {
+        $user = $this->getUser();
+
+        $reservations = $this->getDoctrine()
+            ->getRepository(Reservation::class)
+            ->findReservationsByStatus($user->getId(), 'accepted');
+
+
+        return $this->render('components/_reservations-accepted.html.twig', [
+        'reservations' => $reservations,
+    ]);
     }
 }

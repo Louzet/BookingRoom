@@ -26,9 +26,11 @@
                 <p><strong>Situé : </strong>{{ reservation.salle.address }}, {{ reservation.salle.postalCode }}</p>
                 <p><strong>Date :</strong>{{ reservation.dateDebut | date('d/m/Y') }} à {{ reservation.dateFin | date('d/m/Y') }}</p>
                 <p><strong>Durée : </strong>{{ reservation.dateDebut | date('H:i') ~ ' heures' }} à {{ reservation.dateFin | date('H:i') ~ ' heures' }}</p>
-                <div class="form-group my-3">
-                    <a class="btn btn-success btn-block offset-md-3 col-md-6" href="{{ path('user.profil', { username: app.user.username }) }}">Confirmer ma réservation</a>
-                </div>
+                {% if reservation.currentStatus == 'on_pending' %}
+                    <div class="form-group my-3">
+                        <a class="btn btn-success btn-block offset-md-3 col-md-6" href="{{ path('user.profil', { username: app.user.username }) }}">Confirmer ma réservation</a>
+                    </div>
+                {% endif %}
             </div>
 
             <div class="col-md-4 text-center">

@@ -8,20 +8,12 @@
                             <strong>Réservation salle  {{ reservation.salle.name }}</strong> le {{ reservation.reservedAt | date('d/m/Y') }}
                         </a>
                     </span>
-                    <span class="pull-right">
-                        {% if workflow_can(reservation, 'to_accept') %}
-                            <a href="{{ path('reservation.confirmed', {title: reservation.title }) }}" class="btn btn-success">Confirmer</a>
-                        {% endif %}
-                        {% if workflow_can(reservation, 'to_reject') %}
-                                <a href="{{ path('reservation.denied', {title: reservation.title}) }}" class="btn btn-danger">Annuler</a>
-                        {% endif %}
-                    </span>
                 </div>
             </li>
         {% endfor %}
     {% else %}
         <li class="list-group-item list-group-item-info">
-            Aucunes réservations en attente... <ion-icon name="hourglass" style="color: #b71b17;"></ion-icon>
+            Aucunes réservations... <ion-icon name="hourglass" style="color: #b71b17;"></ion-icon>
         </li>
     {% endif %}
 </ul>
