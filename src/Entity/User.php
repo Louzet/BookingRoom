@@ -34,7 +34,7 @@ class User implements UserInterface, \Serializable
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=190, unique=true)
      * @Assert\NotBlank(message="Veuillez rentrer une adresse email")
      * @Assert\Email(message="Cette adresse email n'est pas valide")
      */

@@ -22,7 +22,7 @@ class Professionnal implements UserInterface, \Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=190)
      */
     private $entreprise;
 
@@ -44,7 +44,7 @@ class Professionnal implements UserInterface, \Serializable
     private $codePostal;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=190, unique=true)
      * @Assert\NotBlank(message="Veuillez rentrer une adresse email")
      * @Assert\Email(message="Cette adresse email n'est pas valide")
      */

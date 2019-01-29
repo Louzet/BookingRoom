@@ -25,7 +25,7 @@ class ProfessionnalRegistrationType extends AbstractType
                     'placeholder' => 'Nom de Votre Entreprise',
                 ],
             ])
-            ->add('siren', IntegerType::class)
+            ->add('siren', TextType::class)
             ->add('address', TextareaType::class)
             ->add('codePostal', TextType::class)
             ->add('email', EmailType::class)

@@ -33,7 +33,7 @@ class ContactController extends AbstractController
         $form = $this->createForm(ContactAdminType::class, $contact)->handleRequest($request);
 
         $user = $this->getUser();
-        dump($user);
+        //dump($user);
 
         if ($user instanceof Professionnal || $user instanceof User) {
             $contact->setUserInSession($user->getId());

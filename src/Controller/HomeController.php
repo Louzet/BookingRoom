@@ -57,7 +57,7 @@ class HomeController extends AbstractController
     {
         $response = $this->forward('App\Controller\SearchBarController::search');
 
-        dump($response);
+        //dump($response);
 
 
 
