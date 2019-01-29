@@ -471,15 +471,8 @@
         </div>
         <div class="row">
                 {% include 'components/__cards_rooms.html.twig' %}
-
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                et là, je sais pas encore !
-            </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascript %}
@@ -491,7 +484,7 @@
     <script type="text/javascript" src="{{ asset('css/lightslider-master/dist/js/lightslider.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/cards_rooms_js.js') }}"></script>
     <script type="text/javascript">
-        $('#lightSlider').lightSlider({
+        $('.lightSlider').lightSlider({
             item: 1,
             autoWidth: false,
             slideMove: 1, // slidemove will be 1 if loop is true

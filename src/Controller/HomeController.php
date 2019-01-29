@@ -7,6 +7,7 @@ use App\Repository\RoomRepository;
 use App\Repository\VillesFranceFreeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -15,6 +16,7 @@ class HomeController extends AbstractController
      * @var RoomRepository
      */
     private $roomRepository;
+
     /**
      * @var VillesFranceFreeRepository
      */
@@ -33,13 +35,21 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="booking.home")
      * @Route("/", name="booking")
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function home()
+    public function home(Request $request)
     {
         $availableRooms = $this->roomRepository->findAvailableRooms();
+        $suggestedRooms = $this->roomRepository->findRoomsToSuggest();
+
+        dump($suggestedRooms);
 
         return $this->render('booking/home.html.twig', [
             'availableRooms' => $availableRooms,
+            'suggestions' => $suggestedRooms,
         ]);
     }
 
@@ -59,57 +69,57 @@ class HomeController extends AbstractController
 
         //dump($response);
 
-
-
         // ... further modify the response or return it directly
 
         return $this->render('booking/result-query.html.twig');
     }
 
     /**
-     * Afficher une inscription Ldap
+     * Afficher une inscription Ldap.
+     *
      * @Route("/{slug<[a-zA-Z1-9\-_\/]+>}_{id<\d+>}.html",
      *     name="index_inscriptionLdap")
+     *
      * @param $id
      * @param $slug
      * @param InscriptionLdap $inscriptionLdap
+     *
      * @return Response
      */
     public function inscriptionLdap($id,
                                     $slug,
                                     InscriptionLdap $inscriptionLdap = null)
     {
-        # Exemple d'URL
-        # contabo_1.html
+        // Exemple d'URL
+        // contabo_1.html
 
-        # $article = $this->getDoctrine()
-        #     ->getRepository(Article::class)
-        #     ->find($id);
+        // $article = $this->getDoctrine()
+        //     ->getRepository(Article::class)
+        //     ->find($id);
 
-        # On s'assure que l'inscriptionLdap ne soit pas null.
+        // On s'assure que l'inscriptionLdap ne soit pas null.
         if (null === $inscriptionLdap) {
+            // On génère une exception
+            // throw $this->createNotFoundException(
+            //     "Nous n'avons pas trouvé votre article ID : " . $id
+            // );
 
-            # On génère une exception
-            # throw $this->createNotFoundException(
-            #     "Nous n'avons pas trouvé votre article ID : " . $id
-            # );
-
-            # Ou, on redirige l'utilisateur sur la page d'accueil
+            // Ou, on redirige l'utilisateur sur la page d'accueil
             return $this->redirectToRoute('home', [],
                 Response::HTTP_MOVED_PERMANENTLY);
         }
 
-        # Vérification du SLUG
+        // Vérification du SLUG
         if ($inscriptionLdap->getSlug() !== $slug) {
             return $this->redirectToRoute('index_inscriptionLdap', [
                 'slug' => $inscriptionLdap->getSlug(),
-                'id' => $id
+                'id' => $id,
             ]);
         }
 
-        # Transmission des données à la vue
+        // Transmission des données à la vue
         return $this->render('booking/afficheInscriptionLdap.html.twig', [
-            'inscriptionLdap' => $inscriptionLdap
+            'inscriptionLdap' => $inscriptionLdap,
         ]);
     }
 }

@@ -1,0 +1,23 @@
+{{ form_start(form) }}
+    <div class="form-group">
+        <div class="col-md-6">
+            {{ form_row(form.lastName) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.firstName) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            {{ form_row(form.email) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            {{ form_row(form.birthday) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info btn-block">Enregistrer les modifications</button>
+    </div>
+{{ form_end(form) }}

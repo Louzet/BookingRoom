@@ -5,8 +5,6 @@ namespace App\Repository;
 use App\Entity\Room;
 use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query;
-use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -48,6 +46,16 @@ class RoomRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function findRoomsToSuggest()
+    {
+        return $this->getDisponibleRooms()
+            ->orderBy('r.PlaceCapacity', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     private function getDisponibleRooms()
     {
         return $this->createQueryBuilder('r')
@@ -55,6 +63,7 @@ class RoomRepository extends ServiceEntityRepository
             ->setParameter(':disponible', 1)
             ;
     }
+
 
     // /**
     //  * @return Room[] Returns an array of Room objects

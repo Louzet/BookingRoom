@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Traits\TransliteratorSlugTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,12 +10,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reservation
 {
+    use TransliteratorSlugTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
 
     /**
      * @ORM\Column(type="datetime")
@@ -31,7 +38,6 @@ class Reservation
      */
     private $ReservedAt;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reservations")
      * @ORM\JoinColumn(nullable=false)
@@ -44,9 +50,31 @@ class Reservation
      */
     private $salle;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $currentStatus;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
+    {
+        $this->title = $title;
     }
 
     public function getDateDebut(): ?\DateTimeInterface
@@ -107,5 +135,21 @@ class Reservation
         $this->salle = $salle;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCurrentStatus()
+    {
+        return $this->currentStatus;
+    }
+
+    /**
+     * @param mixed $currentStatus
+     */
+    public function setCurrentStatus($currentStatus): void
+    {
+        $this->currentStatus = $currentStatus;
     }
 }

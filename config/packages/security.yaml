@@ -33,6 +33,7 @@ security:
                 username_parameter: app_login[email]
                 password_parameter: app_login[password]
                 csrf_parameter: app_login[_login_csrf]
+                remember_me: true
 
             logout:
                 path: /logout
@@ -42,7 +43,6 @@ security:
                 secret: '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds
                 path: /
-                remember_me_parameter: _remember_me
 
 
 

@@ -154,7 +154,7 @@ class Image
         if (null !== $this->getFile()) {
             // do whatever you want to generate a unique name
             $filename = sha1(uniqid(mt_rand(), true));
-            $this->path = $filename.'.'.$this->getFile()->guessExtension();
+            $this->path = $filename;
 
             try {
                 $this->setLastUpdate(new \DateTime('now', new \DateTimeZone('Europe/Paris')));

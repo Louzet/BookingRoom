@@ -29,6 +29,8 @@ class SearchBarController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $rooms = $roomRepository->findRoomsByParams($newSearch);
 
+            dump($rooms);
+
             return $this->render('booking/result-query.html.twig', [
                 'rooms' => $rooms,
             ]);

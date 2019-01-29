@@ -1,34 +1,32 @@
 {% for room in rooms %}
+
     <div class="col-md-3">
         <div id="rooms_results_search">
-            <!-- Card -->
             <div class="card" style="width: 22rem; height: 30rem;">
-                <div class="front">
+                <ul class="lightSlider">
                     {% for image in room.images %}
-                        <img src="{{ asset('image_room_directory/'~image.path) }}" alt="{{ room.name }}">
+                        <li data-thumb="{{ asset('image_room_directory/'~image.path) }}" style="width: 250px;display: block;">
+                            <img src="{{ asset('image_room_directory/'~image.path) }}"  alt="{{ room.name }}" style="width: 100%;"/>
+                        </li>
                     {% endfor %}
-                </div>
-
-                <!-- Card content -->
+                </ul>
                 <div class="card-body">
-
-                    <!-- price -->
-                    <span class="badge badge-primary pull-right">{{ room.type.title }}</span>
-
-                    <!-- Title -->
+                    <h5 class="badge badge-primary pull-right">{{ room.type.title }}</h5>
                     <div>
-                        <h4 class="card-title mt-1 mb-4 text-center"><a>{{ room.name }}</a></h4>
+                        <h4 class="card-title mt-1 mb-4 text-center">
+                            <a href="{{ path('salles.show', {slug: room.slug}) }}">{{ room.name }}</a>
+                        </h4>
                     </div>
-
-                    <!-- Text -->
-                    <p class="card-subtitle">{{ room.priceLocation }} <i class="glyphicon-euro"></i> </p>
-                    <!-- Button -->
-                    <a href="#" class="btn btn-primary mt-3">Réserver</a>
-
+                    <p class="card-subtitle">
+                        {% if room.priceLocation != null %}
+                            {{ room.priceLocation }}<i class="glyphicon-euro"></i>
+                        {% else %}
+                            sur devis !
+                        {% endif %}
+                    </p>
+                    <a href="{{ path('booking.reservation.room', { slug: room.slug }) }}" class="btn btn-primary mt-3">Réserver</a>
                 </div>
-
             </div>
-            <!-- Card -->
         </div>
     </div>
 {% endfor %}

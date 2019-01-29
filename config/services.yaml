@@ -56,10 +56,6 @@ services:
             - { name: kernel.event_subscriber }
             - { name: controller.service_arguments }
 
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
-
     sonata_professionnal.room_administration:
         class: App\Entity\Sonata_Professionnal\RoomAdministration
         arguments: [~, App\Entity\Room, ~]
@@ -74,3 +70,7 @@ services:
         arguments: [~, App\Entity\Reservation, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Reservation }
+
+    App\Events\FullCalendarListener:
+        tags:
+            - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadEvents }

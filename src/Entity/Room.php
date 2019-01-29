@@ -32,7 +32,7 @@ class Room
     private $slug;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $priceLocation;
 
@@ -85,7 +85,7 @@ class Room
     private $reservations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="room", orphanRemoval=true, cascade={"all"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="room", orphanRemoval=true, cascade={"all", "remove"})
      */
     private $images;
 
@@ -94,6 +94,12 @@ class Room
      * @ORM\JoinColumn(nullable=false)
      */
     private $ville;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Professionnal", inversedBy="rooms")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $professionnal;
 
     public function __construct()
     {
@@ -122,18 +128,22 @@ class Room
         return $this;
     }
 
-
-    public function getPriceLocation(): ?float
+    /**
+     * @return mixed
+     */
+    public function getPriceLocation()
     {
         return $this->priceLocation;
     }
 
-    public function setPriceLocation(float $priceLocation): self
+    /**
+     * @param mixed $priceLocation
+     */
+    public function setPriceLocation($priceLocation): void
     {
         $this->priceLocation = $priceLocation;
-
-        return $this;
     }
+
 
     public function getPlaceCapacity(): ?int
     {
@@ -304,6 +314,7 @@ class Room
         return $this;
     }
 
+
     /**
      * @return mixed
      */
@@ -336,6 +347,15 @@ class Room
         $this->inscriptionLdap = $inscriptionLdap;
     }
 
+    public function getProfessionnal(): ?Professionnal
+    {
+        return $this->professionnal;
+    }
 
+    public function setProfessionnal(?Professionnal $professionnal): self
+    {
+        $this->professionnal = $professionnal;
 
+        return $this;
+    }
 }

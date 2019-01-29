@@ -1,0 +1,19 @@
+<ul class="list-group">
+    {% if reservations != null %}
+        {% for reservation in reservations %}
+            <li class="list-group-item list-group-item-info">
+                <div>
+                    <span>
+                        <a href="{{ path('booking.reservation.show', {id: reservation.id }) }}">
+                            <strong>Réservation salle  {{ reservation.salle.name }}</strong> le {{ reservation.reservedAt | date('d/m/Y') }}
+                        </a>
+                    </span>
+                </div>
+            </li>
+        {% endfor %}
+    {% else %}
+        <li class="list-group-item list-group-item-info">
+            Aucunes réservations... <ion-icon name="hourglass" style="color: #b71b17;"></ion-icon>
+        </li>
+    {% endif %}
+</ul>

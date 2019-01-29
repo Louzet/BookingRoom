@@ -1,0 +1,56 @@
+{% extends 'template.html.twig' %}
+
+{% block page_title %}
+    Reserver une salle
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker').datetimepicker();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="text-center mb-3" style="text-decoration: underline;">Nouvelle réservation</h2>
+                {{ form_start(form) }}
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='form-group date' class='datetimepicker'>
+                                {{ form_row(form.dateDebut) }}
+                            </div>
+                        </div>
+                    </div>
+                <div class='col-sm-6'>
+                    <div class="form-group">
+                        <div class='form-group date' class='datetimepicker'>
+                            {{ form_row(form.dateFin) }}
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-12'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            {{ form_widget(form.salle) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button class="btn btn-primary btn-block">Réserver</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-4">
+                <h4 class="text-center">Informations utilisateur</h4>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+
+

@@ -67,11 +67,18 @@ class User implements UserInterface, \Serializable
     private $reservations;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $birthday;
+
+    /**
      * User constructor.
+     *
      * @param string $role
+     *
      * @throws \Exception
      */
-    public function __construct($role = 'ROLE_USER')
+    public function __construct($role = 'ROLE_CLIENT')
     {
         $this->setRoles($role);
         $this->date_inscription = new \DateTime('Europe/Paris');
@@ -208,22 +215,16 @@ class User implements UserInterface, \Serializable
         return array_unique($roles);
     }
 
-
-
-
     /**
      * @param string $role
+     *
      * @return bool
      */
-    public function setRoles($role)
+    public function setRoles(string $role)
     {
-        $this->role = $role;
-    }
-
-    public function addRole($role)
-    {
-        if(!in_array($role, $this->roles)) {
+        if (!in_array($role, $this->roles)) {
             $this->roles[] = $role;
+
             return true;
         }
 
@@ -303,6 +304,7 @@ class User implements UserInterface, \Serializable
             $this->password,
             $this->roles,
             $this->derniere_connexion,
+            $this->birthday,
         ]);
     }
 
@@ -326,7 +328,8 @@ class User implements UserInterface, \Serializable
             $this->email,
             $this->password,
             $this->roles,
-            $this->derniere_connexion
+            $this->derniere_connexion,
+            $this->birthday
         ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 
@@ -357,6 +360,18 @@ class User implements UserInterface, \Serializable
                 $reservation->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(?\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
 
         return $this;
     }

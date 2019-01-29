@@ -1,0 +1,28 @@
+framework:
+    workflows:
+        reservation_worflow:
+            type: 'workflow'
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: 'single_state'
+                arguments:
+                    - 'currentStatus'
+            supports:
+                - App\Entity\Reservation
+            initial_place: in_creation
+            places:
+                - in_creation
+                - on_pending
+                - rejected
+                - accepted
+            transitions:
+                to_pending:
+                    from: in_creation
+                    to: on_pending
+                to_accept:
+                    from: on_pending
+                    to: accepted
+                to_reject:
+                    from: on_pending
+                    to: rejected

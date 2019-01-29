@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Reservation;
 use App\Entity\User;
+use App\Form\UserProfileType;
 use App\Form\UserRegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -44,9 +47,6 @@ class UserController extends AbstractController
 
             $user->setPassword($hash);
 
-            dump($user);
-            die();
-
             $this->manager->persist($user);
 
             $this->manager->flush();
@@ -65,7 +65,71 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-}
 
-/*
-$user = new User();*/
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/profil/{username}", name="user.profil")
+     */
+    public function profil(Request $request)
+    {
+        $user = $this->getUser();
+
+        if (null === $user) {
+            return $this->redirectToRoute('user.login');
+        }
+
+        $username = $this->getUser()->getUsername();
+
+        $form = $this->createForm(UserProfileType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->manager->persist($user);
+
+            $this->manager->flush();
+
+            $this->addFlash('success', 'Modifications prises en compte !');
+
+            return $this->redirectToRoute('user.profil', [
+                'username' => $username,
+            ]);
+        }
+
+        return $this->render('user/profil.html.twig', [
+            'form' => $form->createView(),
+            'username' => $username,
+        ]);
+    }
+
+    /**
+     * Afficher les réservation d'un client.
+     */
+    public function reservationsEnAttente(): Response
+    {
+        $user = $this->getUser();
+
+        $reservations = $this->getDoctrine()
+            ->getRepository(Reservation::class)
+            ->findReservationsByStatus($user->getId(), 'on_pending');
+
+        return $this->render('components/_reservations-on-pending.html.twig', [
+            'reservations' => $reservations,
+        ]);
+    }
+
+    public function reservationsConfirmed(): Response
+    {
+        $user = $this->getUser();
+
+        $reservations = $this->getDoctrine()
+            ->getRepository(Reservation::class)
+            ->findReservationsByStatus($user->getId(), 'accepted');
+
+
+        return $this->render('components/_reservations-accepted.html.twig', [
+        'reservations' => $reservations,
+    ]);
+    }
+}

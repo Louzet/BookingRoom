@@ -17,16 +17,16 @@
                     <a href="{{ path('booking.home') }}" class="nav-link">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ path('booking.reservation.index') }}" class="nav-link">Réservation</a>
-                </li>
-                <li class="nav-item">
                     <a href="{{ path('booking.reservation.index') }}" class="nav-link">Nos salles</a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ path('booking.calendar') }}" class="nav-link">Notre planning</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link dropdown-toggle" href="#" 
-                    id="navbarDropdown" role="button" data-toggle="dropdown" 
-                    aria-haspopup="true" aria-expanded="false">
-                    Professionnels
+                        id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Professionnels
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if is_granted('ROLE_PROFESSIONNAL') == false and is_granted('IS_AUTHENTICATED_FULLY') == false %}
@@ -58,7 +58,7 @@
                             <li class="nav-item"><a href="{{ path('user.login') }}" class="nav-link text-center">Connexion</a></li>
                         {% endif %}
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <li class="nav-item"><a href="#" class="nav-link text-center">Profil</a></li>
+                            <li class="nav-item"><a href="{{ path('user.profil', { username: app.user.username }) }}" class="nav-link text-center">Profil</a></li>
                             <li class="nav-item"><a href="#" class="nav-link text-center">Notifications</a></li>
                             <li class="divider"></li>
                             <li class="nav-item"><a href="{{ path('user.logout') }}" class="nav-link text-center">Déconnexion</a></li>

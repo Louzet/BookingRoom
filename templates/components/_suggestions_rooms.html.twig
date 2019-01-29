@@ -1,0 +1,29 @@
+{% for suggestion in suggestions %}
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card my-3" style="width: 18rem; height: 13rem;">
+                <ul class="lightSlider">
+                    {% for image in suggestion.images %}
+                        <li data-thumb="{{ asset('image_room_directory/'~image.path) }}" style="width: 250px;display: block;">
+                            <img src="{{ asset('image_room_directory/'~image.path) }}"  alt="{{ suggestion.name }}" style="width: 100%;"/>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="card-body">
+                    <h5 class="badge badge-primary pull-right">{{ suggestion.type.title }}</h5>
+                    <div>
+                        <h4 class="card-title mt-1 mb-4 text-center"><a href="{{ path('salles.show', {slug: suggestion.slug }) }}">{{ suggestion.name }}</a></h4>
+                    </div>
+                    <p class="card-subtitle">
+                        {% if suggestion.priceLocation != null %}
+                            {{ suggestion.priceLocation }}<i class="glyphicon-euro"></i>
+                        {% else %}
+                            sur devis !
+                        {% endif %}
+                    </p>
+                    <a href="{{ path('booking.reservation.room', { slug: suggestion.slug }) }}" class="btn btn-primary mt-3">Réserver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

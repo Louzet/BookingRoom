@@ -1,0 +1,85 @@
+{% extends 'template.html.twig' %}
+
+{% block page_title %}
+    calendrier
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('fullcalendar/fullcalendar.min.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <a class="btn btn-success mb-5" href="{{ path('booking.reservation.create') }}"><i class="glyphicon-plus" aria-hidden="true"></i> Créer une Réservation</a>
+
+        {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        $(function () {
+            $('#calendar-holder').fullCalendar({
+                locale: 'fr',
+                header: {
+                    left: 'prev, next, today',
+                    center: 'title',
+                    right: 'month, agendaWeek, agendaDay'
+                },
+                businessHours: {
+                    start: '09:00',
+                    end: '18:00',
+                    dow: [1, 2, 3, 4, 5],
+                    rendering: 'background'
+
+                },
+                defaultView: 'agendaWeek',
+                eventOverlap: false,
+                color: '#9B8FCD',
+                eventTextColor: '#FFFFFF',
+                eventClick: function(calEvent, jsEvent, view) {
+                    if (calEvent.url) {
+                        window.open(calEvent.url);
+                        return false;
+                    }
+                    // change the border color just for fun
+                    $(this).css('border-color', 'red');
+
+                },
+                selectable: true,
+                selectOverlap: false,
+                select: function(start, end, allDay) {
+
+                    start = moment(start).format('YYYY-MM-DD HH:mm');
+                    end = moment(end).format('YYYY-MM-DD HH:mm');
+                },
+
+                lazyFetching: true,
+                navLinks: true,
+                eventSources: [
+                    {
+                        url: "{{ path('fullcalendar_load_events') }}",
+                        type: 'POST',
+                        data:  {
+                            filters: {}
+                        },
+                        error: function () {
+                            alert('There was an error while fetching FullCalendar!');
+                        }
+                    }
+                ]
+            });
+
+            var calendar = $('#calendar-holder').fullCalendar('getCalendar');
+
+            calendar.on('dayClick', function(date, jsEvent, view) {
+                console.log('clicked on ' + date.format());
+            });
+
+        });
+    </script>
+{% endblock %}

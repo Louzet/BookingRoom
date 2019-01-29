@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\InscriptionLdap;
 use App\Entity\Room;
 use App\Form\CreateInscriptionLdapType;
@@ -22,7 +21,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FormInscrLdapController extends AbstractController
 {
-
     use TransliteratorSlugTrait;
 
     /**
@@ -32,46 +30,45 @@ class FormInscrLdapController extends AbstractController
 
     public function __construct(InscriptionLdapRepository $ldapRepository)
     {
-
         $this->ldapRepository = $ldapRepository;
     }
 
     /**
-     * Formulaire pour ajouter un LDAP
+     * Formulaire pour ajouter un LDAP.
+     *
      * @Route("/creer-un-ldap",
      *     name="booking.inscriptionLdap")
+     *
      * @param Request $request
+     *
      * @return Response
      */
-    public function newFormInscriptionLdap(Request $request,TypeOfRoomRepository $typeOfRoomRepository,VillesFranceFreeRepository $villesFranceFreeRepository)
+    public function newFormInscriptionLdap(Request $request, TypeOfRoomRepository $typeOfRoomRepository, VillesFranceFreeRepository $villesFranceFreeRepository)
     {
         /**
-         * Création du formulaire
+         * Création du formulaire.
          */
-
         $inscriptionLdap = new InscriptionLdap();
 
         $form = $this->createForm(CreateInscriptionLdapType::class, $inscriptionLdap)
             ->handleRequest($request);
 
-
-        # Si le formulaire est soumis et qu'il est valide
+        // Si le formulaire est soumis et qu'il est valide
         if ($form->isSubmitted() && $form->isValid()) {
+            // 1. vérification de la non présence d'un hostname du même nom
+            $ctl = $this->ldapRepository->findLdapByHostname($ldap_hostname = $form->getData()->getHostname());
 
-            # 1. vérification de la non présence d'un hostname du même nom
-            $ctl=$this->ldapRepository->findLdapByHostname($ldap_hostname = $form->getData()->getHostname());
-
-            if(!empty($ctl)){
+            if (!empty($ctl)) {
                 $this->addFlash('info', 'Enregistrement impossible, Ce Hostname existe déjà !!!');
-                return $this->redirectToRoute("booking.inscriptionLdap");
 
+                return $this->redirectToRoute('booking.inscriptionLdap');
             }
 
-            # 2. Mise à jour du Slug
+            // 2. Mise à jour du Slug
             $inscriptionLdap->setSlug($this->slugify($inscriptionLdap->getName()));
 
             /**
-             * Récupération dynamique depuis le formulaire des valeurs saisies par l'utilisateur
+             * Récupération dynamique depuis le formulaire des valeurs saisies par l'utilisateur.
              */
             //$ldap_name = 'Agopreneur'
             $ldap_name = $form->getData()->getName();
@@ -102,7 +99,7 @@ class FormInscrLdapController extends AbstractController
                 $domain = (new DomainConfiguration())
                     ->setDomainName($ldap_hostname)
                     ->setBaseDn($ldap_basedn)
-                    ->setBindFormat('cn=%username%,' . $ldap_basedn)
+                    ->setBindFormat('cn=%username%,'.$ldap_basedn)
                     ->setPort($ldap_port)
                     ->setUsername('admin')
                     ->setPassword($ldap_password)
@@ -113,7 +110,6 @@ class FormInscrLdapController extends AbstractController
 
                 // The LdapManager provides an easy point of access to some different classes.
                 $ldap = new LdapManager($config);
-
 
                 //Test rechercher les rooms
                 $query = $ldap->buildLdapQuery();
@@ -127,25 +123,26 @@ class FormInscrLdapController extends AbstractController
 
                 $roomColl = new ArrayCollection();
 
-                # 3. Sauvegarde en BDD
+                // 3. Sauvegarde en BDD
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($inscriptionLdap);
 
                 // SELECT * FROM type_of_room WHERE title = 'LDAP'
-                $typeOfRoom=$typeOfRoomRepository->findOneBy(['title'=>'LDAP']);
+                $typeOfRoom = $typeOfRoomRepository->findOneBy(['title' => 'LDAP']);
 
                 // SELECT * FROM VillesFranceFree WHERE ville = 'LDAP'
-                $villesFranceFree=$villesFranceFreeRepository->findOneBy(['ville_code_postal'=>'0']);
+                $villesFranceFree = $villesFranceFreeRepository->findOneBy(['ville_code_postal' => '0']);
 
                 foreach ($rooms as $roomLdap) {
-                    /**  @var LdapObject $roomLdap */
+                    /** @var LdapObject $roomLdap */
                     $roomDb = new Room();
                     $roomDb->setType($typeOfRoom);
                     $roomDb->setInscriptionLdap($inscriptionLdap);
                     $roomDb->setName($roomLdap->get('dn'));
                     $roomDb->setSlug($roomDb->getName());
+                    $roomDb->setProfessionnal($this->getUser());
                     $roomDb->setPriceLocation(0);
-                    $roomDb->setPlaceCapacity(str_replace(" places","",$roomLdap->get('description')));
+                    $roomDb->setPlaceCapacity(str_replace(' places', '', $roomLdap->get('description')));
                     //$roomDb->setVille(1);
                     $villesFranceFree->addRoom($roomDb);
                     $roomDb->setAddress('');
@@ -164,25 +161,25 @@ class FormInscrLdapController extends AbstractController
                 $em->flush();
                 //die();
 
-                # 4. Notification
+                // 4. Notification
                 $this->addFlash('success',
                     'Félicitations, votre LDAP a bien été enregistré !');
 
-                # 5. Redirection vers l'affichage des rooms créé
-                return $this->redirectToRoute('index_inscriptionLdap',[
+                // 5. Redirection vers l'affichage des rooms créé
+                return $this->redirectToRoute('index_inscriptionLdap', [
                     'slug' => $inscriptionLdap->getSlug(),
-                    'id' => $inscriptionLdap->getId()
+                    'id' => $inscriptionLdap->getId(),
                 ]);
-            }catch (\Exception $ex){
+            } catch (\Exception $ex) {
                 $this->addFlash('info', 'Problème de connexion au server LDAP : '.$ex->getMessage());
-                return $this->redirectToRoute("booking.inscriptionLdap");
+
+                return $this->redirectToRoute('booking.inscriptionLdap');
             }
         }
 
-        # Affichage du Formulaire
+        // Affichage du Formulaire
         return $this->render('booking/inscriptionLdap.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
-
     }
 }

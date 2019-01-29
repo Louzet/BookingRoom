@@ -1,0 +1,60 @@
+{% extends 'template.html.twig' %}
+
+{% block page_title %}
+    {{ room.name }} details
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div id="header">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 style="text-decoration: underline">{{ room.name }}</h1>
+                </div>
+                <div class="col-md-12">
+                    <div id="image-room" class="d-flex justify-content-center">
+                        {% for image in room.images %}
+                            <span class="mx-4" style="width: 250px;display: inline-block;">
+                                <img src="{{ asset('image_room_directory/'~image.path) }}"  alt="{{ room.name }}" style="width: 100%;"/>
+                            </span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="informations my-3">
+            <div class="row">
+                <div class="col-md-6 offset-md-1">
+                    <div>
+                        <h3>informations :</h3>
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <strong>Nom salle :</strong><span> {{ room.name }}</span>
+                            </li>
+                            <li class="nav-item">
+                                <strong>Adresse : </strong><span> {{ room.address ~ ',' ~ room.postalCode }}</span>
+                            </li>
+                            <li class="nav-item">
+                                <strong>Pour une capacité moyenne de : </strong><span> {{ room.placeCapacity }}</span>
+                            </li>
+                            <li class="nav-item">
+                                {% if room.priceLocation != null %}
+                                    <strong>Prix : </strong><span> {{ room.priceLocation }} <i class="glyphicon-euro"></i> </span>
+                                {% else %}
+                                    <strong><a class="btn btn-info" href="#">Demander un devis</a></strong>
+                                {% endif %}
+                            </li>
+                            <li class="nav-item">
+                                <strong>Propriétaire :</strong><span> <h4 style="display:inline-block;">{{ room.professionnal.entreprise }} </h4></span>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

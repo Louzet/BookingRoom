@@ -11,6 +11,9 @@
     "cocur/slugify": {
         "version": "v3.1"
     },
+    "components/jquery": {
+        "version": "3.3.1"
+    },
     "composer/semver": {
         "version": "1.4.2"
     },
@@ -107,6 +110,9 @@
     "egulias/email-validator": {
         "version": "2.1.7"
     },
+    "eonasdan/bootstrap-datetimepicker": {
+        "version": "4.17.47"
+    },
     "facebook/webdriver": {
         "version": "1.6.0"
     },
@@ -146,8 +152,14 @@
     "knplabs/knp-menu-bundle": {
         "version": "v2.2.1"
     },
+    "kriswallsmith/assetic": {
+        "version": "v1.0.5"
+    },
     "ldaptools/ldaptools": {
         "version": "v0.25.2"
+    },
+    "moment/moment": {
+        "version": "2.24.0"
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -229,6 +241,9 @@
     },
     "ramsey/uuid": {
         "version": "3.8.0"
+    },
+    "robloach/component-installer": {
+        "version": "0.2.3"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"
@@ -599,6 +614,15 @@
             "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
         }
     },
+    "symfony/workflow": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "7c8798612bf94fbe4cb75056a4cd7ea3a9183698"
+        }
+    },
     "symfony/yaml": {
         "version": "v4.2.1"
     },
@@ -607,6 +631,15 @@
     },
     "tightenco/collect": {
         "version": "v5.7.20"
+    },
+    "toiba/fullcalendar-bundle": {
+        "version": "6.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "6.2",
+            "ref": "43c9033fa6f75f9325f9ac21787c8e8acb086934"
+        }
     },
     "twig/extensions": {
         "version": "1.0",
