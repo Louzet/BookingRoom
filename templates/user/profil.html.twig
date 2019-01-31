@@ -23,7 +23,7 @@
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#onpending" role="tab" aria-controls="contact" aria-selected="false">Réservations en attente</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#confirmed" role="tab" aria-controls="contact" aria-selected="false">Réservations en attente</a>
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#confirmed" role="tab" aria-controls="contact" aria-selected="false">Réservations Validées</a>
             </li>
         </ul>
         <div class="tab-content mt-4" id="myTabContent">
@@ -35,7 +35,7 @@
                 {{ render(controller('App\\Controller\\UserController::reservationsEnAttente')) }}
             </div>
             <div class="tab-pane" id="confirmed" role="tabpanel" aria-labelledby="contact-tab">
-                r{{ render(controller('App\\Controller\\UserController::reservationsConfirmed')) }}
+                {{ render(controller('App\\Controller\\UserController::reservationsConfirmed')) }}
             </div>
         </div>
     </div>

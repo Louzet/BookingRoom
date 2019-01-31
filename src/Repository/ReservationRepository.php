@@ -54,6 +54,22 @@ class ReservationRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findMyReservationsByStatus($id_entreprise, $status)
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.salle', 'salle')
+            ->join('salle.professionnal', 'entreprise')
+            ->andWhere('entreprise.id = :id_entreprise')
+            ->setParameter('id_entreprise', $id_entreprise)
+            ->andWhere('r.currentStatus LIKE :status')
+            ->setParameter('status', "%$status%")
+            ->orderBy('r.ReservedAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
+
     // /**
     //  * @return Reservation[] Returns an array of Reservation objects
     //  */

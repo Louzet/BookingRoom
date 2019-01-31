@@ -31,17 +31,17 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Service\FileUploader:
-        arguments:
-            $targetDirectory: '%image_room_directory%'
-
     App\Events\:
         resource: '../src/Events'
         tags:
            - {name: monolog.logger, channel: booking_logs}
 
     ville.transformer:
-        class: App\DataTransformer\villeToEntityTransformer
+        class: App\DataTransformer\VilleToEntityTransformer
+
+    image.transformer:
+        class: App\DataTransformer\ImageFileTransformer
+        public: true
 
     App\Events\UserEvents\FailLoginSuscriber:
         class: App\Events\UserEvents\FailLoginSuscriber
@@ -57,7 +57,7 @@ services:
             - { name: controller.service_arguments }
 
     sonata_professionnal.room_administration:
-        class: App\Entity\Sonata_Professionnal\RoomAdministration
+        class: App\Sonata_Professionnal\RoomAdministration
         arguments: [~, App\Entity\Room, ~]
         calls:
             - [setLabelTranslatorStrategy, ['@sonata.admin.label.strategy.underscore']]
@@ -66,7 +66,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: 'Content', label: 'Room' }
 
     sonata_professionnal.reservation_administration:
-        class: App\Entity\Sonata_Professionnal\ReservationAdministration
+        class: App\Sonata_Professionnal\ReservationAdministration
         arguments: [~, App\Entity\Reservation, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Reservation }

@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\UserProfileType;
 use App\Form\UserRegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,6 +74,8 @@ class UserController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
+     * @Security("has_role('ROLE_CLIENT')")
+     *
      * @Route("/profil/{username}", name="user.profil")
      */
     public function profil(Request $request)
@@ -130,7 +133,6 @@ class UserController extends AbstractController
         $reservations = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findReservationsByStatus($user->getId(), 'accepted');
-
 
         return $this->render('components/_reservations-accepted.html.twig', [
         'reservations' => $reservations,

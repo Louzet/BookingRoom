@@ -42,8 +42,6 @@ class HomeController extends AbstractController
         $availableRooms = $this->roomRepository->findAvailableRooms();
         $suggestedRooms = $this->roomRepository->findRoomsToSuggest();
 
-        dump($suggestedRooms);
-
         return $this->render('booking/home.html.twig', [
             'availableRooms' => $availableRooms,
             'suggestions' => $suggestedRooms,
@@ -54,7 +52,6 @@ class HomeController extends AbstractController
     {
         return $this->render('components/_carousel.html.twig');
     }
-
 
     /**
      * @Route("/result-query", name="search.query")

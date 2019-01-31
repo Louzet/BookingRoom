@@ -17,9 +17,9 @@
                 <li class="nav-item">
                     <a href="{{ path('booking.home') }}" class="nav-link">Accueil</a>
                 </li>
-                <li class="nav-item">
+                {#<li class="nav-item">
                     <a href="{{ path('booking.reservation.index') }}" class="nav-link">Nos salles</a>
-                </li>
+                </li>#}
                 <li class="nav-item">
                     <a href="{{ path('booking.calendar') }}" class="nav-link">Notre planning</a>
                 </li>
@@ -30,7 +30,7 @@
                         Professionnels
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% if is_granted('ROLE_PROFESSIONNAL') == false and is_granted('IS_AUTHENTICATED_FULLY') == false %}
+                        {% if is_granted('ROLE_CLIENT') or is_granted('IS_AUTHENTICATED_FULLY') == false %}
                             <a class="dropdown-item" href="{{ path('pro.registration') }}">S'inscrire</a>
                         {% else %}
                             <a class="dropdown-item" href="{{ path('sonata_admin_dashboard') }}">Manager vos salles</a>
@@ -55,14 +55,24 @@
                         {{ app.user ? app.token.username : 'Espace Utilisateur' }}
                     </a>
                     <ul class="dropdown-menu">
-                        {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') == false or is_granted('IS_AUTHENTICATED_REMEMBERED') == false %}
                             <li class="nav-item"><a href="{{ path('user.login') }}" class="nav-link text-center">Connexion</a></li>
-                        {% endif %}
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <li class="nav-item"><a href="{{ path('user.profil', { username: app.user.username }) }}" class="nav-link text-center">Profil</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link text-center">Notifications</a></li>
-                            <li class="divider"></li>
-                            <li class="nav-item"><a href="{{ path('user.logout') }}" class="nav-link text-center">Déconnexion</a></li>
+                        {% else %}
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                {% if is_granted('ROLE_CLIENT') %}
+                                    <li class="nav-item" style="float: none;">
+                                        <a href="{{ path('user.profil', { username: app.user.username }) }}" class="nav-link text-center">Profil</a>
+                                    </li>
+                                {% elseif is_granted('ROLE_PROFESSIONNAL') %}
+                                    <li class="nav-item" style="float: none;">
+                                        <a href="{{ path('pro.profil', { username: app.user.username }) }}" class="nav-link text-center">Profil</a>
+                                    </li>
+                                {% endif %}
+                                <li class="divider"></li>
+                                <li class="nav-item" style="float: none;">
+                                    <a href="{{ path('user.logout') }}" class="nav-link text-center">Déconnexion</a>
+                                </li>
+                            {% endif %}
                         {% endif %}
                     </ul>
                 </div>

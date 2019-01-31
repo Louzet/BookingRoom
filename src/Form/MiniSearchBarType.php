@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mickael
- * Date: 24/01/19
- * Time: 11:19.
- */
 
 namespace App\Form;
 
-use App\DataTransformer\villeToEntityTransformer;
+use App\DataTransformer\VilleToEntityTransformer;
 use App\Entity\Search;
 use App\Entity\TypeOfRoom;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -24,7 +18,7 @@ class MiniSearchBarType extends AbstractType
      */
     private $villeTransformer;
 
-    public function __construct(villeToEntityTransformer $villeTransformer)
+    public function __construct(VilleToEntityTransformer $villeTransformer)
     {
         $this->villeTransformer = $villeTransformer;
     }

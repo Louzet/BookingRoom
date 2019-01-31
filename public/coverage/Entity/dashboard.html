@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/mickael/dev/BookingRoom/src/Entity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../.css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="../.css/style.css" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+  <script src="../.js/html5shiv.min.js"></script>
+  <script src="../.js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="../index.html">/home/mickael/dev/BookingRoom/src</a></li>
+        <li><a href="index.html">Entity</a></li>
+        <li class="active">(Dashboard)</li>
+
+      </ol>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Contact.php.html#10">App\Entity\Contact</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historique.php.html#10">App\Entity\Historique</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#17">App\Entity\Professionnal</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Search.php.html#8">App\Entity\Search</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#12">App\Entity\TypeOfRoom</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#13">App\Entity\Image</a></td><td class="text-right">2%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#12">App\Entity\VillesFranceFree</a></td><td class="text-right">5%</td></tr>
+       <tr><td><a href="User.php.html#16">App\Entity\User</a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Room.php.html#13">App\Entity\Room</a></td><td class="text-right">11%</td></tr>
+       <tr><td><a href="Reservation.php.html#11">App\Entity\Reservation</a></td><td class="text-right">18%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="VillesFranceFree.php.html#12">App\Entity\VillesFranceFree</a></td><td class="text-right">6648</td></tr>
+       <tr><td><a href="Room.php.html#13">App\Entity\Room</a></td><td class="text-right">1692</td></tr>
+       <tr><td><a href="Professionnal.php.html#17">App\Entity\Professionnal</a></td><td class="text-right">1406</td></tr>
+       <tr><td><a href="Image.php.html#13">App\Entity\Image</a></td><td class="text-right">1114</td></tr>
+       <tr><td><a href="User.php.html#16">App\Entity\User</a></td><td class="text-right">1014</td></tr>
+       <tr><td><a href="Contact.php.html#10">App\Entity\Contact</a></td><td class="text-right">506</td></tr>
+       <tr><td><a href="Reservation.php.html#11">App\Entity\Reservation</a></td><td class="text-right">312</td></tr>
+       <tr><td><a href="Search.php.html#8">App\Entity\Search</a></td><td class="text-right">272</td></tr>
+       <tr><td><a href="Historique.php.html#10">App\Entity\Historique</a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#12">App\Entity\TypeOfRoom</a></td><td class="text-right">156</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Contact.php.html#54"><abbr title="App\Entity\Contact::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#272"><abbr title="App\Entity\User::getUsername">getUsername</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#146"><abbr title="App\Entity\User::setEmail">setEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#159"><abbr title="App\Entity\User::getPassword">getPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#169"><abbr title="App\Entity\User::setPassword">setPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#179"><abbr title="App\Entity\User::getDateInscription">getDateInscription</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#189"><abbr title="App\Entity\User::setDateInscription">setDateInscription</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#210"><abbr title="App\Entity\User::getRoles">getRoles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#236"><abbr title="App\Entity\User::getDerniereConnexion">getDerniereConnexion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#248"><abbr title="App\Entity\User::setDerniereConnexion">setDerniereConnexion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#262"><abbr title="App\Entity\User::getSalt">getSalt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#283"><abbr title="App\Entity\User::eraseCredentials">eraseCredentials</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#130"><abbr title="App\Entity\User::setFirstName">setFirstName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#296"><abbr title="App\Entity\User::serialize">serialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#321"><abbr title="App\Entity\User::unserialize">unserialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#338"><abbr title="App\Entity\User::getReservations">getReservations</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#343"><abbr title="App\Entity\User::addReservation">addReservation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#353"><abbr title="App\Entity\User::removeReservation">removeReservation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#366"><abbr title="App\Entity\User::getBirthday">getBirthday</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#371"><abbr title="App\Entity\User::setBirthday">setBirthday</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#162"><abbr title="App\Entity\VillesFranceFree::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#167"><abbr title="App\Entity\VillesFranceFree::setVilleId">setVilleId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#174"><abbr title="App\Entity\VillesFranceFree::getVilleDepartement">getVilleDepartement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#138"><abbr title="App\Entity\User::getEmail">getEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#122"><abbr title="App\Entity\User::getFirstName">getFirstName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#186"><abbr title="App\Entity\VillesFranceFree::getVilleSlug">getVilleSlug</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Search.php.html#82"><abbr title="App\Entity\Search::getPlace">getPlace</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#294"><abbr title="App\Entity\Room::getVille">getVille</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#299"><abbr title="App\Entity\Room::setVille">setVille</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#306"><abbr title="App\Entity\Room::getProfessionnal">getProfessionnal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#311"><abbr title="App\Entity\Room::setProfessionnal">setProfessionnal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Search.php.html#33"><abbr title="App\Entity\Search::getEvenement">getEvenement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Search.php.html#42"><abbr title="App\Entity\Search::setEvenement">setEvenement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Search.php.html#50"><abbr title="App\Entity\Search::getDateDebut">getDateDebut</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Search.php.html#58"><abbr title="App\Entity\Search::setDateDebut">setDateDebut</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Search.php.html#66"><abbr title="App\Entity\Search::getDateFin">getDateFin</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Search.php.html#74"><abbr title="App\Entity\Search::setDateFin">setDateFin</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Search.php.html#90"><abbr title="App\Entity\Search::setPlace">setPlace</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#114"><abbr title="App\Entity\User::setLastName">setLastName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#31"><abbr title="App\Entity\TypeOfRoom::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#36"><abbr title="App\Entity\TypeOfRoom::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#41"><abbr title="App\Entity\TypeOfRoom::getTitle">getTitle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#46"><abbr title="App\Entity\TypeOfRoom::setTitle">setTitle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#56"><abbr title="App\Entity\TypeOfRoom::getRooms">getRooms</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#61"><abbr title="App\Entity\TypeOfRoom::addRoom">addRoom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#71"><abbr title="App\Entity\TypeOfRoom::removeRoom">removeRoom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#90"><abbr title="App\Entity\User::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#98"><abbr title="App\Entity\User::setId">setId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#106"><abbr title="App\Entity\User::getLastName">getLastName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#179"><abbr title="App\Entity\VillesFranceFree::setVilleDepartement">setVilleDepartement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#191"><abbr title="App\Entity\VillesFranceFree::setVilleSlug">setVilleSlug</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#271"><abbr title="App\Entity\Room::addImage">addImage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#426"><abbr title="App\Entity\VillesFranceFree::getVilleLatitudeGrd">getVilleLatitudeGrd</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#371"><abbr title="App\Entity\VillesFranceFree::setVilleDensite2010">setVilleDensite2010</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#378"><abbr title="App\Entity\VillesFranceFree::getVilleSurface">getVilleSurface</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#383"><abbr title="App\Entity\VillesFranceFree::setVilleSurface">setVilleSurface</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#390"><abbr title="App\Entity\VillesFranceFree::getVilleLongitudeDeg">getVilleLongitudeDeg</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#395"><abbr title="App\Entity\VillesFranceFree::setVilleLongitudeDeg">setVilleLongitudeDeg</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#402"><abbr title="App\Entity\VillesFranceFree::getVilleLatitudeDeg">getVilleLatitudeDeg</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#407"><abbr title="App\Entity\VillesFranceFree::setVilleLatitudeDeg">setVilleLatitudeDeg</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#414"><abbr title="App\Entity\VillesFranceFree::getVilleLongitudeGrd">getVilleLongitudeGrd</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#419"><abbr title="App\Entity\VillesFranceFree::setVilleLongitudeGrd">setVilleLongitudeGrd</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#431"><abbr title="App\Entity\VillesFranceFree::setVilleLatitudeGrd">setVilleLatitudeGrd</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#359"><abbr title="App\Entity\VillesFranceFree::setVillePopulation2012">setVillePopulation2012</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#438"><abbr title="App\Entity\VillesFranceFree::getVilleLongitudeDms">getVilleLongitudeDms</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#443"><abbr title="App\Entity\VillesFranceFree::setVilleLongitudeDms">setVilleLongitudeDms</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#450"><abbr title="App\Entity\VillesFranceFree::getVilleLatitudeDms">getVilleLatitudeDms</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#455"><abbr title="App\Entity\VillesFranceFree::setVilleLatitudeDms">setVilleLatitudeDms</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#462"><abbr title="App\Entity\VillesFranceFree::getVilleZmin">getVilleZmin</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#467"><abbr title="App\Entity\VillesFranceFree::setVilleZmin">setVilleZmin</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#474"><abbr title="App\Entity\VillesFranceFree::getVilleZmax">getVilleZmax</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#479"><abbr title="App\Entity\VillesFranceFree::setVilleZmax">setVilleZmax</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#489"><abbr title="App\Entity\VillesFranceFree::getRooms">getRooms</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#494"><abbr title="App\Entity\VillesFranceFree::addRoom">addRoom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#366"><abbr title="App\Entity\VillesFranceFree::getVilleDensite2010">getVilleDensite2010</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#354"><abbr title="App\Entity\VillesFranceFree::getVillePopulation2012">getVillePopulation2012</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#198"><abbr title="App\Entity\VillesFranceFree::getVilleNom">getVilleNom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#275"><abbr title="App\Entity\VillesFranceFree::setVilleCommune">setVilleCommune</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#203"><abbr title="App\Entity\VillesFranceFree::setVilleNom">setVilleNom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#210"><abbr title="App\Entity\VillesFranceFree::getVilleNomSimple">getVilleNomSimple</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#215"><abbr title="App\Entity\VillesFranceFree::setVilleNomSimple">setVilleNomSimple</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#234"><abbr title="App\Entity\VillesFranceFree::getVilleNomSoundex">getVilleNomSoundex</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#239"><abbr title="App\Entity\VillesFranceFree::setVilleNomSoundex">setVilleNomSoundex</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#246"><abbr title="App\Entity\VillesFranceFree::getVilleNomMetaphone">getVilleNomMetaphone</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#251"><abbr title="App\Entity\VillesFranceFree::setVilleNomMetaphone">setVilleNomMetaphone</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#258"><abbr title="App\Entity\VillesFranceFree::getVilleCodePostal">getVilleCodePostal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#263"><abbr title="App\Entity\VillesFranceFree::setVilleCodePostal">setVilleCodePostal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#270"><abbr title="App\Entity\VillesFranceFree::getVilleCommune">getVilleCommune</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#282"><abbr title="App\Entity\VillesFranceFree::getVilleCodeCommune">getVilleCodeCommune</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#347"><abbr title="App\Entity\VillesFranceFree::setVillePopulation1999">setVillePopulation1999</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#287"><abbr title="App\Entity\VillesFranceFree::setVilleCodeCommune">setVilleCodeCommune</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#294"><abbr title="App\Entity\VillesFranceFree::getVilleArrondissement">getVilleArrondissement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#299"><abbr title="App\Entity\VillesFranceFree::setVilleArrondissement">setVilleArrondissement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#306"><abbr title="App\Entity\VillesFranceFree::getVilleCanton">getVilleCanton</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#311"><abbr title="App\Entity\VillesFranceFree::setVilleCanton">setVilleCanton</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#318"><abbr title="App\Entity\VillesFranceFree::getVilleAmdi">getVilleAmdi</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#323"><abbr title="App\Entity\VillesFranceFree::setVilleAmdi">setVilleAmdi</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#330"><abbr title="App\Entity\VillesFranceFree::getVillePopulation2010">getVillePopulation2010</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#335"><abbr title="App\Entity\VillesFranceFree::setVillePopulation2010">setVillePopulation2010</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#342"><abbr title="App\Entity\VillesFranceFree::getVillePopulation1999">getVillePopulation1999</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#281"><abbr title="App\Entity\Room::removeImage">removeImage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#266"><abbr title="App\Entity\Room::getImages">getImages</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#59"><abbr title="App\Entity\Contact::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#194"><abbr title="App\Entity\Image::removeUpload">removeUpload</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#93"><abbr title="App\Entity\Image::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#98"><abbr title="App\Entity\Image::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#103"><abbr title="App\Entity\Image::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#113"><abbr title="App\Entity\Image::setPath">setPath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#120"><abbr title="App\Entity\Image::getAbsolutePath">getAbsolutePath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#127"><abbr title="App\Entity\Image::getWebPath">getWebPath</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#134"><abbr title="App\Entity\Image::getUploadRootDir">getUploadRootDir</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#141"><abbr title="App\Entity\Image::getUploadDir">getUploadDir</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#152"><abbr title="App\Entity\Image::preUpload">preUpload</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#170"><abbr title="App\Entity\Image::upload">upload</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#201"><abbr title="App\Entity\Image::getRoom">getRoom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#72"><abbr title="App\Entity\Image::setFile">setFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#206"><abbr title="App\Entity\Image::setRoom">setRoom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#88"><abbr title="App\Entity\Professionnal::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#98"><abbr title="App\Entity\Professionnal::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#106"><abbr title="App\Entity\Professionnal::setId">setId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#114"><abbr title="App\Entity\Professionnal::getEntreprise">getEntreprise</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#122"><abbr title="App\Entity\Professionnal::setEntreprise">setEntreprise</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#130"><abbr title="App\Entity\Professionnal::getSiren">getSiren</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#138"><abbr title="App\Entity\Professionnal::setSiren">setSiren</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#146"><abbr title="App\Entity\Professionnal::getAddress">getAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#154"><abbr title="App\Entity\Professionnal::setAddress">setAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#88"><abbr title="App\Entity\Image::getFile">getFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#54"><abbr title="App\Entity\Image::setLastUpdate">setLastUpdate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#170"><abbr title="App\Entity\Professionnal::setCodePostal">setCodePostal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#126"><abbr title="App\Entity\Contact::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#67"><abbr title="App\Entity\Contact::getUserInSession">getUserInSession</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#75"><abbr title="App\Entity\Contact::setUserInSession">setUserInSession</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#80"><abbr title="App\Entity\Contact::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#85"><abbr title="App\Entity\Contact::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#92"><abbr title="App\Entity\Contact::getEmail">getEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#97"><abbr title="App\Entity\Contact::setEmail">setEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#104"><abbr title="App\Entity\Contact::getTelephone">getTelephone</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#109"><abbr title="App\Entity\Contact::setTelephone">setTelephone</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#114"><abbr title="App\Entity\Contact::getSubject">getSubject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#119"><abbr title="App\Entity\Contact::setSubject">setSubject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#131"><abbr title="App\Entity\Contact::setCreatedAt">setCreatedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Image.php.html#46"><abbr title="App\Entity\Image::getLastUpdate">getLastUpdate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#138"><abbr title="App\Entity\Contact::getReacheMe">getReacheMe</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Contact.php.html#143"><abbr title="App\Entity\Contact::setReacheMe">setReacheMe</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historique.php.html#34"><abbr title="App\Entity\Historique::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historique.php.html#42"><abbr title="App\Entity\Historique::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historique.php.html#50"><abbr title="App\Entity\Historique::getClient">getClient</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historique.php.html#58"><abbr title="App\Entity\Historique::setClient">setClient</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historique.php.html#63"><abbr title="App\Entity\Historique::getReservation">getReservation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historique.php.html#68"><abbr title="App\Entity\Historique::setReservation">setReservation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historique.php.html#75"><abbr title="App\Entity\Historique::getAbandonDate">getAbandonDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historique.php.html#80"><abbr title="App\Entity\Historique::setAbandonDate">setAbandonDate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#162"><abbr title="App\Entity\Professionnal::getCodePostal">getCodePostal</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#178"><abbr title="App\Entity\Professionnal::getEmail">getEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#250"><abbr title="App\Entity\Room::removeReservation">removeReservation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#150"><abbr title="App\Entity\Room::getAddress">getAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#143"><abbr title="App\Entity\Reservation::getCurrentStatus">getCurrentStatus</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#151"><abbr title="App\Entity\Reservation::setCurrentStatus">setCurrentStatus</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#103"><abbr title="App\Entity\Room::getId">getId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#108"><abbr title="App\Entity\Room::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#113"><abbr title="App\Entity\Room::setName">setName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#123"><abbr title="App\Entity\Room::getPriceLocation">getPriceLocation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#131"><abbr title="App\Entity\Room::setPriceLocation">setPriceLocation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#137"><abbr title="App\Entity\Room::getPlaceCapacity">getPlaceCapacity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#142"><abbr title="App\Entity\Room::setPlaceCapacity">setPlaceCapacity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#155"><abbr title="App\Entity\Room::setAddress">setAddress</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#128"><abbr title="App\Entity\Reservation::getSalle">getSalle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#162"><abbr title="App\Entity\Room::getPostalCode">getPostalCode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#167"><abbr title="App\Entity\Room::setPostalCode">setPostalCode</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#186"><abbr title="App\Entity\Room::getType">getType</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#191"><abbr title="App\Entity\Room::setType">setType</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#201"><abbr title="App\Entity\Room::getDateCreation">getDateCreation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#209"><abbr title="App\Entity\Room::setDateCreation">setDateCreation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#218"><abbr title="App\Entity\Room::getSlug">getSlug</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#227"><abbr title="App\Entity\Room::setSlug">setSlug</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#235"><abbr title="App\Entity\Room::getReservations">getReservations</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Room.php.html#240"><abbr title="App\Entity\Room::addReservation">addReservation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#133"><abbr title="App\Entity\Reservation::setSalle">setSalle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#121"><abbr title="App\Entity\Reservation::setUser">setUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#186"><abbr title="App\Entity\Professionnal::setEmail">setEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#323"><abbr title="App\Entity\Professionnal::eraseCredentials">eraseCredentials</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#199"><abbr title="App\Entity\Professionnal::getPassword">getPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#209"><abbr title="App\Entity\Professionnal::setPassword">setPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#219"><abbr title="App\Entity\Professionnal::getDateInscription">getDateInscription</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#229"><abbr title="App\Entity\Professionnal::setDateInscription">setDateInscription</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#250"><abbr title="App\Entity\Professionnal::getRoles">getRoles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#262"><abbr title="App\Entity\Professionnal::setRoles">setRoles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#276"><abbr title="App\Entity\Professionnal::getDerniereConnexion">getDerniereConnexion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#288"><abbr title="App\Entity\Professionnal::setDerniereConnexion">setDerniereConnexion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#302"><abbr title="App\Entity\Professionnal::getSalt">getSalt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#312"><abbr title="App\Entity\Professionnal::getUsername">getUsername</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#336"><abbr title="App\Entity\Professionnal::serialize">serialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#116"><abbr title="App\Entity\Reservation::getUser">getUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#362"><abbr title="App\Entity\Professionnal::unserialize">unserialize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#380"><abbr title="App\Entity\Professionnal::getRooms">getRooms</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#385"><abbr title="App\Entity\Professionnal::addRoom">addRoom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Professionnal.php.html#395"><abbr title="App\Entity\Professionnal::removeRoom">removeRoom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#75"><abbr title="App\Entity\Reservation::setTitle">setTitle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#85"><abbr title="App\Entity\Reservation::setDateDebut">setDateDebut</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#97"><abbr title="App\Entity\Reservation::setDateFin">setDateFin</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#104"><abbr title="App\Entity\Reservation::getReservedAt">getReservedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Reservation.php.html#109"><abbr title="App\Entity\Reservation::setReservedAt">setReservedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#504"><abbr title="App\Entity\VillesFranceFree::removeRoom">removeRoom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#222"><abbr title="App\Entity\User::setRoles">setRoles</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Room.php.html#93"><abbr title="App\Entity\Room::__construct">__construct</abbr></a></td><td class="text-right">80%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="VillesFranceFree.php.html#504"><abbr title="App\Entity\VillesFranceFree::removeRoom">removeRoom</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Image.php.html#72"><abbr title="App\Entity\Image::setFile">setFile</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Professionnal.php.html#395"><abbr title="App\Entity\Professionnal::removeRoom">removeRoom</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="User.php.html#353"><abbr title="App\Entity\User::removeReservation">removeReservation</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Image.php.html#170"><abbr title="App\Entity\Image::upload">upload</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Image.php.html#152"><abbr title="App\Entity\Image::preUpload">preUpload</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Image.php.html#120"><abbr title="App\Entity\Image::getAbsolutePath">getAbsolutePath</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Room.php.html#250"><abbr title="App\Entity\Room::removeReservation">removeReservation</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Image.php.html#127"><abbr title="App\Entity\Image::getWebPath">getWebPath</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#71"><abbr title="App\Entity\TypeOfRoom::removeRoom">removeRoom</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Room.php.html#281"><abbr title="App\Entity\Room::removeImage">removeImage</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="User.php.html#189"><abbr title="App\Entity\User::setDateInscription">setDateInscription</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#366"><abbr title="App\Entity\User::getBirthday">getBirthday</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Search.php.html#90"><abbr title="App\Entity\Search::setPlace">setPlace</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#198"><abbr title="App\Entity\VillesFranceFree::getVilleNom">getVilleNom</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#186"><abbr title="App\Entity\VillesFranceFree::getVilleSlug">getVilleSlug</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#174"><abbr title="App\Entity\VillesFranceFree::getVilleDepartement">getVilleDepartement</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#162"><abbr title="App\Entity\VillesFranceFree::getId">getId</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#371"><abbr title="App\Entity\User::setBirthday">setBirthday</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#343"><abbr title="App\Entity\User::addReservation">addReservation</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#36"><abbr title="App\Entity\TypeOfRoom::getId">getId</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#248"><abbr title="App\Entity\User::setDerniereConnexion">setDerniereConnexion</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#41"><abbr title="App\Entity\TypeOfRoom::getTitle">getTitle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="TypeOfRoom.php.html#61"><abbr title="App\Entity\TypeOfRoom::addRoom">addRoom</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#234"><abbr title="App\Entity\VillesFranceFree::getVilleNomSoundex">getVilleNomSoundex</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#236"><abbr title="App\Entity\User::getDerniereConnexion">getDerniereConnexion</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#159"><abbr title="App\Entity\User::getPassword">getPassword</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#210"><abbr title="App\Entity\VillesFranceFree::getVilleNomSimple">getVilleNomSimple</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#270"><abbr title="App\Entity\VillesFranceFree::getVilleCommune">getVilleCommune</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#246"><abbr title="App\Entity\VillesFranceFree::getVilleNomMetaphone">getVilleNomMetaphone</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#390"><abbr title="App\Entity\VillesFranceFree::getVilleLongitudeDeg">getVilleLongitudeDeg</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#494"><abbr title="App\Entity\VillesFranceFree::addRoom">addRoom</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#474"><abbr title="App\Entity\VillesFranceFree::getVilleZmax">getVilleZmax</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#462"><abbr title="App\Entity\VillesFranceFree::getVilleZmin">getVilleZmin</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#450"><abbr title="App\Entity\VillesFranceFree::getVilleLatitudeDms">getVilleLatitudeDms</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#438"><abbr title="App\Entity\VillesFranceFree::getVilleLongitudeDms">getVilleLongitudeDms</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#426"><abbr title="App\Entity\VillesFranceFree::getVilleLatitudeGrd">getVilleLatitudeGrd</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#414"><abbr title="App\Entity\VillesFranceFree::getVilleLongitudeGrd">getVilleLongitudeGrd</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#402"><abbr title="App\Entity\VillesFranceFree::getVilleLatitudeDeg">getVilleLatitudeDeg</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#378"><abbr title="App\Entity\VillesFranceFree::getVilleSurface">getVilleSurface</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#258"><abbr title="App\Entity\VillesFranceFree::getVilleCodePostal">getVilleCodePostal</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#366"><abbr title="App\Entity\VillesFranceFree::getVilleDensite2010">getVilleDensite2010</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#354"><abbr title="App\Entity\VillesFranceFree::getVillePopulation2012">getVillePopulation2012</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#342"><abbr title="App\Entity\VillesFranceFree::getVillePopulation1999">getVillePopulation1999</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#330"><abbr title="App\Entity\VillesFranceFree::getVillePopulation2010">getVillePopulation2010</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#318"><abbr title="App\Entity\VillesFranceFree::getVilleAmdi">getVilleAmdi</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#306"><abbr title="App\Entity\VillesFranceFree::getVilleCanton">getVilleCanton</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#294"><abbr title="App\Entity\VillesFranceFree::getVilleArrondissement">getVilleArrondissement</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="VillesFranceFree.php.html#282"><abbr title="App\Entity\VillesFranceFree::getVilleCodeCommune">getVilleCodeCommune</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Search.php.html#74"><abbr title="App\Entity\Search::setDateFin">setDateFin</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Search.php.html#82"><abbr title="App\Entity\Search::getPlace">getPlace</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Contact.php.html#59"><abbr title="App\Entity\Contact::getId">getId</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Search.php.html#66"><abbr title="App\Entity\Search::getDateFin">getDateFin</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Image.php.html#194"><abbr title="App\Entity\Image::removeUpload">removeUpload</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Professionnal.php.html#385"><abbr title="App\Entity\Professionnal::addRoom">addRoom</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Professionnal.php.html#288"><abbr title="App\Entity\Professionnal::setDerniereConnexion">setDerniereConnexion</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Professionnal.php.html#276"><abbr title="App\Entity\Professionnal::getDerniereConnexion">getDerniereConnexion</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Professionnal.php.html#262"><abbr title="App\Entity\Professionnal::setRoles">setRoles</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Professionnal.php.html#229"><abbr title="App\Entity\Professionnal::setDateInscription">setDateInscription</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Professionnal.php.html#199"><abbr title="App\Entity\Professionnal::getPassword">getPassword</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Image.php.html#206"><abbr title="App\Entity\Image::setRoom">setRoom</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Image.php.html#201"><abbr title="App\Entity\Image::getRoom">getRoom</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Image.php.html#98"><abbr title="App\Entity\Image::getName">getName</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Reservation.php.html#116"><abbr title="App\Entity\Reservation::getUser">getUser</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Image.php.html#93"><abbr title="App\Entity\Image::getId">getId</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Historique.php.html#75"><abbr title="App\Entity\Historique::getAbandonDate">getAbandonDate</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Historique.php.html#63"><abbr title="App\Entity\Historique::getReservation">getReservation</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Historique.php.html#42"><abbr title="App\Entity\Historique::getId">getId</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Historique.php.html#34"><abbr title="App\Entity\Historique::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Contact.php.html#138"><abbr title="App\Entity\Contact::getReacheMe">getReacheMe</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Contact.php.html#126"><abbr title="App\Entity\Contact::getCreatedAt">getCreatedAt</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Contact.php.html#114"><abbr title="App\Entity\Contact::getSubject">getSubject</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Contact.php.html#92"><abbr title="App\Entity\Contact::getEmail">getEmail</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Reservation.php.html#104"><abbr title="App\Entity\Reservation::getReservedAt">getReservedAt</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Reservation.php.html#121"><abbr title="App\Entity\Reservation::setUser">setUser</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Search.php.html#58"><abbr title="App\Entity\Search::setDateDebut">setDateDebut</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Reservation.php.html#128"><abbr title="App\Entity\Reservation::getSalle">getSalle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Search.php.html#50"><abbr title="App\Entity\Search::getDateDebut">getDateDebut</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Search.php.html#42"><abbr title="App\Entity\Search::setEvenement">setEvenement</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Contact.php.html#80"><abbr title="App\Entity\Contact::getName">getName</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#311"><abbr title="App\Entity\Room::setProfessionnal">setProfessionnal</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#306"><abbr title="App\Entity\Room::getProfessionnal">getProfessionnal</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#299"><abbr title="App\Entity\Room::setVille">setVille</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#294"><abbr title="App\Entity\Room::getVille">getVille</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#271"><abbr title="App\Entity\Room::addImage">addImage</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#240"><abbr title="App\Entity\Room::addReservation">addReservation</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#218"><abbr title="App\Entity\Room::getSlug">getSlug</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#191"><abbr title="App\Entity\Room::setType">setType</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#186"><abbr title="App\Entity\Room::getType">getType</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#150"><abbr title="App\Entity\Room::getAddress">getAddress</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#137"><abbr title="App\Entity\Room::getPlaceCapacity">getPlaceCapacity</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#108"><abbr title="App\Entity\Room::getName">getName</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Room.php.html#103"><abbr title="App\Entity\Room::getId">getId</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Reservation.php.html#133"><abbr title="App\Entity\Reservation::setSalle">setSalle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Search.php.html#33"><abbr title="App\Entity\Search::getEvenement">getEvenement</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="User.php.html#222"><abbr title="App\Entity\User::setRoles">setRoles</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Room.php.html#93"><abbr title="App\Entity\Room::__construct">__construct</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 5.3.2</a> using <a href="https://secure.php.net/" target="_top">PHP 7.2.10-0ubuntu0.18.04.1</a> with <a href="https://xdebug.org/">Xdebug 2.6.1</a> and <a href="https://phpunit.de/">PHPUnit 6.5.13</a> at Wed Jan 30 20:10:50 CET 2019.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../.js/jquery.min.js" type="text/javascript"></script>
+  <script src="../.js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../.js/holder.min.js" type="text/javascript"></script>
+  <script src="../.js/d3.min.js" type="text/javascript"></script>
+  <script src="../.js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([5,2,3,0,0,0,0,0,0,0,0,0], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([203,0,0,0,0,0,0,0,1,1,0,11], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,22,"<a href=\"Contact.php.html#10\">App\\Entity\\Contact<\/a>"],[0,12,"<a href=\"Historique.php.html#10\">App\\Entity\\Historique<\/a>"],[2.2222222222222223,34,"<a href=\"Image.php.html#13\">App\\Entity\\Image<\/a>"],[0,37,"<a href=\"Professionnal.php.html#17\">App\\Entity\\Professionnal<\/a>"],[18.181818181818183,23,"<a href=\"Reservation.php.html#11\">App\\Entity\\Reservation<\/a>"],[11.864406779661017,49,"<a href=\"Room.php.html#13\">App\\Entity\\Room<\/a>"],[0,16,"<a href=\"Search.php.html#8\">App\\Entity\\Search<\/a>"],[0,12,"<a href=\"TypeOfRoom.php.html#12\">App\\Entity\\TypeOfRoom<\/a>"],[10.606060606060606,37,"<a href=\"User.php.html#16\">App\\Entity\\User<\/a>"],[5.376344086021505,88,"<a href=\"VillesFranceFree.php.html#12\">App\\Entity\\VillesFranceFree<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Contact.php.html#54\">App\\Entity\\Contact::__construct<\/a>"],[0,2,"<a href=\"Contact.php.html#59\">App\\Entity\\Contact::getId<\/a>"],[0,1,"<a href=\"Contact.php.html#67\">App\\Entity\\Contact::getUserInSession<\/a>"],[0,1,"<a href=\"Contact.php.html#75\">App\\Entity\\Contact::setUserInSession<\/a>"],[0,2,"<a href=\"Contact.php.html#80\">App\\Entity\\Contact::getName<\/a>"],[0,1,"<a href=\"Contact.php.html#85\">App\\Entity\\Contact::setName<\/a>"],[0,2,"<a href=\"Contact.php.html#92\">App\\Entity\\Contact::getEmail<\/a>"],[0,1,"<a href=\"Contact.php.html#97\">App\\Entity\\Contact::setEmail<\/a>"],[0,1,"<a href=\"Contact.php.html#104\">App\\Entity\\Contact::getTelephone<\/a>"],[0,1,"<a href=\"Contact.php.html#109\">App\\Entity\\Contact::setTelephone<\/a>"],[0,2,"<a href=\"Contact.php.html#114\">App\\Entity\\Contact::getSubject<\/a>"],[0,1,"<a href=\"Contact.php.html#119\">App\\Entity\\Contact::setSubject<\/a>"],[0,2,"<a href=\"Contact.php.html#126\">App\\Entity\\Contact::getCreatedAt<\/a>"],[0,1,"<a href=\"Contact.php.html#131\">App\\Entity\\Contact::setCreatedAt<\/a>"],[0,2,"<a href=\"Contact.php.html#138\">App\\Entity\\Contact::getReacheMe<\/a>"],[0,1,"<a href=\"Contact.php.html#143\">App\\Entity\\Contact::setReacheMe<\/a>"],[0,2,"<a href=\"Historique.php.html#34\">App\\Entity\\Historique::__construct<\/a>"],[0,2,"<a href=\"Historique.php.html#42\">App\\Entity\\Historique::getId<\/a>"],[0,1,"<a href=\"Historique.php.html#50\">App\\Entity\\Historique::getClient<\/a>"],[0,1,"<a href=\"Historique.php.html#58\">App\\Entity\\Historique::setClient<\/a>"],[0,2,"<a href=\"Historique.php.html#63\">App\\Entity\\Historique::getReservation<\/a>"],[0,1,"<a href=\"Historique.php.html#68\">App\\Entity\\Historique::setReservation<\/a>"],[0,2,"<a href=\"Historique.php.html#75\">App\\Entity\\Historique::getAbandonDate<\/a>"],[0,1,"<a href=\"Historique.php.html#80\">App\\Entity\\Historique::setAbandonDate<\/a>"],[0,1,"<a href=\"Image.php.html#46\">App\\Entity\\Image::getLastUpdate<\/a>"],[0,1,"<a href=\"Image.php.html#54\">App\\Entity\\Image::setLastUpdate<\/a>"],[0,3,"<a href=\"Image.php.html#72\">App\\Entity\\Image::setFile<\/a>"],[0,1,"<a href=\"Image.php.html#88\">App\\Entity\\Image::getFile<\/a>"],[0,2,"<a href=\"Image.php.html#93\">App\\Entity\\Image::getId<\/a>"],[0,2,"<a href=\"Image.php.html#98\">App\\Entity\\Image::getName<\/a>"],[0,1,"<a href=\"Image.php.html#103\">App\\Entity\\Image::setName<\/a>"],[100,2,"<a href=\"Image.php.html#108\">App\\Entity\\Image::getPath<\/a>"],[0,1,"<a href=\"Image.php.html#113\">App\\Entity\\Image::setPath<\/a>"],[0,3,"<a href=\"Image.php.html#120\">App\\Entity\\Image::getAbsolutePath<\/a>"],[0,3,"<a href=\"Image.php.html#127\">App\\Entity\\Image::getWebPath<\/a>"],[0,1,"<a href=\"Image.php.html#134\">App\\Entity\\Image::getUploadRootDir<\/a>"],[0,1,"<a href=\"Image.php.html#141\">App\\Entity\\Image::getUploadDir<\/a>"],[0,3,"<a href=\"Image.php.html#152\">App\\Entity\\Image::preUpload<\/a>"],[0,3,"<a href=\"Image.php.html#170\">App\\Entity\\Image::upload<\/a>"],[0,2,"<a href=\"Image.php.html#194\">App\\Entity\\Image::removeUpload<\/a>"],[0,2,"<a href=\"Image.php.html#201\">App\\Entity\\Image::getRoom<\/a>"],[0,2,"<a href=\"Image.php.html#206\">App\\Entity\\Image::setRoom<\/a>"],[0,1,"<a href=\"Professionnal.php.html#88\">App\\Entity\\Professionnal::__construct<\/a>"],[0,1,"<a href=\"Professionnal.php.html#98\">App\\Entity\\Professionnal::getId<\/a>"],[0,1,"<a href=\"Professionnal.php.html#106\">App\\Entity\\Professionnal::setId<\/a>"],[0,1,"<a href=\"Professionnal.php.html#114\">App\\Entity\\Professionnal::getEntreprise<\/a>"],[0,1,"<a href=\"Professionnal.php.html#122\">App\\Entity\\Professionnal::setEntreprise<\/a>"],[0,1,"<a href=\"Professionnal.php.html#130\">App\\Entity\\Professionnal::getSiren<\/a>"],[0,1,"<a href=\"Professionnal.php.html#138\">App\\Entity\\Professionnal::setSiren<\/a>"],[0,1,"<a href=\"Professionnal.php.html#146\">App\\Entity\\Professionnal::getAddress<\/a>"],[0,1,"<a href=\"Professionnal.php.html#154\">App\\Entity\\Professionnal::setAddress<\/a>"],[0,1,"<a href=\"Professionnal.php.html#162\">App\\Entity\\Professionnal::getCodePostal<\/a>"],[0,1,"<a href=\"Professionnal.php.html#170\">App\\Entity\\Professionnal::setCodePostal<\/a>"],[0,1,"<a href=\"Professionnal.php.html#178\">App\\Entity\\Professionnal::getEmail<\/a>"],[0,1,"<a href=\"Professionnal.php.html#186\">App\\Entity\\Professionnal::setEmail<\/a>"],[0,2,"<a href=\"Professionnal.php.html#199\">App\\Entity\\Professionnal::getPassword<\/a>"],[0,1,"<a href=\"Professionnal.php.html#209\">App\\Entity\\Professionnal::setPassword<\/a>"],[0,1,"<a href=\"Professionnal.php.html#219\">App\\Entity\\Professionnal::getDateInscription<\/a>"],[0,2,"<a href=\"Professionnal.php.html#229\">App\\Entity\\Professionnal::setDateInscription<\/a>"],[0,1,"<a href=\"Professionnal.php.html#250\">App\\Entity\\Professionnal::getRoles<\/a>"],[0,2,"<a href=\"Professionnal.php.html#262\">App\\Entity\\Professionnal::setRoles<\/a>"],[0,2,"<a href=\"Professionnal.php.html#276\">App\\Entity\\Professionnal::getDerniereConnexion<\/a>"],[0,2,"<a href=\"Professionnal.php.html#288\">App\\Entity\\Professionnal::setDerniereConnexion<\/a>"],[0,1,"<a href=\"Professionnal.php.html#302\">App\\Entity\\Professionnal::getSalt<\/a>"],[0,1,"<a href=\"Professionnal.php.html#312\">App\\Entity\\Professionnal::getUsername<\/a>"],[0,1,"<a href=\"Professionnal.php.html#323\">App\\Entity\\Professionnal::eraseCredentials<\/a>"],[0,1,"<a href=\"Professionnal.php.html#336\">App\\Entity\\Professionnal::serialize<\/a>"],[0,1,"<a href=\"Professionnal.php.html#362\">App\\Entity\\Professionnal::unserialize<\/a>"],[0,1,"<a href=\"Professionnal.php.html#380\">App\\Entity\\Professionnal::getRooms<\/a>"],[0,2,"<a href=\"Professionnal.php.html#385\">App\\Entity\\Professionnal::addRoom<\/a>"],[0,3,"<a href=\"Professionnal.php.html#395\">App\\Entity\\Professionnal::removeRoom<\/a>"],[100,2,"<a href=\"Reservation.php.html#58\">App\\Entity\\Reservation::getId<\/a>"],[100,1,"<a href=\"Reservation.php.html#67\">App\\Entity\\Reservation::getTitle<\/a>"],[0,1,"<a href=\"Reservation.php.html#75\">App\\Entity\\Reservation::setTitle<\/a>"],[100,2,"<a href=\"Reservation.php.html#80\">App\\Entity\\Reservation::getDateDebut<\/a>"],[0,1,"<a href=\"Reservation.php.html#85\">App\\Entity\\Reservation::setDateDebut<\/a>"],[100,2,"<a href=\"Reservation.php.html#92\">App\\Entity\\Reservation::getDateFin<\/a>"],[0,1,"<a href=\"Reservation.php.html#97\">App\\Entity\\Reservation::setDateFin<\/a>"],[0,2,"<a href=\"Reservation.php.html#104\">App\\Entity\\Reservation::getReservedAt<\/a>"],[0,1,"<a href=\"Reservation.php.html#109\">App\\Entity\\Reservation::setReservedAt<\/a>"],[0,2,"<a href=\"Reservation.php.html#116\">App\\Entity\\Reservation::getUser<\/a>"],[0,2,"<a href=\"Reservation.php.html#121\">App\\Entity\\Reservation::setUser<\/a>"],[0,2,"<a href=\"Reservation.php.html#128\">App\\Entity\\Reservation::getSalle<\/a>"],[0,2,"<a href=\"Reservation.php.html#133\">App\\Entity\\Reservation::setSalle<\/a>"],[0,1,"<a href=\"Reservation.php.html#143\">App\\Entity\\Reservation::getCurrentStatus<\/a>"],[0,1,"<a href=\"Reservation.php.html#151\">App\\Entity\\Reservation::setCurrentStatus<\/a>"],[80,2,"<a href=\"Room.php.html#93\">App\\Entity\\Room::__construct<\/a>"],[0,2,"<a href=\"Room.php.html#103\">App\\Entity\\Room::getId<\/a>"],[0,2,"<a href=\"Room.php.html#108\">App\\Entity\\Room::getName<\/a>"],[0,1,"<a href=\"Room.php.html#113\">App\\Entity\\Room::setName<\/a>"],[0,1,"<a href=\"Room.php.html#123\">App\\Entity\\Room::getPriceLocation<\/a>"],[0,1,"<a href=\"Room.php.html#131\">App\\Entity\\Room::setPriceLocation<\/a>"],[0,2,"<a href=\"Room.php.html#137\">App\\Entity\\Room::getPlaceCapacity<\/a>"],[0,1,"<a href=\"Room.php.html#142\">App\\Entity\\Room::setPlaceCapacity<\/a>"],[0,2,"<a href=\"Room.php.html#150\">App\\Entity\\Room::getAddress<\/a>"],[0,1,"<a href=\"Room.php.html#155\">App\\Entity\\Room::setAddress<\/a>"],[0,1,"<a href=\"Room.php.html#162\">App\\Entity\\Room::getPostalCode<\/a>"],[0,1,"<a href=\"Room.php.html#167\">App\\Entity\\Room::setPostalCode<\/a>"],[100,2,"<a href=\"Room.php.html#174\">App\\Entity\\Room::getDisponible<\/a>"],[100,1,"<a href=\"Room.php.html#179\">App\\Entity\\Room::setDisponible<\/a>"],[0,2,"<a href=\"Room.php.html#186\">App\\Entity\\Room::getType<\/a>"],[0,2,"<a href=\"Room.php.html#191\">App\\Entity\\Room::setType<\/a>"],[0,1,"<a href=\"Room.php.html#201\">App\\Entity\\Room::getDateCreation<\/a>"],[0,1,"<a href=\"Room.php.html#209\">App\\Entity\\Room::setDateCreation<\/a>"],[0,2,"<a href=\"Room.php.html#218\">App\\Entity\\Room::getSlug<\/a>"],[0,1,"<a href=\"Room.php.html#227\">App\\Entity\\Room::setSlug<\/a>"],[0,1,"<a href=\"Room.php.html#235\">App\\Entity\\Room::getReservations<\/a>"],[0,2,"<a href=\"Room.php.html#240\">App\\Entity\\Room::addReservation<\/a>"],[0,3,"<a href=\"Room.php.html#250\">App\\Entity\\Room::removeReservation<\/a>"],[0,1,"<a href=\"Room.php.html#266\">App\\Entity\\Room::getImages<\/a>"],[0,2,"<a href=\"Room.php.html#271\">App\\Entity\\Room::addImage<\/a>"],[0,3,"<a href=\"Room.php.html#281\">App\\Entity\\Room::removeImage<\/a>"],[0,2,"<a href=\"Room.php.html#294\">App\\Entity\\Room::getVille<\/a>"],[0,2,"<a href=\"Room.php.html#299\">App\\Entity\\Room::setVille<\/a>"],[0,2,"<a href=\"Room.php.html#306\">App\\Entity\\Room::getProfessionnal<\/a>"],[0,2,"<a href=\"Room.php.html#311\">App\\Entity\\Room::setProfessionnal<\/a>"],[0,2,"<a href=\"Search.php.html#33\">App\\Entity\\Search::getEvenement<\/a>"],[0,2,"<a href=\"Search.php.html#42\">App\\Entity\\Search::setEvenement<\/a>"],[0,2,"<a href=\"Search.php.html#50\">App\\Entity\\Search::getDateDebut<\/a>"],[0,2,"<a href=\"Search.php.html#58\">App\\Entity\\Search::setDateDebut<\/a>"],[0,2,"<a href=\"Search.php.html#66\">App\\Entity\\Search::getDateFin<\/a>"],[0,2,"<a href=\"Search.php.html#74\">App\\Entity\\Search::setDateFin<\/a>"],[0,2,"<a href=\"Search.php.html#82\">App\\Entity\\Search::getPlace<\/a>"],[0,2,"<a href=\"Search.php.html#90\">App\\Entity\\Search::setPlace<\/a>"],[0,1,"<a href=\"TypeOfRoom.php.html#31\">App\\Entity\\TypeOfRoom::__construct<\/a>"],[0,2,"<a href=\"TypeOfRoom.php.html#36\">App\\Entity\\TypeOfRoom::getId<\/a>"],[0,2,"<a href=\"TypeOfRoom.php.html#41\">App\\Entity\\TypeOfRoom::getTitle<\/a>"],[0,1,"<a href=\"TypeOfRoom.php.html#46\">App\\Entity\\TypeOfRoom::setTitle<\/a>"],[0,1,"<a href=\"TypeOfRoom.php.html#56\">App\\Entity\\TypeOfRoom::getRooms<\/a>"],[0,2,"<a href=\"TypeOfRoom.php.html#61\">App\\Entity\\TypeOfRoom::addRoom<\/a>"],[0,3,"<a href=\"TypeOfRoom.php.html#71\">App\\Entity\\TypeOfRoom::removeRoom<\/a>"],[100,1,"<a href=\"User.php.html#80\">App\\Entity\\User::__construct<\/a>"],[0,1,"<a href=\"User.php.html#90\">App\\Entity\\User::getId<\/a>"],[0,1,"<a href=\"User.php.html#98\">App\\Entity\\User::setId<\/a>"],[0,1,"<a href=\"User.php.html#106\">App\\Entity\\User::getLastName<\/a>"],[0,1,"<a href=\"User.php.html#114\">App\\Entity\\User::setLastName<\/a>"],[0,1,"<a href=\"User.php.html#122\">App\\Entity\\User::getFirstName<\/a>"],[0,1,"<a href=\"User.php.html#130\">App\\Entity\\User::setFirstName<\/a>"],[0,1,"<a href=\"User.php.html#138\">App\\Entity\\User::getEmail<\/a>"],[0,1,"<a href=\"User.php.html#146\">App\\Entity\\User::setEmail<\/a>"],[0,2,"<a href=\"User.php.html#159\">App\\Entity\\User::getPassword<\/a>"],[0,1,"<a href=\"User.php.html#169\">App\\Entity\\User::setPassword<\/a>"],[0,1,"<a href=\"User.php.html#179\">App\\Entity\\User::getDateInscription<\/a>"],[0,2,"<a href=\"User.php.html#189\">App\\Entity\\User::setDateInscription<\/a>"],[0,1,"<a href=\"User.php.html#210\">App\\Entity\\User::getRoles<\/a>"],[75,2,"<a href=\"User.php.html#222\">App\\Entity\\User::setRoles<\/a>"],[0,2,"<a href=\"User.php.html#236\">App\\Entity\\User::getDerniereConnexion<\/a>"],[0,2,"<a href=\"User.php.html#248\">App\\Entity\\User::setDerniereConnexion<\/a>"],[0,1,"<a href=\"User.php.html#262\">App\\Entity\\User::getSalt<\/a>"],[0,1,"<a href=\"User.php.html#272\">App\\Entity\\User::getUsername<\/a>"],[0,1,"<a href=\"User.php.html#283\">App\\Entity\\User::eraseCredentials<\/a>"],[0,1,"<a href=\"User.php.html#296\">App\\Entity\\User::serialize<\/a>"],[0,1,"<a href=\"User.php.html#321\">App\\Entity\\User::unserialize<\/a>"],[0,1,"<a href=\"User.php.html#338\">App\\Entity\\User::getReservations<\/a>"],[0,2,"<a href=\"User.php.html#343\">App\\Entity\\User::addReservation<\/a>"],[0,3,"<a href=\"User.php.html#353\">App\\Entity\\User::removeReservation<\/a>"],[0,2,"<a href=\"User.php.html#366\">App\\Entity\\User::getBirthday<\/a>"],[0,2,"<a href=\"User.php.html#371\">App\\Entity\\User::setBirthday<\/a>"],[100,1,"<a href=\"VillesFranceFree.php.html#156\">App\\Entity\\VillesFranceFree::__construct<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#162\">App\\Entity\\VillesFranceFree::getId<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#167\">App\\Entity\\VillesFranceFree::setVilleId<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#174\">App\\Entity\\VillesFranceFree::getVilleDepartement<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#179\">App\\Entity\\VillesFranceFree::setVilleDepartement<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#186\">App\\Entity\\VillesFranceFree::getVilleSlug<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#191\">App\\Entity\\VillesFranceFree::setVilleSlug<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#198\">App\\Entity\\VillesFranceFree::getVilleNom<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#203\">App\\Entity\\VillesFranceFree::setVilleNom<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#210\">App\\Entity\\VillesFranceFree::getVilleNomSimple<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#215\">App\\Entity\\VillesFranceFree::setVilleNomSimple<\/a>"],[100,2,"<a href=\"VillesFranceFree.php.html#222\">App\\Entity\\VillesFranceFree::getVilleNomReel<\/a>"],[100,1,"<a href=\"VillesFranceFree.php.html#227\">App\\Entity\\VillesFranceFree::setVilleNomReel<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#234\">App\\Entity\\VillesFranceFree::getVilleNomSoundex<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#239\">App\\Entity\\VillesFranceFree::setVilleNomSoundex<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#246\">App\\Entity\\VillesFranceFree::getVilleNomMetaphone<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#251\">App\\Entity\\VillesFranceFree::setVilleNomMetaphone<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#258\">App\\Entity\\VillesFranceFree::getVilleCodePostal<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#263\">App\\Entity\\VillesFranceFree::setVilleCodePostal<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#270\">App\\Entity\\VillesFranceFree::getVilleCommune<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#275\">App\\Entity\\VillesFranceFree::setVilleCommune<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#282\">App\\Entity\\VillesFranceFree::getVilleCodeCommune<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#287\">App\\Entity\\VillesFranceFree::setVilleCodeCommune<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#294\">App\\Entity\\VillesFranceFree::getVilleArrondissement<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#299\">App\\Entity\\VillesFranceFree::setVilleArrondissement<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#306\">App\\Entity\\VillesFranceFree::getVilleCanton<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#311\">App\\Entity\\VillesFranceFree::setVilleCanton<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#318\">App\\Entity\\VillesFranceFree::getVilleAmdi<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#323\">App\\Entity\\VillesFranceFree::setVilleAmdi<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#330\">App\\Entity\\VillesFranceFree::getVillePopulation2010<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#335\">App\\Entity\\VillesFranceFree::setVillePopulation2010<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#342\">App\\Entity\\VillesFranceFree::getVillePopulation1999<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#347\">App\\Entity\\VillesFranceFree::setVillePopulation1999<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#354\">App\\Entity\\VillesFranceFree::getVillePopulation2012<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#359\">App\\Entity\\VillesFranceFree::setVillePopulation2012<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#366\">App\\Entity\\VillesFranceFree::getVilleDensite2010<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#371\">App\\Entity\\VillesFranceFree::setVilleDensite2010<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#378\">App\\Entity\\VillesFranceFree::getVilleSurface<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#383\">App\\Entity\\VillesFranceFree::setVilleSurface<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#390\">App\\Entity\\VillesFranceFree::getVilleLongitudeDeg<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#395\">App\\Entity\\VillesFranceFree::setVilleLongitudeDeg<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#402\">App\\Entity\\VillesFranceFree::getVilleLatitudeDeg<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#407\">App\\Entity\\VillesFranceFree::setVilleLatitudeDeg<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#414\">App\\Entity\\VillesFranceFree::getVilleLongitudeGrd<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#419\">App\\Entity\\VillesFranceFree::setVilleLongitudeGrd<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#426\">App\\Entity\\VillesFranceFree::getVilleLatitudeGrd<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#431\">App\\Entity\\VillesFranceFree::setVilleLatitudeGrd<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#438\">App\\Entity\\VillesFranceFree::getVilleLongitudeDms<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#443\">App\\Entity\\VillesFranceFree::setVilleLongitudeDms<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#450\">App\\Entity\\VillesFranceFree::getVilleLatitudeDms<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#455\">App\\Entity\\VillesFranceFree::setVilleLatitudeDms<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#462\">App\\Entity\\VillesFranceFree::getVilleZmin<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#467\">App\\Entity\\VillesFranceFree::setVilleZmin<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#474\">App\\Entity\\VillesFranceFree::getVilleZmax<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#479\">App\\Entity\\VillesFranceFree::setVilleZmax<\/a>"],[0,1,"<a href=\"VillesFranceFree.php.html#489\">App\\Entity\\VillesFranceFree::getRooms<\/a>"],[0,2,"<a href=\"VillesFranceFree.php.html#494\">App\\Entity\\VillesFranceFree::addRoom<\/a>"],[0,3,"<a href=\"VillesFranceFree.php.html#504\">App\\Entity\\VillesFranceFree::removeRoom<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

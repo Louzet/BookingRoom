@@ -23,10 +23,11 @@ class FullCalendarListener
     public function __construct(EntityManagerInterface $em, UrlGeneratorInterface $router)
     {
         $this->em = $em;
+
         $this->router = $router;
     }
 
-    public function loadEvents(CalendarEvent $calendar)
+    public function loadEvents(CalendarEvent $calendar): CalendarEvent
     {
         $startDate = $calendar->getStart();
         $endDate = $calendar->getEnd();

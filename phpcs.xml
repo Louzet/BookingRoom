@@ -3,7 +3,7 @@
     <description>The PSR-2 coding standard.</description>
 
     <arg name="report" value="summary"/>
-    <arg name="colors"/>
+    <arg name="colors" value="#008000"/>
     <arg value="sp"/>
 
     <file>src/Controller</file>

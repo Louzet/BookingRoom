@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -67,9 +67,9 @@ class Image
     /**
      * Sets file.
      *
-     * @param UploadedFile $file
+     * @param File|null $file
      */
-    public function setFile(?UploadedFile $file = null): void
+    public function setFile(?File $file = null): void
     {
         $this->file = $file;
         // check if we have an old image path

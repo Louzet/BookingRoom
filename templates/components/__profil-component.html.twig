@@ -1,23 +1,62 @@
-{{ form_start(form) }}
-    <div class="form-group">
-        <div class="col-md-6">
-            {{ form_row(form.lastName) }}
-        </div>
-        <div class="col-md-6">
-            {{ form_row(form.firstName) }}
-        </div>
+<div class="row">
+    <div class="col-md-6 col-sm-8 offset-sm-2">
+        {% if is_granted('ROLE_CLIENT') and is_granted('IS_AUTHENTICATED_REMEMBERED')
+            or is_granted('ROLE_CLIENT')
+        %}
+            <h1>Vos informations personnelles</h1>
+            {{ form_start(form) }}
+                <div class="form-group">
+                    <div class="col-md-6">
+                        {{ form_row(form.lastName) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.firstName) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {{ form_row(form.email) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {{ form_row(form.birthday) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-info btn-block">Enregistrer les modifications</button>
+                </div>
+            {{ form_end(form) }}
+        {% else %}
+            <h1>Vos informations personnelles</h1>
+            {{ form_start(form) }}
+                <div class="form-group">
+                    <div class="col-md-6">
+                        {{ form_row(form.entreprise) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.siren) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {{ form_row(form.address) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {{ form_row(form.codePostal) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {{ form_row(form.email) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-info btn-block">Enregistrer les modifications</button>
+                </div>
+            {{ form_end(form) }}
+        {% endif %}
     </div>
-    <div class="form-group">
-        <div class="col-md-12">
-            {{ form_row(form.email) }}
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-12">
-            {{ form_row(form.birthday) }}
-        </div>
-    </div>
-    <div class="form-group">
-        <button class="btn btn-info btn-block">Enregistrer les modifications</button>
-    </div>
-{{ form_end(form) }}
+</div>

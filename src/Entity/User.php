@@ -77,7 +77,7 @@ class User implements UserInterface, \Serializable
      * @param string $role
      * @throws \Exception
      */
-    public function __construct(string $role = 'ROLE_USER')
+    public function __construct(string $role = 'ROLE_CLIENT')
     {
         $this->setRoles($role);
         $this->date_inscription = new \DateTime('Europe/Paris');
@@ -221,7 +221,7 @@ class User implements UserInterface, \Serializable
      */
     public function setRoles(string $role)
     {
-        if (!in_array($role, $this->roles)) {
+        if (!in_array($role, $this->roles, true)) {
             $this->roles[] = $role;
 
             return true;

@@ -3,18 +3,23 @@
 namespace App\Controller;
 
 use App\Entity\Historique;
+use App\Entity\Professionnal;
 use App\Entity\Reservation;
 use App\Entity\Room;
+use App\Events\RoomEvents\RoomCustomsEvents;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use App\Traits\TransliteratorSlugTrait;
 use Doctrine\Common\Persistence\ObjectManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Workflow\Exception\LogicException;
 use Symfony\Component\Workflow\Registry;
 
@@ -59,16 +64,30 @@ class ReservationController extends AbstractController
     /**
      * @Route("/reservation/create", name="booking.reservation.create")
      *
-     * @param Request $request
+     * @param Request                       $request
+     * @param Registry                      $workflows
+     * @param AuthorizationCheckerInterface $authChecker
+     *
+     * @Security("has_role('ROLE_PROFESSIONNAL')")
      *
      * @return Response
      *
      * @throws \Exception
      */
-    public function reservationCreate(Request $request, Registry $workflows): Response
+    public function reservationCreate(Request $request, Registry $workflows, AuthorizationCheckerInterface $authChecker): Response
     {
         if (null === $this->getUser()) {
             return $this->redirectToRoute('user.login');
+        }
+
+        if ($this->getUser() instanceof Professionnal) {
+            $this->addFlash('danger', "Vous n'avez pas le droit d'éffectuer une réservation !");
+
+            return $this->redirectToRoute('booking.home');
+        }
+
+        if (!$authChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw new AccessDeniedException();
         }
 
         $reservation = new Reservation();
@@ -83,6 +102,7 @@ class ReservationController extends AbstractController
             $reservation->setUser($this->getUser());
 
             $reservation->setTitle($this->slugify($this->getUser()->getLastName().'-'.$reservation->getSalle()->getSlug().'-'.$reservation->getReservedAt()->format('d-m-Y')));
+
 
             try {
                 $workflow->apply($reservation, 'to_pending');
@@ -125,6 +145,12 @@ class ReservationController extends AbstractController
     {
         if (null === $this->getUser()) {
             return $this->redirectToRoute('user.login');
+        }
+
+        if ($this->getUser() instanceof Professionnal) {
+            $this->addFlash('danger', "Vous n'avez pas le droit d'éffectuer une réservation !");
+
+            return $this->redirectToRoute('booking.home');
         }
 
         $reservation = new Reservation();
@@ -227,6 +253,8 @@ class ReservationController extends AbstractController
 
         try {
             $workflow->apply($reservation, 'to_accept');
+
+            $this->dispatcher->dispatch('onCreatedReservation', new RoomCustomsEvents($reservation->getSalle()));
 
             $this->manager->persist($reservation);
             $this->manager->flush();

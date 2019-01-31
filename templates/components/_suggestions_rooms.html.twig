@@ -2,13 +2,6 @@
     <div class="row">
         <div class="col-md-10 offset-md-1">
             <div class="card my-3" style="width: 18rem; height: 13rem;">
-                <ul class="lightSlider">
-                    {% for image in suggestion.images %}
-                        <li data-thumb="{{ asset('image_room_directory/'~image.path) }}" style="width: 250px;display: block;">
-                            <img src="{{ asset('image_room_directory/'~image.path) }}"  alt="{{ suggestion.name }}" style="width: 100%;"/>
-                        </li>
-                    {% endfor %}
-                </ul>
                 <div class="card-body">
                     <h5 class="badge badge-primary pull-right">{{ suggestion.type.title }}</h5>
                     <div>

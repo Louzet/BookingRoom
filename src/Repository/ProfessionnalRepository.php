@@ -19,6 +19,21 @@ class ProfessionnalRepository extends ServiceEntityRepository
         parent::__construct($registry, Professionnal::class);
     }
 
+/*    public function findReservationsByEntreprisesAndStatus($entreprise_id, $status)
+    {
+        return $this->createQueryBuilder('p')
+            ->addSelect('rooms')
+            ->join('p.rooms', 'rooms')
+            ->join('rooms.reservations', 'reservations')
+            ->andWhere('reservations.salle.professionnal_id = :entreprise_id')
+            ->setParameter('entreprise_id', $entreprise_id)
+            ->andWhere('reservations.currentStatus = :status')
+            ->setParameter('status', $status)
+            ->getQuery()
+            ->getResult()
+            ;
+    }*/
+
     // /**
     //  * @return Professionnal[] Returns an array of Professionnal objects
     //  */
